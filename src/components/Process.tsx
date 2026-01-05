@@ -1,4 +1,5 @@
 import { ClipboardCheck, Palette, Rocket, TrendingUp } from "lucide-react";
+import processBg from "@/assets/process-bg.jpg";
 
 const steps = [
   {
@@ -29,8 +30,19 @@ const steps = [
 
 const Process = () => {
   return (
-    <section id="process" className="section-padding bg-cream-dark">
-      <div className="container-narrow mx-auto">
+    <section id="process" className="section-padding relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={processBg}
+          alt="Process background"
+          className="w-full h-full object-cover opacity-20"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-cream-dark/90" />
+      </div>
+
+      <div className="container-narrow mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-4">
@@ -54,7 +66,7 @@ const Process = () => {
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 {/* Card */}
-                <div className="bg-card rounded-2xl p-6 shadow-soft relative z-10 h-full">
+                <div className="bg-card rounded-2xl p-6 shadow-soft relative z-10 h-full hover:shadow-card transition-shadow duration-300">
                   {/* Number badge */}
                   <div className="absolute -top-3 -right-3 w-10 h-10 bg-honey rounded-full flex items-center justify-center font-serif font-bold text-sm text-foreground shadow-lg">
                     {step.number}
