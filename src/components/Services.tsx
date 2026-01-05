@@ -44,10 +44,10 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 md:py-32 bg-background">
-      <div className="container-narrow mx-auto px-5 md:px-8">
+    <section id="services" className="py-28 md:py-36 lg:py-44 bg-background">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Section Header */}
-        <div className="text-center mb-20 animate-fade-up">
+        <div className="text-center mb-20 md:mb-28 animate-fade-up">
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-3">
             What We Create
           </p>
@@ -56,52 +56,80 @@ const Services = () => {
           </h2>
         </div>
 
-        {/* Services List */}
-        <div className="space-y-24 md:space-y-32">
+        {/* Services List - Vertical Stack */}
+        <div className="space-y-20 md:space-y-28 lg:space-y-36">
           {services.map((service, index) => {
-            const isEven = index % 2 === 0;
+            const isImageLeft = index % 2 === 0;
             return (
               <div
                 key={service.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center animate-fade-up"
+                className="animate-fade-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Image - Order changes based on index */}
-                <div
-                  className={`lg:col-span-5 ${
-                    isEven ? "lg:order-1" : "lg:order-2"
-                  }`}
-                >
-                  <div className="relative group overflow-hidden rounded-2xl shadow-lg">
+                {/* Desktop: Alternating Layout */}
+                <div className="hidden md:grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
+                  {/* Image Column - 40% width */}
+                  <div
+                    className={`md:col-span-5 ${
+                      isImageLeft ? "md:order-1" : "md:order-2"
+                    }`}
+                  >
+                    <div className="relative group overflow-hidden rounded-2xl shadow-md">
+                      <img
+                        src={service.image}
+                        alt={service.imageAlt}
+                        loading="lazy"
+                        className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      />
+                      {/* Subtle overlay on hover */}
+                      <div className="absolute inset-0 bg-charcoal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {/* Buzz accent dot */}
+                      <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-honey opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse" />
+                    </div>
+                  </div>
+
+                  {/* Text Column - 60% width */}
+                  <div
+                    className={`md:col-span-7 flex items-center ${
+                      isImageLeft ? "md:order-2" : "md:order-1"
+                    }`}
+                  >
+                    <div className={`${isImageLeft ? "md:pl-4 lg:pl-8" : "md:pr-4 lg:pr-8"}`}>
+                      <h3 className="font-serif text-2xl lg:text-3xl font-semibold text-foreground mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-base lg:text-lg text-honey font-medium mb-4">
+                        {service.subtitle}
+                      </p>
+                      <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-[55ch]">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile: Stacked Layout */}
+                <div className="md:hidden flex flex-col items-center text-center">
+                  {/* Image */}
+                  <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-md mb-6">
                     <img
                       src={service.image}
                       alt={service.imageAlt}
                       loading="lazy"
-                      className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      className="w-full aspect-[4/3] object-cover"
                     />
-                    {/* Hover overlay with buzz accent */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-honey opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-150" />
                   </div>
-                </div>
-
-                {/* Content */}
-                <div
-                  className={`lg:col-span-7 ${
-                    isEven ? "lg:order-2 lg:pl-8" : "lg:order-1 lg:pr-8"
-                  }`}
-                >
-                  <div className="max-w-lg">
-                    <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-lg text-honey font-medium mb-4">
-                      {service.subtitle}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed max-w-[60ch]">
-                      {service.description}
-                    </p>
-                  </div>
+                  
+                  {/* Text */}
+                  <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-base text-honey font-medium mb-3">
+                    {service.subtitle}
+                  </p>
+                  <p className="text-muted-foreground text-sm leading-relaxed max-w-[50ch]">
+                    {service.description}
+                  </p>
                 </div>
               </div>
             );
