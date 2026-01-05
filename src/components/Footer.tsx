@@ -72,13 +72,13 @@ const Footer = () => {
               {/* Contact Links */}
               <div className="flex flex-col gap-3">
                 <a
-                  href="https://www.instagram.com/buzzcraft/"
+                  href="https://www.instagram.com/buzzcraft.official/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-background/80 hover:text-background transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
-                  <span>@buzzcraft</span>
+                  <span>@buzzcraft.official</span>
                 </a>
                 <a
                   href="mailto:Buzzcraftcreatives@gmail.com"
