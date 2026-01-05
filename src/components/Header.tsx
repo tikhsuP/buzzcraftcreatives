@@ -39,7 +39,7 @@ const Header = () => {
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="https://www.instagram.com/buzzcraft/"
+              href="https://www.instagram.com/buzzcraft.official/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -89,7 +89,7 @@ const Header = () => {
             ))}
             <div className="flex items-center gap-4 pt-4 border-t border-border">
               <a
-                href="https://www.instagram.com/buzzcraft/"
+                href="https://www.instagram.com/buzzcraft.official/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-foreground"

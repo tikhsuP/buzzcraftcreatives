@@ -58,7 +58,7 @@ const Hero = () => {
             style={{ animationDelay: "0.6s" }}
           >
             <a
-              href="https://www.instagram.com/buzzcraft/"
+              href="https://www.instagram.com/buzzcraft.official/"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-all duration-300"
