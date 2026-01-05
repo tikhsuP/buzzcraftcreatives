@@ -20,10 +20,10 @@ const Hero = () => {
         >
           <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
-        {/* Cream overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background/80" />
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/60 to-charcoal/80" />
         {/* Subtle grain texture */}
-        <div className="absolute inset-0 grain-overlay" />
+        <div className="absolute inset-0 grain-overlay opacity-30" />
       </div>
 
       {/* Content */}
@@ -36,17 +36,17 @@ const Hero = () => {
 
           {/* Headline */}
           <h1
-            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-tight mb-6 animate-fade-up"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight mb-6 animate-fade-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             style={{ animationDelay: "0.2s" }}
           >
             Crafting Creativity,
             <br />
-            <span className="italic text-charcoal-light">One Buzz at a Time</span>
+            <span className="italic text-honey">One Buzz at a Time</span>
           </h1>
 
           {/* Subhead */}
           <p
-            className="text-lg md:text-xl text-muted-foreground mb-10 tracking-wide animate-fade-up"
+            className="text-lg md:text-xl text-white/90 mb-10 tracking-widest uppercase font-medium animate-fade-up"
             style={{ animationDelay: "0.4s" }}
           >
             Instagram Ads • Reels • Promotions • Google Ads
@@ -69,13 +69,13 @@ const Hero = () => {
             </a>
             <a
               href="#footer"
-              className="group flex items-center gap-2 px-6 py-3.5 border-2 border-foreground text-foreground rounded-full font-medium hover:bg-foreground hover:text-background transition-all duration-300"
+              className="group flex items-center gap-2 px-6 py-3.5 border-2 border-white text-white rounded-full font-medium hover:bg-white hover:text-charcoal transition-all duration-300"
             >
               <span>Work With Us</span>
             </a>
             <a
               href="mailto:Buzzcraftcreatives@gmail.com"
-              className="flex items-center gap-2 px-6 py-3.5 text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-2 px-6 py-3.5 text-white/80 hover:text-white transition-colors"
             >
               <Mail className="w-5 h-5" />
               <span>Email Us</span>
@@ -84,7 +84,7 @@ const Hero = () => {
 
           {/* Trust indicator */}
           <p
-            className="mt-12 text-sm text-muted-foreground animate-fade-in"
+            className="mt-12 text-sm text-white/70 animate-fade-in"
             style={{ animationDelay: "0.8s" }}
           >
             No long calls required • DMs welcome for quick replies
@@ -94,8 +94,8 @@ const Hero = () => {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in" style={{ animationDelay: "1.2s" }}>
-        <div className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center animate-bounce">
-          <div className="w-1.5 h-3 bg-muted-foreground/50 rounded-full mt-2" />
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center animate-bounce">
+          <div className="w-1.5 h-3 bg-white/50 rounded-full mt-2" />
         </div>
       </div>
     </section>
