@@ -1,115 +1,111 @@
-import { Instagram, Film, Users, Search } from "lucide-react";
-import BeeIcon from "./BeeIcon";
-import instagramImg from "@/assets/services-instagram.jpg";
-import reelsImg from "@/assets/services-reels.jpg";
-import influencerImg from "@/assets/services-influencer.jpg";
-import googleImg from "@/assets/services-google.jpg";
+import serviceInstagram from "@/assets/service-instagram-ads.jpg";
+import serviceReels from "@/assets/service-reels.jpg";
+import serviceInfluencer from "@/assets/service-influencer.jpg";
+import serviceGoogle from "@/assets/service-google-ads.jpg";
 
 const services = [
   {
-    icon: Instagram,
+    id: "instagram-ads",
     title: "Instagram Ads",
+    subtitle: "Performance-driven paid social campaigns",
     description:
-      "We offer Instagram ads management services for businesses looking to generate leads and sales through paid social. Our team runs performance-driven Instagram advertising campaigns, including Story Ads, Carousel Ads, and Feed Ads, with continuous creative testing, audience targeting, and ROI tracking to maximize results.",
-    keywords: ["Story Ads", "Carousel Ads", "Feed Ads", "ROI Tracking"],
-    image: instagramImg,
+      "We create and manage Instagram advertising campaigns that focus on creative testing, precise targeting, and ROI tracking to generate consistent leads and sales for growing brands.",
+    image: serviceInstagram,
+    imageAlt: "Instagram advertising campaign on mobile phone",
   },
   {
-    icon: Film,
+    id: "reels-strategy",
     title: "Reels Strategy",
+    subtitle: "Short-form content that converts",
     description:
-      "We offer Instagram Reels marketing and strategy designed to increase reach, engagement, and brand visibility. Our short-form video marketing approach focuses on strong 3-second hooks, high-retention edits, and conversion-focused content to help brands grow consistently through Reels.",
-    keywords: ["Short-Form Video", "High Retention", "3-Second Hooks"],
-    image: reelsImg,
+      "Our Reels marketing focuses on strong 3-second hooks, high-retention edits, and conversion-focused content to help brands grow consistently through organic and paid short-form video.",
+    image: serviceReels,
+    imageAlt: "Content creator filming vertical video",
   },
   {
-    icon: Users,
+    id: "influencer-promos",
     title: "Influencer Promos",
+    subtitle: "Authentic collaborations that build trust",
     description:
-      "We offer influencer marketing and Instagram page promotion services through high-engagement niche accounts. Our influencer collaborations and shoutout campaigns help brands build awareness, grow followers, and create authentic engagement.",
-    keywords: ["Shoutout Campaigns", "Niche Accounts", "Authentic Engagement"],
-    image: influencerImg,
+      "Strategic influencer marketing through high-engagement niche accounts to build awareness, grow followers, and create authentic engagement that resonates with your audience.",
+    image: serviceInfluencer,
+    imageAlt: "Influencer collaboration meeting",
   },
   {
-    icon: Search,
+    id: "google-ads",
     title: "Google Ads",
+    subtitle: "High-intent leads, measurable ROI",
     description:
-      "We offer Google Ads management services for businesses seeking high-intent leads and measurable ROI. From Google Search Ads and PPC campaign management to conversion tracking and optimization, we help reduce cost per lead and scale profitable advertising campaigns.",
-    keywords: ["PPC Management", "Search Ads", "Conversion Tracking"],
-    image: googleImg,
+      "From Google Search Ads and PPC campaign management to conversion tracking and optimization, we help reduce cost per lead and scale profitable advertising campaigns.",
+    image: serviceGoogle,
+    imageAlt: "Google Analytics dashboard showing growth",
   },
 ];
 
 const Services = () => {
   return (
-    <section id="services" className="section-padding bg-cream-dark relative">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 grain-overlay" />
-
-      <div className="container-narrow mx-auto relative z-10">
+    <section id="services" className="py-24 md:py-32 bg-background">
+      <div className="container-narrow mx-auto px-5 md:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-up">
-          <div className="flex justify-center mb-4">
-            <BeeIcon size="md" />
-          </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-4">
+        <div className="text-center mb-20 animate-fade-up">
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-3">
             What We Create
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Performance-driven creative solutions that turn scrollers into customers
           </p>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground">
+            Our Services
+          </h2>
         </div>
 
-        {/* Services Grid - Instagram-style cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {services.map((service, index) => (
-            <article
-              key={service.title}
-              className="group relative rounded-2xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500 animate-fade-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={service.image}
-                  alt={`${service.title} background`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                {/* Overlay for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/80 to-foreground/60" />
-              </div>
-
-              <div className="relative z-10 p-8 min-h-[380px] flex flex-col justify-end">
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-background/20 backdrop-blur-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-7 h-7 text-background" />
+        {/* Services List */}
+        <div className="space-y-24 md:space-y-32">
+          {services.map((service, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <div
+                key={service.id}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center animate-fade-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Image - Order changes based on index */}
+                <div
+                  className={`lg:col-span-5 ${
+                    isEven ? "lg:order-1" : "lg:order-2"
+                  }`}
+                >
+                  <div className="relative group overflow-hidden rounded-2xl shadow-lg">
+                    <img
+                      src={service.image}
+                      alt={service.imageAlt}
+                      loading="lazy"
+                      className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    />
+                    {/* Hover overlay with buzz accent */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-honey opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-150" />
+                  </div>
                 </div>
 
-                {/* Title */}
-                <h3 className="font-serif text-2xl font-semibold text-background mb-4">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-background/80 leading-relaxed mb-6">
-                  {service.description}
-                </p>
-
-                {/* Keywords */}
-                <div className="flex flex-wrap gap-2">
-                  {service.keywords.map((keyword) => (
-                    <span
-                      key={keyword}
-                      className="px-3 py-1 text-xs font-medium bg-background/20 backdrop-blur-sm text-background rounded-full"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
+                {/* Content */}
+                <div
+                  className={`lg:col-span-7 ${
+                    isEven ? "lg:order-2 lg:pl-8" : "lg:order-1 lg:pr-8"
+                  }`}
+                >
+                  <div className="max-w-lg">
+                    <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-lg text-honey font-medium mb-4">
+                      {service.subtitle}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed max-w-[60ch]">
+                      {service.description}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
