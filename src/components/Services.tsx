@@ -1,5 +1,9 @@
 import { Instagram, Film, Users, Search } from "lucide-react";
 import BeeIcon from "./BeeIcon";
+import instagramImg from "@/assets/services-instagram.jpg";
+import reelsImg from "@/assets/services-reels.jpg";
+import influencerImg from "@/assets/services-influencer.jpg";
+import googleImg from "@/assets/services-google.jpg";
 
 const services = [
   {
@@ -8,6 +12,7 @@ const services = [
     description:
       "We offer Instagram ads management services for businesses looking to generate leads and sales through paid social. Our team runs performance-driven Instagram advertising campaigns, including Story Ads, Carousel Ads, and Feed Ads, with continuous creative testing, audience targeting, and ROI tracking to maximize results.",
     keywords: ["Story Ads", "Carousel Ads", "Feed Ads", "ROI Tracking"],
+    image: instagramImg,
   },
   {
     icon: Film,
@@ -15,6 +20,7 @@ const services = [
     description:
       "We offer Instagram Reels marketing and strategy designed to increase reach, engagement, and brand visibility. Our short-form video marketing approach focuses on strong 3-second hooks, high-retention edits, and conversion-focused content to help brands grow consistently through Reels.",
     keywords: ["Short-Form Video", "High Retention", "3-Second Hooks"],
+    image: reelsImg,
   },
   {
     icon: Users,
@@ -22,6 +28,7 @@ const services = [
     description:
       "We offer influencer marketing and Instagram page promotion services through high-engagement niche accounts. Our influencer collaborations and shoutout campaigns help brands build awareness, grow followers, and create authentic engagement.",
     keywords: ["Shoutout Campaigns", "Niche Accounts", "Authentic Engagement"],
+    image: influencerImg,
   },
   {
     icon: Search,
@@ -29,6 +36,7 @@ const services = [
     description:
       "We offer Google Ads management services for businesses seeking high-intent leads and measurable ROI. From Google Search Ads and PPC campaign management to conversion tracking and optimization, we help reduce cost per lead and scale profitable advertising campaigns.",
     keywords: ["PPC Management", "Search Ads", "Conversion Tracking"],
+    image: googleImg,
   },
 ];
 
@@ -57,25 +65,34 @@ const Services = () => {
           {services.map((service, index) => (
             <article
               key={service.title}
-              className="group relative bg-card rounded-2xl p-8 shadow-card hover:shadow-elevated transition-all duration-500 overflow-hidden animate-fade-up"
+              className="group relative rounded-2xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500 animate-fade-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Gradient accent on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-lavender/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={service.image}
+                  alt={`${service.title} background`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                {/* Overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/80 to-foreground/60" />
+              </div>
 
-              <div className="relative z-10">
+              <div className="relative z-10 p-8 min-h-[380px] flex flex-col justify-end">
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-7 h-7 text-foreground" />
+                <div className="w-14 h-14 rounded-xl bg-background/20 backdrop-blur-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <service.icon className="w-7 h-7 text-background" />
                 </div>
 
                 {/* Title */}
-                <h3 className="font-serif text-2xl font-semibold text-foreground mb-4">
+                <h3 className="font-serif text-2xl font-semibold text-background mb-4">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-muted-foreground leading-relaxed mb-6">
+                <p className="text-background/80 leading-relaxed mb-6">
                   {service.description}
                 </p>
 
@@ -84,7 +101,7 @@ const Services = () => {
                   {service.keywords.map((keyword) => (
                     <span
                       key={keyword}
-                      className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full"
+                      className="px-3 py-1 text-xs font-medium bg-background/20 backdrop-blur-sm text-background rounded-full"
                     >
                       {keyword}
                     </span>
