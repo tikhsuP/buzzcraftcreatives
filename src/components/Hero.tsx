@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Instagram, ArrowRight, Mail } from "lucide-react";
 import BeeIcon from "./BeeIcon";
 
@@ -66,12 +65,6 @@ const Hero = () => {
               <Instagram className="w-5 h-5" />
               <span>View Our Instagram</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#footer"
-              className="group flex items-center gap-2 px-6 py-3.5 border-2 border-white text-white rounded-full font-medium hover:bg-white hover:text-charcoal transition-all duration-300"
-            >
-              <span>Work With Us</span>
             </a>
             <a
               href="mailto:Buzzcraftcreatives@gmail.com"

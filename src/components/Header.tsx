@@ -54,12 +54,6 @@ const Header = () => {
             >
               <Mail className="w-6 h-6" />
             </a>
-            <a
-              href="#footer"
-              className="px-6 py-3 text-base font-medium bg-primary text-primary-foreground rounded-full hover:opacity-90 transition-all duration-300"
-            >
-              Work With Us
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,13 +99,6 @@ const Header = () => {
                 <span>Email</span>
               </a>
             </div>
-            <a
-              href="#footer"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-2 px-5 py-3 text-center font-medium bg-primary text-primary-foreground rounded-full"
-            >
-              Work With Us
-            </a>
           </nav>
         </div>
       )}
