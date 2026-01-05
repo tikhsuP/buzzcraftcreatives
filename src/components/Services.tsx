@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import serviceInstagram from "@/assets/service-instagram-ads.jpg";
 import serviceReels from "@/assets/service-reels.jpg";
 import serviceInfluencer from "@/assets/service-influencer.jpg";
@@ -42,12 +43,138 @@ const services = [
   },
 ];
 
+// Individual service row component with scroll animation
+const ServiceRow = ({ service, index }: { service: typeof services[0]; index: number }) => {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const isImageLeft = index % 2 === 0;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (rowRef.current) {
+      observer.observe(rowRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={rowRef}
+      className="transition-all duration-700"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+      }}
+    >
+      {/* Desktop: Alternating Layout */}
+      <div className="hidden md:grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
+        {/* Image Column - 40% width */}
+        <div
+          className={`md:col-span-5 ${isImageLeft ? "md:order-1" : "md:order-2"}`}
+        >
+          <div className="relative group overflow-hidden rounded-2xl shadow-md">
+            <img
+              src={service.image}
+              alt={service.imageAlt}
+              loading="lazy"
+              className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            />
+            {/* Subtle overlay on hover */}
+            <div className="absolute inset-0 bg-charcoal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            {/* Buzz accent dot */}
+            <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-honey opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse" />
+          </div>
+        </div>
+
+        {/* Text Column - 60% width */}
+        <div
+          className={`md:col-span-7 flex items-center ${isImageLeft ? "md:order-2" : "md:order-1"}`}
+        >
+          <div className={`${isImageLeft ? "md:pl-4 lg:pl-8" : "md:pr-4 lg:pr-8"}`}>
+            <h3 className="font-serif text-2xl lg:text-3xl font-semibold text-foreground mb-2">
+              {service.title}
+            </h3>
+            <p className="text-base lg:text-lg text-honey font-medium mb-4">
+              {service.subtitle}
+            </p>
+            <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-[55ch]">
+              {service.description}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile: Stacked Layout */}
+      <div className="md:hidden flex flex-col items-center text-center">
+        {/* Image */}
+        <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-md mb-6">
+          <img
+            src={service.image}
+            alt={service.imageAlt}
+            loading="lazy"
+            className="w-full aspect-[4/3] object-cover"
+          />
+        </div>
+        
+        {/* Text */}
+        <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+          {service.title}
+        </h3>
+        <p className="text-base text-honey font-medium mb-3">
+          {service.subtitle}
+        </p>
+        <p className="text-muted-foreground text-sm leading-relaxed max-w-[50ch]">
+          {service.description}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const Services = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeaderVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="services" className="pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28 bg-background">
       <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Section Header */}
-        <div className="text-center mb-10 md:mb-12 lg:mb-16 animate-fade-up">
+        <div 
+          ref={headerRef}
+          className="text-center mb-10 md:mb-12 lg:mb-16 transition-all duration-700"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0)' : 'translateY(30px)',
+          }}
+        >
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-2">
             What We Create
           </p>
@@ -58,82 +185,9 @@ const Services = () => {
 
         {/* Services List - Vertical Stack */}
         <div className="space-y-14 md:space-y-16 lg:space-y-20">
-          {services.map((service, index) => {
-            const isImageLeft = index % 2 === 0;
-            return (
-              <div
-                key={service.id}
-                className="animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Desktop: Alternating Layout */}
-                <div className="hidden md:grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
-                  {/* Image Column - 40% width */}
-                  <div
-                    className={`md:col-span-5 ${
-                      isImageLeft ? "md:order-1" : "md:order-2"
-                    }`}
-                  >
-                    <div className="relative group overflow-hidden rounded-2xl shadow-md">
-                      <img
-                        src={service.image}
-                        alt={service.imageAlt}
-                        loading="lazy"
-                        className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                      />
-                      {/* Subtle overlay on hover */}
-                      <div className="absolute inset-0 bg-charcoal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      {/* Buzz accent dot */}
-                      <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-honey opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse" />
-                    </div>
-                  </div>
-
-                  {/* Text Column - 60% width */}
-                  <div
-                    className={`md:col-span-7 flex items-center ${
-                      isImageLeft ? "md:order-2" : "md:order-1"
-                    }`}
-                  >
-                    <div className={`${isImageLeft ? "md:pl-4 lg:pl-8" : "md:pr-4 lg:pr-8"}`}>
-                      <h3 className="font-serif text-2xl lg:text-3xl font-semibold text-foreground mb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-base lg:text-lg text-honey font-medium mb-4">
-                        {service.subtitle}
-                      </p>
-                      <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-[55ch]">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Mobile: Stacked Layout */}
-                <div className="md:hidden flex flex-col items-center text-center">
-                  {/* Image */}
-                  <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-md mb-6">
-                    <img
-                      src={service.image}
-                      alt={service.imageAlt}
-                      loading="lazy"
-                      className="w-full aspect-[4/3] object-cover"
-                    />
-                  </div>
-                  
-                  {/* Text */}
-                  <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-base text-honey font-medium mb-3">
-                    {service.subtitle}
-                  </p>
-                  <p className="text-muted-foreground text-sm leading-relaxed max-w-[50ch]">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+          {services.map((service, index) => (
+            <ServiceRow key={service.id} service={service} index={index} />
+          ))}
         </div>
       </div>
     </section>
