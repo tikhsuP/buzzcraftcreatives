@@ -42,20 +42,27 @@ const testimonials = [
 
 const Results = () => {
   return (
-    <section id="results" className="section-padding bg-foreground text-background relative overflow-hidden">
+    <section id="results" className="px-5 md:px-8 lg:px-16 pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-foreground text-background relative overflow-hidden">
+      {/* Top divider - visual transition */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3">
+        <span className="w-12 h-px bg-gradient-to-r from-transparent to-background/20" />
+        <span className="w-2 h-2 rounded-full bg-honey/60" />
+        <span className="w-12 h-px bg-gradient-to-l from-transparent to-background/20" />
+      </div>
+      
       {/* Subtle accent */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-honey/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-lavender/10 rounded-full blur-3xl" />
 
       <div className="container-narrow mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-up">
-          <div className="flex justify-center mb-4">
+        <div className="text-center mb-10 md:mb-12 animate-fade-up">
+          <div className="flex justify-center mb-3">
             <div className="p-2 bg-background/10 rounded-full">
               <BeeIcon size="sm" />
             </div>
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold mb-3">
             Results That Speak
           </h2>
           <p className="text-background/70 text-lg max-w-xl mx-auto">
@@ -64,7 +71,7 @@ const Results = () => {
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 md:mb-16">
           {metrics.map((metric, index) => (
             <div
               key={metric.label}

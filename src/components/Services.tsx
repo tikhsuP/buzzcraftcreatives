@@ -44,11 +44,11 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-28 md:py-36 lg:py-44 bg-background">
+    <section id="services" className="pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28 bg-background">
       <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Section Header */}
-        <div className="text-center mb-20 md:mb-28 animate-fade-up">
-          <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-3">
+        <div className="text-center mb-10 md:mb-12 lg:mb-16 animate-fade-up">
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-2">
             What We Create
           </p>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground">
@@ -57,7 +57,7 @@ const Services = () => {
         </div>
 
         {/* Services List - Vertical Stack */}
-        <div className="space-y-20 md:space-y-28 lg:space-y-36">
+        <div className="space-y-14 md:space-y-16 lg:space-y-20">
           {services.map((service, index) => {
             const isImageLeft = index % 2 === 0;
             return (

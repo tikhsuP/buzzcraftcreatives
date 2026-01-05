@@ -30,7 +30,14 @@ const steps = [
 
 const Process = () => {
   return (
-    <section id="process" className="section-padding relative overflow-hidden">
+    <section id="process" className="px-5 md:px-8 lg:px-16 pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 relative overflow-hidden">
+      {/* Top divider - visual transition */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+        <span className="w-12 h-px bg-gradient-to-r from-transparent to-charcoal/20" />
+        <span className="w-2 h-2 rounded-full bg-honey/60" />
+        <span className="w-12 h-px bg-gradient-to-l from-transparent to-charcoal/20" />
+      </div>
+      
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -44,8 +51,8 @@ const Process = () => {
 
       <div className="container-narrow mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-4">
+        <div className="text-center mb-10 md:mb-12 animate-fade-up">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-3">
             How We Work
           </h2>
           <p className="text-muted-foreground text-lg">

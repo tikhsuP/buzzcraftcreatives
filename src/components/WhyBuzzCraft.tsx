@@ -46,10 +46,17 @@ const WhyBuzzCraft = () => {
     return () => observer.disconnect();
   }, []);
   return (
-    <section ref={sectionRef} className="py-28 md:py-36 lg:py-44 bg-lavender/5 overflow-hidden">
+    <section ref={sectionRef} className="pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28 bg-lavender/5 overflow-hidden relative">
+      {/* Top divider - visual transition from Services */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3">
+        <span className="w-12 h-px bg-gradient-to-r from-transparent to-lavender/50" />
+        <span className="w-2 h-2 rounded-full bg-honey/60" />
+        <span className="w-12 h-px bg-gradient-to-l from-transparent to-lavender/50" />
+      </div>
+      
       <div className="container-narrow mx-auto px-5 md:px-8">
         {/* Section Heading */}
-        <div className={`text-center mb-24 md:mb-32 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground tracking-wide">
             Why Buzz Craft
           </h2>
@@ -107,7 +114,7 @@ const WhyBuzzCraft = () => {
         </div>
 
         {/* Smile-Shaped Layout - Mobile/Tablet */}
-        <div className="lg:hidden flex flex-col items-center gap-12">
+        <div className="lg:hidden flex flex-col items-center gap-10">
           {mobileOrder.map((item, index) => {
             const delay = 200 + index * 200;
             
@@ -154,7 +161,7 @@ const WhyBuzzCraft = () => {
 
         {/* Supporting Micro-Copy */}
         <div
-          className="mt-24 md:mt-32 text-center transition-all duration-700"
+          className="mt-12 md:mt-16 text-center transition-all duration-700"
           style={{ 
             transitionDelay: '800ms',
             opacity: isVisible ? 1 : 0,
