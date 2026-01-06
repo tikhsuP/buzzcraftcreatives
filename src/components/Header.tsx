@@ -29,7 +29,7 @@ const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-lg font-medium text-muted-foreground hover:text-honey transition-colors duration-300"
+                className="text-xl lg:text-2xl font-bold text-foreground hover:text-honey transition-colors duration-300"
               >
                 {item.label}
               </a>
@@ -76,7 +76,7 @@ const Header = () => {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-lg font-medium text-foreground hover:text-honey py-2 transition-colors"
+                className="text-xl font-bold text-foreground hover:text-honey py-2 transition-colors"
               >
                 {item.label}
               </a>
