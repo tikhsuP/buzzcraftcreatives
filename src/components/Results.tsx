@@ -62,10 +62,10 @@ const Results = () => {
               <BeeIcon size="sm" />
             </div>
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold mb-3">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
             Results That Speak
           </h2>
-          <p className="text-background/70 text-lg max-w-xl mx-auto">
+          <p className="text-background/70 text-lg md:text-xl max-w-xl mx-auto">
             Real metrics from real campaigns. No vanity numbers.
           </p>
         </div>
@@ -82,7 +82,7 @@ const Results = () => {
               <div className="font-serif text-5xl md:text-6xl font-bold text-background mb-2">
                 {metric.value}
               </div>
-              <div className="text-lg font-medium text-background mb-1">
+              <div className="text-lg md:text-xl font-semibold text-background mb-1">
                 {metric.label}
               </div>
               <div className="text-sm text-background/60">{metric.sublabel}</div>
