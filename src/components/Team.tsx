@@ -78,7 +78,7 @@ const Team = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               {/* Portrait Image */}
-              <div className="w-full aspect-[4/5] mb-5 md:mb-6 overflow-hidden rounded-xl">
+              <div className="w-full aspect-square mb-5 md:mb-6 overflow-hidden rounded-xl">
                 <img
                   src={member.image}
                   alt={member.alt}
