@@ -101,10 +101,10 @@ const ServiceRow = ({ service, index }: { service: typeof services[0]; index: nu
           className={`md:col-span-7 flex items-center ${isImageLeft ? "md:order-2" : "md:order-1"}`}
         >
           <div className={`${isImageLeft ? "md:pl-4 lg:pl-8" : "md:pr-4 lg:pr-8"}`}>
-            <h3 className="font-serif text-2xl lg:text-3xl font-semibold text-foreground mb-2">
+            <h3 className="font-serif text-2xl lg:text-4xl font-bold text-foreground mb-2">
               {service.title}
             </h3>
-            <p className="text-base lg:text-lg text-honey font-medium mb-4">
+            <p className="text-base lg:text-lg text-honey font-semibold mb-4">
               {service.subtitle}
             </p>
             <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-[55ch]">
@@ -127,10 +127,10 @@ const ServiceRow = ({ service, index }: { service: typeof services[0]; index: nu
         </div>
         
         {/* Text */}
-        <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+        <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
           {service.title}
         </h3>
-        <p className="text-base text-honey font-medium mb-3">
+        <p className="text-base text-honey font-semibold mb-3">
           {service.subtitle}
         </p>
         <p className="text-muted-foreground text-sm leading-relaxed max-w-[50ch]">
@@ -175,10 +175,10 @@ const Services = () => {
             transform: headerVisible ? 'translateY(0)' : 'translateY(30px)',
           }}
         >
-          <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-2">
+          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-2">
             What We Create
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Our Services
           </h2>
         </div>

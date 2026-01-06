@@ -58,7 +58,7 @@ const Team = () => {
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Meet the Team
           </h2>
         </div>
@@ -88,12 +88,12 @@ const Team = () => {
               </div>
 
               {/* Name */}
-              <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground mb-2">
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-2">
                 {member.name}
               </h3>
 
               {/* Title with accent underline */}
-              <p className="text-sm md:text-base text-honey font-medium mb-4 pb-3 border-b border-honey/30">
+              <p className="text-base md:text-lg text-honey font-semibold mb-4 pb-3 border-b border-honey/30">
                 {member.title}
               </p>
 

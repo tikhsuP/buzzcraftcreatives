@@ -57,7 +57,7 @@ const WhyBuzzCraft = () => {
       <div className="container-narrow mx-auto px-5 md:px-8">
         {/* Section Heading */}
         <div className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground tracking-wide">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-wide">
             Why Buzz Craft
           </h2>
         </div>
@@ -101,7 +101,7 @@ const WhyBuzzCraft = () => {
                       transform: isVisible ? 'translateY(0)' : 'translateY(15px)'
                     }}
                   >
-                    <span className="font-serif text-xl xl:text-2xl font-bold text-charcoal tracking-tight relative inline-block">
+                    <span className="font-serif text-2xl xl:text-3xl font-bold text-charcoal tracking-tight relative inline-block">
                       {item.word}
                       {/* Accent underline */}
                       <span className="absolute -bottom-1.5 left-0 w-full h-0.5 bg-gradient-to-r from-lavender to-honey opacity-70" />
@@ -149,7 +149,7 @@ const WhyBuzzCraft = () => {
                     transform: isVisible ? 'translateY(0)' : 'translateY(15px)'
                   }}
                 >
-                  <span className="font-serif text-lg md:text-xl font-bold text-charcoal tracking-tight relative inline-block">
+                  <span className="font-serif text-xl md:text-2xl font-bold text-charcoal tracking-tight relative inline-block">
                     {item.word}
                     <span className="absolute -bottom-1.5 left-0 w-full h-0.5 bg-gradient-to-r from-lavender to-honey opacity-70" />
                   </span>
