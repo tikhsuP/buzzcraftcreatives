@@ -82,7 +82,7 @@ const ServiceRow = ({ service, index }: { service: typeof services[0]; index: nu
         <div
           className={`md:col-span-5 ${isImageLeft ? "md:order-1" : "md:order-2"}`}
         >
-          <div className="relative group overflow-hidden rounded-2xl shadow-md">
+          <div className="relative group overflow-hidden rounded-2xl shadow-card border border-border/30">
             <img
               src={service.image}
               alt={service.imageAlt}
@@ -90,7 +90,7 @@ const ServiceRow = ({ service, index }: { service: typeof services[0]; index: nu
               className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
             />
             {/* Subtle overlay on hover */}
-            <div className="absolute inset-0 bg-charcoal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-honey/0 group-hover:bg-honey/10 transition-colors duration-500" />
             {/* Buzz accent dot */}
             <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-honey opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse" />
           </div>
@@ -117,7 +117,7 @@ const ServiceRow = ({ service, index }: { service: typeof services[0]; index: nu
       {/* Mobile: Stacked Layout */}
       <div className="md:hidden flex flex-col items-center text-center">
         {/* Image */}
-        <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-md mb-6">
+        <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-card border border-border/30 mb-6">
           <img
             src={service.image}
             alt={service.imageAlt}
@@ -175,7 +175,7 @@ const Services = () => {
             transform: headerVisible ? 'translateY(0)' : 'translateY(30px)',
           }}
         >
-          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-2">
+          <p className="text-sm font-semibold text-honey uppercase tracking-widest mb-2">
             What We Create
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">

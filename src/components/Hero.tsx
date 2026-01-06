@@ -5,7 +5,7 @@ import BeeIcon from "./BeeIcon";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -20,9 +20,9 @@ const Hero = () => {
           <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/60 to-charcoal/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/90" />
         {/* Subtle grain texture */}
-        <div className="absolute inset-0 grain-overlay opacity-30" />
+        <div className="absolute inset-0 grain-overlay opacity-20" />
       </div>
 
       {/* Content */}
@@ -35,7 +35,7 @@ const Hero = () => {
 
           {/* Headline */}
           <h1
-            className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-6 animate-fade-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+            className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight mb-6 animate-fade-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             style={{ animationDelay: "0.2s" }}
           >
             Crafting Creativity,
@@ -45,7 +45,7 @@ const Hero = () => {
 
           {/* Subhead */}
           <p
-            className="text-lg md:text-xl text-white/90 mb-10 tracking-widest uppercase font-medium animate-fade-up"
+            className="text-lg md:text-xl text-foreground/80 mb-10 tracking-widest uppercase font-medium animate-fade-up"
             style={{ animationDelay: "0.4s" }}
           >
             Instagram Ads • Reels • Promotions • Google Ads
@@ -60,7 +60,7 @@ const Hero = () => {
               href="https://www.instagram.com/buzzcraft.official/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-all duration-300"
+              className="group flex items-center gap-2 px-6 py-3.5 bg-honey text-background rounded-full font-semibold hover:bg-honey-dark glow-honey transition-all duration-300"
             >
               <Instagram className="w-5 h-5" />
               <span>View Our Instagram</span>
@@ -68,7 +68,7 @@ const Hero = () => {
             </a>
             <a
               href="mailto:Buzzcraftcreatives@gmail.com"
-              className="flex items-center gap-2 px-6 py-3.5 text-white/80 hover:text-white transition-colors"
+              className="flex items-center gap-2 px-6 py-3.5 text-foreground/70 hover:text-honey transition-colors"
             >
               <Mail className="w-5 h-5" />
               <span>Email Us</span>
@@ -77,7 +77,7 @@ const Hero = () => {
 
           {/* Trust indicator */}
           <p
-            className="mt-12 text-sm text-white/70 animate-fade-in"
+            className="mt-12 text-sm text-muted-foreground animate-fade-in"
             style={{ animationDelay: "0.8s" }}
           >
             No long calls required • DMs welcome for quick replies
@@ -87,8 +87,8 @@ const Hero = () => {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in" style={{ animationDelay: "1.2s" }}>
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center animate-bounce">
-          <div className="w-1.5 h-3 bg-white/50 rounded-full mt-2" />
+        <div className="w-6 h-10 border-2 border-honey/50 rounded-full flex justify-center animate-bounce">
+          <div className="w-1.5 h-3 bg-honey/50 rounded-full mt-2" />
         </div>
       </div>
     </section>

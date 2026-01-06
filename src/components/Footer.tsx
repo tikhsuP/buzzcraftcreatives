@@ -10,27 +10,27 @@ const Footer = () => {
   ];
 
   return (
-    <footer id="footer" className="bg-foreground text-background">
+    <footer id="footer" className="bg-charcoal-light text-foreground">
       <div className="section-padding">
         <div className="container-narrow mx-auto">
           <div className="flex flex-col items-center text-center">
             {/* Logo */}
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-1.5 bg-background/10 rounded-full">
+              <div className="p-1.5 bg-honey/20 rounded-full">
                 <BeeIcon size="sm" />
               </div>
-              <span className="font-serif text-2xl font-semibold">
+              <span className="font-serif text-2xl font-semibold text-foreground">
                 Buzz Craft
               </span>
             </div>
 
-            <p className="text-background/70 text-lg mb-8 max-w-md">
+            <p className="text-muted-foreground text-lg mb-8 max-w-md">
               Creative performance marketing that transforms scrollers into loyal customers.
             </p>
 
             {/* Services */}
             <div className="mb-8">
-              <h3 className="text-sm font-medium text-background/50 uppercase tracking-wider mb-4">
+              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
                 Services
               </h3>
               <ul className="flex flex-wrap justify-center gap-4">
@@ -38,7 +38,7 @@ const Footer = () => {
                   <li key={service}>
                     <a
                       href="#services"
-                      className="text-background/80 hover:text-background transition-colors"
+                      className="text-foreground/80 hover:text-honey transition-colors"
                     >
                       {service}
                     </a>
@@ -53,14 +53,14 @@ const Footer = () => {
                 href="https://www.instagram.com/buzzcraft.official/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-background/80 hover:text-background transition-colors"
+                className="inline-flex items-center gap-2 text-honey hover:text-honey-glow transition-colors"
               >
                 <Instagram className="w-5 h-5" />
                 <span>@buzzcraft.official</span>
               </a>
               <a
                 href="mailto:Buzzcraftcreatives@gmail.com"
-                className="inline-flex items-center gap-2 text-background/80 hover:text-background transition-colors"
+                className="inline-flex items-center gap-2 text-honey hover:text-honey-glow transition-colors"
               >
                 <Mail className="w-5 h-5" />
                 <span>Buzzcraftcreatives@gmail.com</span>
@@ -71,9 +71,9 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-background/10 py-6">
+      <div className="border-t border-border/30 py-6">
         <div className="container-narrow mx-auto px-5 md:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-background/50">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
             <p>© {new Date().getFullYear()} Buzz Craft. All rights reserved.</p>
             <p>Crafting creativity, one buzz at a time.</p>
           </div>
