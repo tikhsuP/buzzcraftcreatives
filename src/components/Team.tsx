@@ -4,19 +4,19 @@ import yahviImage from "@/assets/team-yahvi.jpg";
 
 const teamMembers = [
   {
-    name: "Harsh Bhalla",
-    title: "Co-Founder & PPC Specialist, Buzz Craft",
-    bio: "Harsh is a performance marketing specialist and co-founder of Buzz Craft with a strong background in growth strategy, digital storytelling, and results-driven campaigns. He combines creative intuition with analytical insight to help brands scale through Instagram Ads, Reels, Google PPC, and data-driven marketing.",
-    image: harshImage,
-    alt: "Harsh Bhalla – Co-Founder at Buzz Craft",
-    direction: "left" as const,
-  },
-  {
     name: "Yahvi Patel",
     title: "Co-Founder & Creative Lead, Buzz Craft",
     bio: "Yahvi is a creative storyteller and digital marketing expert known for building highly engaging social content and brand experiences. With a strong presence as a digital creator and a talent for relatable, attention-grabbing campaigns, Yahvi drives the creative direction at Buzz Craft and helps clients connect deeply with audiences across Instagram and emerging platforms.",
     image: yahviImage,
     alt: "Yahvi Patel – Co-Founder & Creative Lead at Buzz Craft",
+    direction: "left" as const,
+  },
+  {
+    name: "Harsh Bhalla",
+    title: "Co-Founder & PPC Specialist, Buzz Craft",
+    bio: "Harsh is a performance marketing specialist and co-founder of Buzz Craft with a strong background in growth strategy, digital storytelling, and results-driven campaigns. He combines creative intuition with analytical insight to help brands scale through Instagram Ads, Reels, Google PPC, and data-driven marketing.",
+    image: harshImage,
+    alt: "Harsh Bhalla – Co-Founder at Buzz Craft",
     direction: "right" as const,
   },
 ];
