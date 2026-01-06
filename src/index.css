@@ -4,81 +4,55 @@
 
 @layer base {
   :root {
-    /* Buzz Craft Design System */
-    --background: 40 33% 96%;
-    --foreground: 30 10% 15%;
+    /* Buzz Craft Dark Premium Theme */
+    --background: 220 15% 8%;
+    --foreground: 45 20% 95%;
 
-    --card: 40 30% 98%;
-    --card-foreground: 30 10% 15%;
+    --card: 220 12% 12%;
+    --card-foreground: 45 20% 95%;
 
-    --popover: 40 30% 98%;
-    --popover-foreground: 30 10% 15%;
+    --popover: 220 12% 12%;
+    --popover-foreground: 45 20% 95%;
 
-    --primary: 30 10% 15%;
-    --primary-foreground: 40 33% 96%;
+    --primary: 45 90% 50%;
+    --primary-foreground: 220 15% 8%;
 
-    --secondary: 40 20% 92%;
-    --secondary-foreground: 30 10% 20%;
+    --secondary: 220 10% 18%;
+    --secondary-foreground: 45 20% 90%;
 
-    --muted: 40 15% 90%;
-    --muted-foreground: 30 8% 45%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 45 15% 65%;
 
-    --accent: 270 30% 75%;
-    --accent-foreground: 270 40% 25%;
+    --accent: 45 90% 50%;
+    --accent-foreground: 220 15% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 40 20% 85%;
-    --input: 40 20% 88%;
+    --border: 220 10% 20%;
+    --input: 220 10% 18%;
     --ring: 45 90% 50%;
 
     --radius: 0.5rem;
 
-    /* Custom Buzz Craft tokens */
-    --cream: 40 33% 96%;
-    --cream-dark: 40 25% 92%;
-    --charcoal: 30 10% 15%;
-    --charcoal-light: 30 8% 35%;
-    --lavender: 270 30% 75%;
-    --lavender-light: 270 40% 92%;
+    /* Custom Buzz Craft tokens - Dark Theme */
+    --cream: 45 20% 95%;
+    --cream-dark: 45 15% 85%;
+    --charcoal: 220 15% 8%;
+    --charcoal-light: 220 10% 18%;
     --honey: 45 90% 50%;
     --honey-dark: 42 85% 42%;
+    --honey-glow: 45 100% 60%;
     
-    /* Gradients */
-    --gradient-cream: linear-gradient(180deg, hsl(40 33% 96%) 0%, hsl(40 25% 92%) 100%);
-    --gradient-hero-overlay: linear-gradient(180deg, hsl(40 33% 96% / 0.5) 0%, hsl(40 25% 92% / 0.7) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(40 30% 98%) 0%, hsl(40 25% 95%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(270 30% 75%) 0%, hsl(270 40% 85%) 100%);
-
-    /* Shadows */
-    --shadow-soft: 0 4px 20px -2px hsl(30 10% 15% / 0.08);
-    --shadow-card: 0 8px 30px -4px hsl(30 10% 15% / 0.1);
-    --shadow-elevated: 0 20px 50px -10px hsl(30 10% 15% / 0.15);
+    /* Shadows for dark theme */
+    --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 8px 30px -4px hsl(0 0% 0% / 0.5);
+    --shadow-elevated: 0 20px 50px -10px hsl(0 0% 0% / 0.6);
+    --shadow-glow: 0 0 30px -5px hsl(45 90% 50% / 0.3);
 
     /* Typography */
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'DM Sans', system-ui, sans-serif;
-  }
-
-  .dark {
-    --background: 30 10% 10%;
-    --foreground: 40 33% 96%;
-    --card: 30 10% 12%;
-    --card-foreground: 40 33% 96%;
-    --popover: 30 10% 12%;
-    --popover-foreground: 40 33% 96%;
-    --primary: 40 33% 96%;
-    --primary-foreground: 30 10% 10%;
-    --secondary: 30 8% 20%;
-    --secondary-foreground: 40 33% 96%;
-    --muted: 30 8% 25%;
-    --muted-foreground: 40 15% 65%;
-    --accent: 270 30% 50%;
-    --accent-foreground: 270 40% 95%;
-    --border: 30 8% 25%;
-    --input: 30 8% 25%;
-    --ring: 45 90% 50%;
   }
 }
 
@@ -104,7 +78,7 @@
 @layer components {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--charcoal)) 0%, hsl(var(--charcoal-light)) 100%);
+    background-image: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(var(--honey)) 100%);
   }
 
   .card-glass {
@@ -121,7 +95,7 @@
   }
 
   .btn-accent {
-    @apply text-foreground border-2 border-foreground hover:bg-foreground hover:text-background transition-all duration-300;
+    @apply bg-honey text-charcoal font-semibold hover:bg-honey-dark transition-all duration-300;
   }
 
   .section-padding {
@@ -134,8 +108,17 @@
 
   .grain-overlay {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.03;
+    opacity: 0.02;
     pointer-events: none;
+  }
+
+  /* Honey glow effect for buttons */
+  .glow-honey {
+    box-shadow: 0 0 20px -5px hsl(var(--honey) / 0.4);
+  }
+
+  .glow-honey:hover {
+    box-shadow: 0 0 30px -5px hsl(var(--honey) / 0.6);
   }
 }
 

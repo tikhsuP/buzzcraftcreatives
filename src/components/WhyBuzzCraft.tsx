@@ -47,12 +47,12 @@ const WhyBuzzCraft = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-12 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-24 bg-lavender/8 overflow-hidden relative">
+    <section ref={sectionRef} className="pt-12 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-24 bg-secondary overflow-hidden relative">
       {/* Top divider - visual transition from Services */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3">
-        <span className="w-16 h-px bg-gradient-to-r from-transparent to-lavender/60" />
+        <span className="w-16 h-px bg-gradient-to-r from-transparent to-honey/40" />
         <span className="w-2.5 h-2.5 rounded-full bg-honey/70" />
-        <span className="w-16 h-px bg-gradient-to-l from-transparent to-lavender/60" />
+        <span className="w-16 h-px bg-gradient-to-l from-transparent to-honey/40" />
       </div>
       
       {/* Wide container - 90% width */}
@@ -84,7 +84,7 @@ const WhyBuzzCraft = () => {
                 >
                   {/* Image Container - Larger size */}
                   <div className="relative group mb-4">
-                    <div className="w-64 xl:w-80 overflow-hidden rounded-2xl shadow-card">
+                    <div className="w-64 xl:w-80 overflow-hidden rounded-2xl shadow-card border border-border/30">
                       <img
                         src={item.image}
                         alt={item.alt}
@@ -93,7 +93,7 @@ const WhyBuzzCraft = () => {
                       />
                     </div>
                     {/* Subtle hover glow */}
-                    <div className="absolute inset-0 rounded-2xl bg-honey/0 group-hover:bg-honey/5 transition-colors duration-500" />
+                    <div className="absolute inset-0 rounded-2xl bg-honey/0 group-hover:bg-honey/10 transition-colors duration-500" />
                   </div>
                   
                   {/* Keyword - tight spacing below image */}
@@ -105,10 +105,10 @@ const WhyBuzzCraft = () => {
                       transform: isVisible ? 'translateY(0)' : 'translateY(15px)'
                     }}
                   >
-                    <span className="font-serif text-2xl xl:text-3xl font-bold text-charcoal tracking-tight relative inline-block">
+                    <span className="font-serif text-2xl xl:text-3xl font-bold text-foreground tracking-tight relative inline-block">
                       {item.word}
                       {/* Accent underline */}
-                      <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-lavender to-honey opacity-80 rounded-full" />
+                      <span className="absolute -bottom-1 left-0 w-full h-1 bg-honey opacity-80 rounded-full" />
                     </span>
                   </div>
                 </div>
@@ -134,7 +134,7 @@ const WhyBuzzCraft = () => {
               >
                 {/* Image - 90% width on mobile */}
                 <div className="relative group mb-3 w-[85%] max-w-xs md:max-w-sm">
-                  <div className="w-full overflow-hidden rounded-2xl shadow-card">
+                  <div className="w-full overflow-hidden rounded-2xl shadow-card border border-border/30">
                     <img
                       src={item.image}
                       alt={item.alt}
@@ -153,9 +153,9 @@ const WhyBuzzCraft = () => {
                     transform: isVisible ? 'translateY(0)' : 'translateY(15px)'
                   }}
                 >
-                  <span className="font-serif text-xl md:text-2xl font-bold text-charcoal tracking-tight relative inline-block">
+                  <span className="font-serif text-xl md:text-2xl font-bold text-foreground tracking-tight relative inline-block">
                     {item.word}
-                    <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-lavender to-honey opacity-80 rounded-full" />
+                    <span className="absolute -bottom-1 left-0 w-full h-1 bg-honey opacity-80 rounded-full" />
                   </span>
                 </div>
               </div>
@@ -180,9 +180,9 @@ const WhyBuzzCraft = () => {
 
       {/* Bottom divider */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-3">
-        <span className="w-16 h-px bg-gradient-to-r from-transparent to-lavender/60" />
+        <span className="w-16 h-px bg-gradient-to-r from-transparent to-honey/40" />
         <span className="w-2.5 h-2.5 rounded-full bg-honey/70" />
-        <span className="w-16 h-px bg-gradient-to-l from-transparent to-lavender/60" />
+        <span className="w-16 h-px bg-gradient-to-l from-transparent to-honey/40" />
       </div>
     </section>
   );

@@ -50,9 +50,9 @@ const Team = () => {
     >
       {/* Top divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
-        <span className="w-12 h-px bg-gradient-to-r from-transparent to-charcoal/20" />
+        <span className="w-12 h-px bg-gradient-to-r from-transparent to-honey/30" />
         <span className="w-2 h-2 rounded-full bg-honey/60" />
-        <span className="w-12 h-px bg-gradient-to-l from-transparent to-charcoal/20" />
+        <span className="w-12 h-px bg-gradient-to-l from-transparent to-honey/30" />
       </div>
 
       <div className="max-w-4xl mx-auto">
@@ -68,8 +68,8 @@ const Team = () => {
           {teamMembers.map((member, index) => (
             <article
               key={member.name}
-              className={`bg-card rounded-2xl p-6 md:p-7 lg:p-8 shadow-soft border border-border/50 
-                hover:shadow-card hover:-translate-y-1 transition-all duration-300 ease-out
+              className={`bg-card rounded-2xl p-6 md:p-7 lg:p-8 shadow-soft border border-border/30 
+                hover:shadow-glow hover:-translate-y-1 transition-all duration-300 ease-out
                 flex flex-col ${
                   isVisible
                     ? "opacity-100 translate-y-0"
@@ -78,7 +78,7 @@ const Team = () => {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               {/* Portrait Image */}
-              <div className="w-full aspect-square mb-5 md:mb-6 overflow-hidden rounded-xl">
+              <div className="w-full aspect-square mb-5 md:mb-6 overflow-hidden rounded-xl border border-border/20">
                 <img
                   src={member.image}
                   alt={member.alt}

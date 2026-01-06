@@ -42,30 +42,30 @@ const testimonials = [
 
 const Results = () => {
   return (
-    <section id="results" className="px-5 md:px-8 lg:px-16 pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-foreground text-background relative overflow-hidden">
+    <section id="results" className="px-5 md:px-8 lg:px-16 pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 bg-card text-foreground relative overflow-hidden">
       {/* Top divider - visual transition */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3">
-        <span className="w-12 h-px bg-gradient-to-r from-transparent to-background/20" />
+        <span className="w-12 h-px bg-gradient-to-r from-transparent to-honey/30" />
         <span className="w-2 h-2 rounded-full bg-honey/60" />
-        <span className="w-12 h-px bg-gradient-to-l from-transparent to-background/20" />
+        <span className="w-12 h-px bg-gradient-to-l from-transparent to-honey/30" />
       </div>
       
       {/* Subtle accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-honey/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-lavender/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-honey/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-honey/5 rounded-full blur-3xl" />
 
       <div className="container-narrow mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-12 animate-fade-up">
           <div className="flex justify-center mb-3">
-            <div className="p-2 bg-background/10 rounded-full">
+            <div className="p-2 bg-honey/20 rounded-full">
               <BeeIcon size="sm" />
             </div>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-3">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3">
             Results That Speak
           </h2>
-          <p className="text-background/70 text-lg md:text-xl max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto">
             Real metrics from real campaigns. No vanity numbers.
           </p>
         </div>
@@ -75,17 +75,17 @@ const Results = () => {
           {metrics.map((metric, index) => (
             <div
               key={metric.label}
-              className="text-center p-8 rounded-2xl bg-background/5 backdrop-blur-sm border border-background/10 animate-fade-up"
+              className="text-center p-8 rounded-2xl bg-secondary/50 backdrop-blur-sm border border-border/30 animate-fade-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <metric.icon className="w-8 h-8 mx-auto mb-4 text-honey" />
-              <div className="font-serif text-5xl md:text-6xl font-bold text-background mb-2">
+              <div className="font-serif text-5xl md:text-6xl font-bold text-honey mb-2">
                 {metric.value}
               </div>
-              <div className="text-lg md:text-xl font-semibold text-background mb-1">
+              <div className="text-lg md:text-xl font-semibold text-foreground mb-1">
                 {metric.label}
               </div>
-              <div className="text-sm text-background/60">{metric.sublabel}</div>
+              <div className="text-sm text-muted-foreground">{metric.sublabel}</div>
             </div>
           ))}
         </div>
@@ -95,14 +95,14 @@ const Results = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.author}
-              className="p-6 rounded-xl bg-background/5 border border-background/10 animate-fade-up"
+              className="p-6 rounded-xl bg-secondary/50 border border-border/30 animate-fade-up"
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
             >
-              <blockquote className="text-background/90 mb-4 italic">
+              <blockquote className="text-foreground/90 mb-4 italic">
                 "{testimonial.quote}"
               </blockquote>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-background/60">— {testimonial.author}</span>
+                <span className="text-sm text-muted-foreground">— {testimonial.author}</span>
                 <span className="flex items-center gap-1 text-xs font-medium text-honey">
                   <ArrowUpRight className="w-3 h-3" />
                   {testimonial.result}

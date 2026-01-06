@@ -59,13 +59,10 @@ export default {
           DEFAULT: "hsl(var(--charcoal))",
           light: "hsl(var(--charcoal-light))",
         },
-        lavender: {
-          DEFAULT: "hsl(var(--lavender))",
-          light: "hsl(var(--lavender-light))",
-        },
         honey: {
           DEFAULT: "hsl(var(--honey))",
           dark: "hsl(var(--honey-dark))",
+          glow: "hsl(var(--honey-glow))",
         },
       },
       borderRadius: {
@@ -100,6 +97,10 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        glow: {
+          "0%, 100%": { boxShadow: "0 0 20px -5px hsl(45 90% 50% / 0.4)" },
+          "50%": { boxShadow: "0 0 30px -5px hsl(45 90% 50% / 0.6)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -108,16 +109,18 @@ export default {
         "fade-up": "fadeUp 0.8s ease-out forwards",
         "fade-in": "fadeIn 1s ease-out forwards",
         shimmer: "shimmer 2s linear infinite",
+        glow: "glow 2s ease-in-out infinite",
       },
       backgroundImage: {
-        "gradient-cream": "linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--cream-dark)) 100%)",
-        "gradient-card": "linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--cream-dark)) 100%)",
-        "gradient-accent": "linear-gradient(135deg, hsl(var(--lavender)) 0%, hsl(var(--lavender-light)) 100%)",
+        "gradient-dark": "linear-gradient(180deg, hsl(var(--charcoal)) 0%, hsl(var(--charcoal-light)) 100%)",
+        "gradient-card": "linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--secondary)) 100%)",
+        "gradient-honey": "linear-gradient(135deg, hsl(var(--honey)) 0%, hsl(var(--honey-dark)) 100%)",
       },
       boxShadow: {
-        soft: "0 4px 20px -2px hsl(var(--charcoal) / 0.08)",
-        card: "0 8px 30px -4px hsl(var(--charcoal) / 0.1)",
-        elevated: "0 20px 50px -10px hsl(var(--charcoal) / 0.15)",
+        soft: "0 4px 20px -2px hsl(0 0% 0% / 0.4)",
+        card: "0 8px 30px -4px hsl(0 0% 0% / 0.5)",
+        elevated: "0 20px 50px -10px hsl(0 0% 0% / 0.6)",
+        glow: "0 0 30px -5px hsl(45 90% 50% / 0.3)",
       },
     },
   },
