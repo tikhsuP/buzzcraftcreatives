@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import WhyBuzzCraft from "@/components/WhyBuzzCraft";
 import Results from "@/components/Results";
-import Process from "@/components/Process";
+import Team from "@/components/Team";
 import Footer from "@/components/Footer";
 import CursorBee from "@/components/CursorBee";
 
@@ -17,7 +17,7 @@ const Index = () => {
         <Services />
         <WhyBuzzCraft />
         <Results />
-        <Process />
+        <Team />
       </main>
       <Footer />
     </div>
