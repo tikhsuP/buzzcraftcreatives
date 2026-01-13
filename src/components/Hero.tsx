@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, ArrowRight, Mail } from "lucide-react";
+import { Instagram, ArrowRight, Mail, FileText, Eye } from "lucide-react";
 import BeeIcon from "./BeeIcon";
 
 const Hero = () => {
@@ -33,22 +33,29 @@ const Hero = () => {
             <BeeIcon size="lg" />
           </div>
 
-          {/* Headline */}
+          {/* SEO Keyword Tagline */}
+          <p
+            className="text-xs sm:text-sm font-semibold text-honey uppercase tracking-[0.2em] mb-6 animate-fade-up"
+            style={{ animationDelay: "0.1s" }}
+          >
+            Social Media Marketing • Content Creation • Brand Strategy • Performance Ads • Google Ads
+          </p>
+
+          {/* Headline H1 */}
           <h1
-            className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight mb-6 animate-fade-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-6 animate-fade-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             style={{ animationDelay: "0.2s" }}
           >
-            Crafting Creativity,
-            <br />
-            <span className="italic text-honey">One Buzz at a Time</span>
+            We Build Brands That Look{" "}
+            <span className="italic text-honey">Premium</span> and Sell Better Online.
           </h1>
 
           {/* Subhead */}
           <p
-            className="text-lg md:text-xl text-foreground/80 mb-10 tracking-widest uppercase font-medium animate-fade-up"
+            className="text-base md:text-lg lg:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up leading-relaxed"
             style={{ animationDelay: "0.4s" }}
           >
-            Instagram Ads • Reels • Promotions • Google Ads
+            Buzz Craft helps businesses grow with content, strategy, and performance marketing that drives real results — not vanity metrics.
           </p>
 
           {/* CTAs */}
@@ -57,27 +64,39 @@ const Hero = () => {
             style={{ animationDelay: "0.6s" }}
           >
             <a
-              href="https://www.instagram.com/buzzcraft.official/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-6 py-3.5 bg-honey text-background rounded-full font-semibold hover:bg-honey-dark glow-honey transition-all duration-300"
+              href="#contact"
+              className="group flex items-center gap-2 px-7 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark glow-honey transition-all duration-300"
             >
-              <Instagram className="w-5 h-5" />
-              <span>View Our Instagram</span>
+              <FileText className="w-5 h-5" />
+              <span>Get a Free Quote</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="mailto:Buzzcraftcreatives@gmail.com"
-              className="flex items-center gap-2 px-6 py-3.5 text-foreground/70 hover:text-honey transition-colors"
+              href="#services"
+              className="group flex items-center gap-2 px-6 py-3.5 border-2 border-honey/50 text-foreground rounded-full font-semibold hover:border-honey hover:bg-honey/10 transition-all duration-300"
             >
-              <Mail className="w-5 h-5" />
-              <span>Email Us</span>
+              <Eye className="w-5 h-5" />
+              <span>View Our Work</span>
+            </a>
+          </div>
+
+          {/* Email CTA */}
+          <div
+            className="mt-6 animate-fade-up"
+            style={{ animationDelay: "0.7s" }}
+          >
+            <a
+              href="mailto:Buzzcraftcreatives@gmail.com"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-honey transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              <span className="text-sm">Buzzcraftcreatives@gmail.com</span>
             </a>
           </div>
 
           {/* Trust indicator */}
           <p
-            className="mt-12 text-sm text-muted-foreground animate-fade-in"
+            className="mt-10 text-sm text-muted-foreground animate-fade-in"
             style={{ animationDelay: "0.8s" }}
           >
             No long calls required • DMs welcome for quick replies

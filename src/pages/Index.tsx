@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import WhyBuzzCraft from "@/components/WhyBuzzCraft";
 import Results from "@/components/Results";
 import Team from "@/components/Team";
+import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import CursorBee from "@/components/CursorBee";
 
@@ -18,6 +19,7 @@ const Index = () => {
         <WhyBuzzCraft />
         <Results />
         <Team />
+        <ContactForm />
       </main>
       <Footer />
     </div>
