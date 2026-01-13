@@ -1,53 +1,94 @@
 import { useEffect, useRef, useState } from "react";
-import serviceInstagram from "@/assets/service-instagram-ads.jpg";
-import serviceReels from "@/assets/service-reels.jpg";
-import serviceInfluencer from "@/assets/service-influencer.jpg";
-import serviceGoogle from "@/assets/service-google-ads.jpg";
+import { 
+  Palette, 
+  BarChart3, 
+  Users, 
+  Megaphone, 
+  MessageCircle, 
+  LineChart, 
+  Rocket,
+  ArrowRight
+} from "lucide-react";
 
 const services = [
   {
-    id: "instagram-ads",
-    title: "Instagram Ads",
-    subtitle: "Performance-driven paid social campaigns",
-    description:
-      "We create and manage Instagram advertising campaigns that focus on creative testing, precise targeting, and ROI tracking to generate consistent leads and sales for growing brands.",
-    image: serviceInstagram,
-    imageAlt: "Instagram advertising campaign on mobile phone",
+    id: "content-strategy",
+    title: "Content Strategy & Creation",
+    description: "High-quality content planning, scripting, shoots, editing, Reels, and brand storytelling designed to stop the scroll.",
+    icon: Palette,
   },
   {
-    id: "reels-strategy",
-    title: "Reels Strategy",
-    subtitle: "Short-form content that converts",
-    description:
-      "Our Reels marketing focuses on strong 3-second hooks, high-retention edits, and conversion-focused content to help brands grow consistently through organic and paid short-form video.",
-    image: serviceReels,
-    imageAlt: "Content creator filming vertical video",
+    id: "performance-marketing",
+    title: "Performance Marketing (Meta + Google Ads)",
+    description: "Instagram, Facebook, YouTube & Google Ads campaigns built for leads, conversions, and ROI — with tracking and optimization.",
+    icon: BarChart3,
   },
   {
-    id: "influencer-promos",
-    title: "Influencer Promos",
-    subtitle: "Authentic collaborations that build trust",
-    description:
-      "Strategic influencer marketing through high-engagement niche accounts to build awareness, grow followers, and create authentic engagement that resonates with your audience.",
-    image: serviceInfluencer,
-    imageAlt: "Influencer collaboration meeting",
+    id: "influencer-promotions",
+    title: "Influencer & Page Promotions",
+    description: "Strategic collaborations and promotions through high-engagement niche pages to boost reach and credibility.",
+    icon: Users,
   },
   {
-    id: "google-ads",
-    title: "Google Ads",
-    subtitle: "High-intent leads, measurable ROI",
-    description:
-      "From Google Search Ads and PPC campaign management to conversion tracking and optimization, we help reduce cost per lead and scale profitable advertising campaigns.",
-    image: serviceGoogle,
-    imageAlt: "Google Analytics dashboard showing growth",
+    id: "brand-strategy",
+    title: "Brand Strategy & Positioning",
+    description: "Brand messaging, tone, and identity direction that helps you stand out and stay consistent everywhere.",
+    icon: Megaphone,
+  },
+  {
+    id: "community-management",
+    title: "Community Management",
+    description: "We manage DMs, comments, and engagement so your audience feels heard — and converts faster.",
+    icon: MessageCircle,
+  },
+  {
+    id: "analytics-reporting",
+    title: "Performance Analytics & Reporting",
+    description: "Clear weekly/monthly reporting with insights, improvements, and next-step growth planning.",
+    icon: LineChart,
+  },
+  {
+    id: "event-marketing",
+    title: "Event Marketing & Launch Support",
+    description: "Campaign planning and promotions for product launches, store openings, and brand events.",
+    icon: Rocket,
   },
 ];
 
-// Individual service row component with scroll animation
-const ServiceRow = ({ service, index }: { service: typeof services[0]; index: number }) => {
-  const rowRef = useRef<HTMLDivElement>(null);
+const ServiceCard = ({ service, index, isVisible }: { service: typeof services[0]; index: number; isVisible: boolean }) => {
+  const Icon = service.icon;
+  
+  return (
+    <div
+      className="group p-6 md:p-8 rounded-2xl bg-card border border-border/30 hover:border-honey/50 
+        shadow-soft hover:shadow-glow transition-all duration-500 hover:-translate-y-1"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transitionDelay: `${index * 75}ms`,
+      }}
+    >
+      {/* Icon */}
+      <div className="w-14 h-14 rounded-xl bg-honey/10 flex items-center justify-center mb-5 group-hover:bg-honey/20 transition-colors duration-300">
+        <Icon className="w-7 h-7 text-honey" />
+      </div>
+      
+      {/* Title */}
+      <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground mb-3">
+        {service.title}
+      </h3>
+      
+      {/* Description */}
+      <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+        {service.description}
+      </p>
+    </div>
+  );
+};
+
+const Services = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const isImageLeft = index % 2 === 0;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,137 +98,74 @@ const ServiceRow = ({ service, index }: { service: typeof services[0]; index: nu
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
-    if (rowRef.current) {
-      observer.observe(rowRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div
-      ref={rowRef}
-      className="transition-all duration-700"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-      }}
+    <section 
+      id="services" 
+      ref={sectionRef}
+      className="pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28 bg-background relative"
     >
-      {/* Desktop: Alternating Layout */}
-      <div className="hidden md:grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
-        {/* Image Column - 40% width */}
-        <div
-          className={`md:col-span-5 ${isImageLeft ? "md:order-1" : "md:order-2"}`}
-        >
-          <div className="relative group overflow-hidden rounded-2xl shadow-card border border-border/30">
-            <img
-              src={service.image}
-              alt={service.imageAlt}
-              loading="lazy"
-              className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            />
-            {/* Subtle overlay on hover */}
-            <div className="absolute inset-0 bg-honey/0 group-hover:bg-honey/10 transition-colors duration-500" />
-            {/* Buzz accent dot */}
-            <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-honey opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse" />
-          </div>
-        </div>
-
-        {/* Text Column - 60% width */}
-        <div
-          className={`md:col-span-7 flex items-center ${isImageLeft ? "md:order-2" : "md:order-1"}`}
-        >
-          <div className={`${isImageLeft ? "md:pl-4 lg:pl-8" : "md:pr-4 lg:pr-8"}`}>
-            <h3 className="font-serif text-2xl lg:text-4xl font-bold text-foreground mb-2">
-              {service.title}
-            </h3>
-            <p className="text-base lg:text-lg text-honey font-semibold mb-4">
-              {service.subtitle}
-            </p>
-            <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-[55ch]">
-              {service.description}
-            </p>
-          </div>
-        </div>
+      {/* Top divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3">
+        <span className="w-12 h-px bg-gradient-to-r from-transparent to-honey/30" />
+        <span className="w-2 h-2 rounded-full bg-honey/60" />
+        <span className="w-12 h-px bg-gradient-to-l from-transparent to-honey/30" />
       </div>
 
-      {/* Mobile: Stacked Layout */}
-      <div className="md:hidden flex flex-col items-center text-center">
-        {/* Image */}
-        <div className="w-full max-w-xs overflow-hidden rounded-2xl shadow-card border border-border/30 mb-6">
-          <img
-            src={service.image}
-            alt={service.imageAlt}
-            loading="lazy"
-            className="w-full aspect-[4/3] object-cover"
-          />
-        </div>
-        
-        {/* Text */}
-        <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
-          {service.title}
-        </h3>
-        <p className="text-base text-honey font-semibold mb-3">
-          {service.subtitle}
-        </p>
-        <p className="text-muted-foreground text-sm leading-relaxed max-w-[50ch]">
-          {service.description}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-const Services = () => {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [headerVisible, setHeaderVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHeaderVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (headerRef.current) {
-      observer.observe(headerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section id="services" className="pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28 bg-background">
       <div className="max-w-6xl mx-auto px-5 md:px-8">
         {/* Section Header */}
         <div 
-          ref={headerRef}
-          className="text-center mb-10 md:mb-12 lg:mb-16 transition-all duration-700"
+          className="text-center mb-12 md:mb-16 transition-all duration-700"
           style={{
-            opacity: headerVisible ? 1 : 0,
-            transform: headerVisible ? 'translateY(0)' : 'translateY(30px)',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
           }}
         >
-          <p className="text-sm font-semibold text-honey uppercase tracking-widest mb-2">
-            What We Create
+          <p className="text-sm font-semibold text-honey uppercase tracking-widest mb-3">
+            What We Do
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Our Services
           </h2>
         </div>
 
-        {/* Services List - Vertical Stack */}
-        <div className="space-y-14 md:space-y-16 lg:space-y-20">
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
-            <ServiceRow key={service.id} service={service} index={index} />
+            <ServiceCard 
+              key={service.id} 
+              service={service} 
+              index={index}
+              isVisible={isVisible}
+            />
           ))}
+        </div>
+
+        {/* CTA */}
+        <div 
+          className="mt-12 md:mt-16 text-center transition-all duration-700"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '500ms',
+          }}
+        >
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark glow-honey transition-all duration-300"
+          >
+            <span>Request a Free Strategy Call</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </div>
     </section>
