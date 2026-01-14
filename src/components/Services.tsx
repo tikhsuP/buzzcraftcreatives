@@ -3,55 +3,34 @@ import {
   Palette, 
   BarChart3, 
   Users, 
-  Megaphone, 
-  MessageCircle, 
-  LineChart, 
-  Rocket,
+  LineChart,
   ArrowRight
 } from "lucide-react";
 
 const services = [
   {
-    id: "content-strategy",
-    title: "Content Strategy & Creation",
-    description: "High-quality content planning, scripting, shoots, editing, Reels, and brand storytelling designed to stop the scroll.",
+    id: "content-creation",
+    title: "Content Creation & Social Media Growth",
+    description: "We create scroll-stopping Instagram posts, Reels, and branded content designed to build trust, improve engagement, and grow your audience consistently. Our content is planned strategically to match your brand voice and drive real business outcomes.",
     icon: Palette,
   },
   {
     id: "performance-marketing",
     title: "Performance Marketing (Meta + Google Ads)",
-    description: "Instagram, Facebook, YouTube & Google Ads campaigns built for leads, conversions, and ROI — with tracking and optimization.",
+    description: "We manage high-performing paid campaigns across Instagram, Facebook, YouTube, and Google Ads to generate qualified leads and sales. From targeting and creative testing to conversion tracking and optimization, we focus on improving ROI and reducing cost per lead.",
     icon: BarChart3,
   },
   {
     id: "influencer-promotions",
-    title: "Influencer & Page Promotions",
-    description: "Strategic collaborations and promotions through high-engagement niche pages to boost reach and credibility.",
+    title: "Influencer & Promotion Campaigns",
+    description: "We run influencer collaborations and page promotions through niche, high-engagement communities to boost reach and brand credibility. Our approach helps businesses build visibility faster while keeping content authentic and audience-relevant.",
     icon: Users,
   },
   {
-    id: "brand-strategy",
-    title: "Brand Strategy & Positioning",
-    description: "Brand messaging, tone, and identity direction that helps you stand out and stay consistent everywhere.",
-    icon: Megaphone,
-  },
-  {
-    id: "community-management",
-    title: "Community Management",
-    description: "We manage DMs, comments, and engagement so your audience feels heard — and converts faster.",
-    icon: MessageCircle,
-  },
-  {
-    id: "analytics-reporting",
-    title: "Performance Analytics & Reporting",
-    description: "Clear weekly/monthly reporting with insights, improvements, and next-step growth planning.",
+    id: "strategy-analytics",
+    title: "Strategy, Analytics & Reporting",
+    description: "We support brands with clear strategy, performance audits, and reporting that highlights what's working and what to scale next. Every decision is backed by data so your marketing stays consistent, measurable, and growth-focused.",
     icon: LineChart,
-  },
-  {
-    id: "event-marketing",
-    title: "Event Marketing & Launch Support",
-    description: "Campaign planning and promotions for product launches, store openings, and brand events.",
-    icon: Rocket,
   },
 ];
 
@@ -60,26 +39,26 @@ const ServiceCard = ({ service, index, isVisible }: { service: typeof services[0
   
   return (
     <div
-      className="group p-6 md:p-8 rounded-2xl bg-card border border-border/30 hover:border-honey/50 
+      className="group p-8 md:p-10 rounded-2xl bg-card border border-border/30 hover:border-honey/50 
         shadow-soft hover:shadow-glow transition-all duration-500 hover:-translate-y-1"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transitionDelay: `${index * 75}ms`,
+        transitionDelay: `${index * 100}ms`,
       }}
     >
       {/* Icon */}
-      <div className="w-14 h-14 rounded-xl bg-honey/10 flex items-center justify-center mb-5 group-hover:bg-honey/20 transition-colors duration-300">
-        <Icon className="w-7 h-7 text-honey" />
+      <div className="w-16 h-16 rounded-xl bg-honey/10 flex items-center justify-center mb-6 group-hover:bg-honey/20 transition-colors duration-300">
+        <Icon className="w-8 h-8 text-honey" />
       </div>
       
       {/* Title */}
-      <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground mb-3">
+      <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground mb-4">
         {service.title}
       </h3>
       
       {/* Description */}
-      <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+      <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
         {service.description}
       </p>
     </div>
@@ -138,8 +117,8 @@ const Services = () => {
           </h2>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Services Grid - 2x2 for cleaner layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {services.map((service, index) => (
             <ServiceCard 
               key={service.id} 

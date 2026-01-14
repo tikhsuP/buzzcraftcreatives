@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import WhyBuzzCraft from "@/components/WhyBuzzCraft";
-import Results from "@/components/Results";
 import Team from "@/components/Team";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -17,7 +16,6 @@ const Index = () => {
         <Hero />
         <Services />
         <WhyBuzzCraft />
-        <Results />
         <Team />
         <ContactForm />
       </main>
