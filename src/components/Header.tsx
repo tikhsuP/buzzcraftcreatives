@@ -16,8 +16,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo - Text Only */}
           <a href="#" className="flex items-center group">
-            <span className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-              Buzz Craft
+            <span className="font-serif text-xl md:text-2xl lg:text-3xl font-bold text-foreground tracking-tight">
+              Buzzcraftcreatives
             </span>
           </a>
 
