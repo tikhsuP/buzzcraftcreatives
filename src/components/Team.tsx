@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import harshImage from "@/assets/team-harsh.jpg";
 import yahviImage from "@/assets/team-yahvi.jpg";
+import nitinImage from "@/assets/team-nitin.jpg";
+import shreyaImage from "@/assets/team-shreya.png";
 
 const teamMembers = [
   {
@@ -21,14 +23,14 @@ const teamMembers = [
     name: "Nitin Kumar",
     title: "Operations & Client Success Head",
     description: "Nitin manages execution, timelines, and smooth delivery across client projects, ensuring high-quality work and reliable coordination. He focuses on keeping operations efficient while maintaining strong client communication and support.",
-    image: null,
+    image: nitinImage,
     alt: "Nitin Kumar – Operations & Client Success Head at Buzz Craft",
   },
   {
     name: "Shreya Saxena",
     title: "Marketing & Growth Lead",
     description: "Shreya works on social growth strategy, engagement planning, and content optimization to improve reach and audience loyalty. She helps shape brand presence with a balance of creativity, consistency, and measurable content performance.",
-    image: null,
+    image: shreyaImage,
     alt: "Shreya Saxena – Marketing & Growth Lead at Buzz Craft",
   },
   {
