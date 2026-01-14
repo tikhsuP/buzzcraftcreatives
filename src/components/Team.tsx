@@ -6,35 +6,35 @@ const teamMembers = [
   {
     name: "Yahvi Patel",
     title: "Co-Founder & Creative Director",
-    description: "Creative storytelling and brand content execution",
+    description: "Yahvi leads the creative direction at Buzz Craft, focusing on content storytelling, brand visuals, and social media strategies built for modern audiences. She ensures every post, reel, and campaign feels premium, consistent, and made to perform.",
     image: yahviImage,
     alt: "Yahvi Patel – Co-Founder & Creative Director at Buzz Craft",
   },
   {
     name: "Harsh Bhalla",
     title: "Co-Founder & Performance Marketing Lead",
-    description: "Paid media strategy across Meta & Google Ads",
+    description: "Harsh specializes in performance marketing across Meta and Google Ads, building campaigns designed for qualified leads, conversions, and measurable ROI. He manages targeting, tracking, optimization, and scaling—ensuring growth stays profitable and consistent.",
     image: harshImage,
     alt: "Harsh Bhalla – Co-Founder & Performance Marketing Lead at Buzz Craft",
   },
   {
     name: "Nitin Kumar",
     title: "Operations & Client Success Head",
-    description: "Smooth execution, delivery, and client coordination",
+    description: "Nitin manages execution, timelines, and smooth delivery across client projects, ensuring high-quality work and reliable coordination. He focuses on keeping operations efficient while maintaining strong client communication and support.",
     image: null,
     alt: "Nitin Kumar – Operations & Client Success Head at Buzz Craft",
   },
   {
     name: "Shreya Saxena",
     title: "Marketing & Growth Lead",
-    description: "Social strategy, engagement, and brand growth",
+    description: "Shreya works on social growth strategy, engagement planning, and content optimization to improve reach and audience loyalty. She helps shape brand presence with a balance of creativity, consistency, and measurable content performance.",
     image: null,
     alt: "Shreya Saxena – Marketing & Growth Lead at Buzz Craft",
   },
   {
     name: "Roopali Khale",
     title: "Events & Brand Partnerships Director",
-    description: "Event campaigns and influencer collaborations",
+    description: "Roopali leads event marketing and partnerships, supporting brand launches, collaborations, and promotional campaigns. She bridges offline and online visibility through structured planning and execution-driven marketing support.",
     image: null,
     alt: "Roopali Khale – Events & Brand Partnerships Director at Buzz Craft",
   },
@@ -119,11 +119,11 @@ const Team = () => {
               <article
                 key={`${member.name}-${index}`}
                 className="flex-shrink-0 flex flex-col items-center text-center group"
-                style={{ width: "160px" }}
+                style={{ width: "220px" }}
               >
                 {/* Circular Avatar */}
                 <div className="relative mb-4">
-                  <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-honey/40 shadow-lg shadow-honey/10 group-hover:border-honey/70 group-hover:shadow-honey/20 transition-all duration-300">
+                  <div className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 border-honey/40 shadow-lg shadow-honey/10 group-hover:border-honey/70 group-hover:shadow-honey/20 transition-all duration-300">
                     {member.image ? (
                       <img
                         src={member.image}
@@ -133,7 +133,7 @@ const Team = () => {
                       />
                     ) : (
                       <div className="w-full h-full bg-secondary flex items-center justify-center">
-                        <span className="font-serif text-xl md:text-2xl font-bold text-honey">
+                        <span className="font-serif text-2xl md:text-3xl font-bold text-honey">
                           {member.name
                             .split(" ")
                             .map((n) => n[0])
@@ -147,12 +147,17 @@ const Team = () => {
                 </div>
 
                 {/* Name */}
-                <h3 className="font-serif text-base md:text-lg font-bold text-foreground mb-1 whitespace-nowrap">
+                <h3 className="font-serif text-lg md:text-xl font-bold text-foreground mb-1 whitespace-nowrap">
                   {member.name}
                 </h3>
 
+                {/* Title */}
+                <p className="text-xs md:text-sm text-honey font-medium mb-2">
+                  {member.title}
+                </p>
+
                 {/* Description */}
-                <p className="text-xs md:text-sm text-muted-foreground leading-snug max-w-[140px] md:max-w-[160px]">
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] line-clamp-3">
                   {member.description}
                 </p>
               </article>

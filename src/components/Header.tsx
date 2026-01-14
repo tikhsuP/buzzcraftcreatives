@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Menu, X, Instagram, Mail } from "lucide-react";
-import BeeIcon from "./BeeIcon";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,10 +14,9 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/30">
       <div className="container-narrow mx-auto px-5 md:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <BeeIcon size="md" animated={false} />
-            <span className="font-serif text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground">
+          {/* Logo - Text Only */}
+          <a href="#" className="flex items-center group">
+            <span className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
               Buzz Craft
             </span>
           </a>

@@ -1,12 +1,11 @@
 import { Instagram, Mail } from "lucide-react";
-import BeeIcon from "./BeeIcon";
 
 const Footer = () => {
   const services = [
-    "Instagram Ads",
-    "Reels Strategy",
-    "Influencer Promos",
-    "Google Ads",
+    "Content Creation",
+    "Performance Marketing",
+    "Influencer Campaigns",
+    "Strategy & Analytics",
   ];
 
   return (
@@ -14,18 +13,18 @@ const Footer = () => {
       <div className="section-padding">
         <div className="container-narrow mx-auto">
           <div className="flex flex-col items-center text-center">
-            {/* Logo */}
+            {/* Logo - Text Only */}
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-1.5 bg-honey/20 rounded-full">
-                <BeeIcon size="sm" />
-              </div>
-              <span className="font-serif text-2xl font-semibold text-foreground">
+              <span className="font-serif text-2xl font-bold text-foreground">
                 Buzz Craft
               </span>
             </div>
 
-            <p className="text-muted-foreground text-lg mb-8 max-w-md">
+            <p className="text-muted-foreground text-lg mb-2 max-w-md">
               Creative performance marketing that transforms scrollers into loyal customers.
+            </p>
+            <p className="text-honey text-sm font-medium mb-8">
+              Buzzcraftcreatives.com
             </p>
 
             {/* Services */}
