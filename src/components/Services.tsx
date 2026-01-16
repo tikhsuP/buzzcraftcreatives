@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 // Import service images
-import servicePerformance from "@/assets/service-performance.jpg";
 import serviceInfluencer from "@/assets/service-influencer-new.jpg";
 import serviceStrategy from "@/assets/service-strategy.jpg";
 import contentShoot from "@/assets/content-shoot.png";
 import contentEditing from "@/assets/content-editing.png";
+import performanceAnalytics from "@/assets/performance-analytics.png";
+import performancePlanning from "@/assets/performance-planning.png";
 
 const services = [
   {
@@ -27,7 +28,7 @@ const services = [
     description: "We manage Meta Ads and Google Ads campaigns focused on qualified leads, conversion tracking, and continuous optimization to reduce cost per lead.",
     highlights: ["Meta Ads", "Google Search", "Conversion Tracking"],
     outcome: "Typical outcome: lower CPL + more qualified leads",
-    images: [servicePerformance, serviceStrategy],
+    images: [performanceAnalytics, performancePlanning],
   },
   {
     id: "influencer-promotions",
@@ -47,7 +48,7 @@ const services = [
     description: "We provide audits, reporting, and growth roadmaps to show what's working, what to scale, and how to improve marketing performance month by month.",
     highlights: ["Weekly Reports", "KPI Tracking", "Growth Roadmaps"],
     outcome: "Typical outcome: clearer reporting + faster scaling decisions",
-    images: [serviceStrategy, servicePerformance],
+    images: [serviceStrategy, performanceAnalytics],
   },
 ];
 
