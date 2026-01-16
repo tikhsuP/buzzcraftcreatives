@@ -1,7 +1,6 @@
 "use client";
 
 import { Instagram, ArrowRight, Mail, FileText, Eye } from "lucide-react";
-import BeeIcon from "./BeeIcon";
 
 const Hero = () => {
   return (
@@ -28,11 +27,6 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container-narrow mx-auto px-5 md:px-8 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Floating Bee */}
-          <div className="flex justify-center mb-6 animate-fade-up">
-            <BeeIcon size="lg" />
-          </div>
-
           {/* SEO Keyword Tagline */}
           <p
             className="text-xs sm:text-sm font-semibold text-honey uppercase tracking-[0.2em] mb-6 animate-fade-up"
