@@ -17,7 +17,8 @@ const services = [
     title: "Content Creation & Social Growth",
     tagline: "Scroll-stopping content built for brand + attention.",
     headline: "Content that builds attention and trust",
-    description: "We create Instagram posts, Reels, and brand content designed to improve engagement, strengthen identity, and grow your audience consistently.",
+    description:
+      "We create Instagram posts, Reels, and brand content designed to improve engagement, strengthen identity, and grow your audience consistently.",
     highlights: ["Reels + Editing", "Brand Shoots", "Content Calendars"],
     outcome: "Typical outcome: better engagement + more inbound inquiries",
     images: [contentShoot, contentEditing],
@@ -27,7 +28,8 @@ const services = [
     title: "Performance Marketing (Meta + Google Ads)",
     tagline: "ROI-first campaigns engineered for leads and sales.",
     headline: "Performance ads built for ROI",
-    description: "We manage Meta Ads and Google Ads campaigns focused on qualified leads, conversion tracking, and continuous optimization to reduce cost per lead.",
+    description:
+      "We manage Meta Ads and Google Ads campaigns focused on qualified leads, conversion tracking, and continuous optimization to reduce cost per lead.",
     highlights: ["Meta Ads", "Google Search", "Conversion Tracking"],
     outcome: "Typical outcome: lower CPL + more qualified leads",
     images: [performanceAnalytics, performancePlanning],
@@ -37,7 +39,8 @@ const services = [
     title: "Influencer & Promotion Campaigns",
     tagline: "Authentic collaborations that build trust and buzz.",
     headline: "Collaborations that create real buzz",
-    description: "We run influencer partnerships and page promotions through niche communities to boost reach, credibility, and high-quality audience growth.",
+    description:
+      "We run influencer partnerships and page promotions through niche communities to boost reach, credibility, and high-quality audience growth.",
     highlights: ["Creator Network", "Page Promotions", "Brand Collabs"],
     outcome: "Typical outcome: reach growth + stronger credibility",
     images: [influencerCreator, influencerCollab],
@@ -47,7 +50,8 @@ const services = [
     title: "Strategy, Analytics & Reporting",
     tagline: "Clear insights, tracking, and next-step growth plans.",
     headline: "Decisions backed by real data",
-    description: "We provide audits, reporting, and growth roadmaps to show what's working, what to scale, and how to improve marketing performance month by month.",
+    description:
+      "We provide audits, reporting, and growth roadmaps to show what's working, what to scale, and how to improve marketing performance month by month.",
     highlights: ["Weekly Reports", "KPI Tracking", "Growth Roadmaps"],
     outcome: "Typical outcome: clearer reporting + faster scaling decisions",
     images: [strategyPlanning, strategyBoard],
@@ -68,7 +72,7 @@ const Services = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -90,18 +94,14 @@ const Services = () => {
   const activeService = services[activeIndex];
 
   return (
-    <section 
-      id="services" 
-      ref={sectionRef}
-      className="py-20 md:py-28 lg:py-32 bg-background relative overflow-hidden"
-    >
+    <section id="services" ref={sectionRef} className="py-20 md:py-28 lg:py-32 bg-background relative overflow-hidden">
       {/* Subtle background elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Buzz trail - curved stroke at low opacity */}
         <svg className="absolute top-1/4 left-0 w-full h-96 opacity-[0.03]" viewBox="0 0 1200 400" fill="none">
-          <path 
-            d="M-100 200 Q 300 50 600 200 T 1300 200" 
-            stroke="currentColor" 
+          <path
+            d="M-100 200 Q 300 50 600 200 T 1300 200"
+            stroke="currentColor"
             strokeWidth="2"
             className="text-honey"
           />
@@ -111,22 +111,16 @@ const Services = () => {
 
       <div className="max-w-7xl mx-auto px-5 md:px-8 relative">
         {/* Section Header - Clean & Premium */}
-        <div 
+        <div
           className="mb-12 md:mb-16 lg:mb-20 transition-all duration-700"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
           }}
         >
-          <p className="text-xs font-medium text-honey/80 uppercase tracking-[0.2em] mb-3">
-            What We Do
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
-            Our Services
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg">
-            Built to look premium. Built to convert faster.
-          </p>
+          <p className="text-xs font-medium text-honey/80 uppercase tracking-[0.2em] mb-3">What We Do</p>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">Our Services</h2>
+          <p className="text-muted-foreground text-base md:text-lg">Built to look premium. Built to convert faster.</p>
         </div>
 
         {/* Mobile: Horizontal Tabs */}
@@ -137,9 +131,10 @@ const Services = () => {
                 key={service.id}
                 onClick={() => handleServiceChange(index)}
                 className={`flex-shrink-0 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap
-                  ${activeIndex === index 
-                    ? 'bg-honey text-background' 
-                    : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
+                  ${
+                    activeIndex === index
+                      ? "bg-honey text-background"
+                      : "bg-muted/30 text-muted-foreground hover:bg-muted/50"
                   }`}
               >
                 {service.title}
@@ -150,46 +145,38 @@ const Services = () => {
 
         {/* Main Content: Split Layout */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-          
           {/* LEFT: Sticky Service Spotlight Panel */}
           <div className="lg:sticky lg:top-24 lg:self-start order-2 lg:order-1">
-            <div 
+            <div
               className="relative p-6 md:p-8 lg:p-10 rounded-2xl overflow-hidden transition-all duration-700"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: '200ms',
+                transform: isVisible ? "translateY(0)" : "translateY(30px)",
+                transitionDelay: "200ms",
               }}
             >
               {/* Panel Background with subtle gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-card via-card to-muted/20 rounded-2xl" />
               <div className="absolute inset-0 bg-gradient-to-tr from-honey/[0.02] via-transparent to-honey/[0.01] rounded-2xl" />
-              
+
               {/* Thin gold accent line - animated */}
-              <div 
+              <div
                 className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-honey/60 to-transparent transition-all duration-500"
                 style={{
                   opacity: isTransitioning ? 0.3 : 1,
                   transform: `scaleX(${isTransitioning ? 0.5 : 1})`,
                 }}
               />
-              
+
               {/* Content */}
-              <div 
-                className={`relative transition-all duration-300 ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}
+              <div
+                className={`relative transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}
               >
                 {/* Mini Image Collage */}
                 <div className="flex gap-3 mb-6">
                   {activeService.images.map((img, i) => (
-                    <div 
-                      key={i}
-                      className="relative w-1/2 aspect-[4/3] rounded-xl overflow-hidden"
-                    >
-                      <img 
-                        src={img} 
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
+                    <div key={i} className="relative w-1/2 aspect-[4/3] rounded-xl overflow-hidden">
+                      <img src={img} alt="" className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
                     </div>
                   ))}
@@ -201,19 +188,15 @@ const Services = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="text-muted-foreground text-base leading-relaxed mb-4">
-                  {activeService.description}
-                </p>
+                <p className="text-muted-foreground text-base leading-relaxed mb-4">{activeService.description}</p>
 
                 {/* Outcome micro-line */}
-                <p className="text-xs text-honey/70 italic mb-6">
-                  {activeService.outcome}
-                </p>
+                <p className="text-xs text-honey/70 italic mb-6">{activeService.outcome}</p>
 
                 {/* Highlight Chips */}
                 <div className="flex flex-wrap gap-2 mb-8">
                   {activeService.highlights.map((highlight, i) => (
-                    <span 
+                    <span
                       key={i}
                       className="px-3 py-1.5 rounded-full bg-honey/10 text-honey text-xs font-medium border border-honey/20"
                     >
@@ -221,7 +204,6 @@ const Services = () => {
                     </span>
                   ))}
                 </div>
-
               </div>
             </div>
           </div>
@@ -235,42 +217,46 @@ const Services = () => {
                   onMouseEnter={() => handleServiceChange(index)}
                   onClick={() => handleServiceChange(index)}
                   className={`group w-full text-left p-5 md:p-6 rounded-xl transition-all duration-300 relative overflow-hidden
-                    ${activeIndex === index 
-                      ? 'bg-muted/30' 
-                      : 'hover:bg-muted/20'
-                    }`}
+                    ${activeIndex === index ? "bg-muted/30" : "hover:bg-muted/20"}`}
                   style={{
                     opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateX(0)' : 'translateX(20px)',
+                    transform: isVisible ? "translateX(0)" : "translateX(20px)",
                     transitionDelay: `${300 + index * 80}ms`,
                   }}
                 >
                   {/* Active indicator line */}
-                  <div 
+                  <div
                     className={`absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-8 bg-honey rounded-full transition-all duration-300
-                      ${activeIndex === index ? 'opacity-100' : 'opacity-0'}`}
+                      ${activeIndex === index ? "opacity-100" : "opacity-0"}`}
                   />
-                  
+
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       {/* Service Name - Big */}
-                      <h4 className={`font-serif text-xl md:text-2xl font-bold mb-1.5 transition-colors duration-300 leading-tight
-                        ${activeIndex === index ? 'text-foreground' : 'text-foreground/80 group-hover:text-foreground'}`}>
+                      <h4
+                        className={`font-serif text-xl md:text-2xl font-bold mb-1.5 transition-colors duration-300 leading-tight
+                        ${activeIndex === index ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"}`}
+                      >
                         {service.title}
                       </h4>
-                      
+
                       {/* Tagline - Small */}
-                      <p className={`text-sm transition-colors duration-300
-                        ${activeIndex === index ? 'text-muted-foreground' : 'text-muted-foreground/60 group-hover:text-muted-foreground'}`}>
+                      <p
+                        className={`text-sm transition-colors duration-300
+                        ${activeIndex === index ? "text-muted-foreground" : "text-muted-foreground/60 group-hover:text-muted-foreground"}`}
+                      >
                         {service.tagline}
                       </p>
                     </div>
-                    
+
                     {/* Arrow */}
-                    <ChevronRight className={`w-5 h-5 flex-shrink-0 transition-all duration-300
-                      ${activeIndex === index 
-                        ? 'text-honey translate-x-0' 
-                        : 'text-muted-foreground/40 -translate-x-1 group-hover:translate-x-0 group-hover:text-muted-foreground'}`} 
+                    <ChevronRight
+                      className={`w-5 h-5 flex-shrink-0 transition-all duration-300
+                      ${
+                        activeIndex === index
+                          ? "text-honey translate-x-0"
+                          : "text-muted-foreground/40 -translate-x-1 group-hover:translate-x-0 group-hover:text-muted-foreground"
+                      }`}
                     />
                   </div>
                 </button>
@@ -282,12 +268,12 @@ const Services = () => {
         </div>
 
         {/* CTA Strip */}
-        <div 
+        <div
           className="mt-16 md:mt-20 lg:mt-24 transition-all duration-700"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '600ms',
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
+            transitionDelay: "600ms",
           }}
         >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 py-6 md:py-8 px-6 md:px-10 rounded-xl border border-border/30 bg-muted/10">
@@ -295,7 +281,7 @@ const Services = () => {
               Want a custom growth plan for your brand?
             </p>
             <a
-              href="https://www.instagram.com/buzzcraftcreatives/"
+              href="https://www.instagram.com/buzzcraft.official/"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-6 py-3 bg-honey text-background rounded-full font-semibold text-sm hover:bg-honey-dark transition-all duration-300 whitespace-nowrap"
