@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 // Import service images
-import serviceStrategy from "@/assets/service-strategy.jpg";
 import contentShoot from "@/assets/content-shoot.png";
 import contentEditing from "@/assets/content-editing.png";
 import performanceAnalytics from "@/assets/performance-analytics.png";
 import performancePlanning from "@/assets/performance-planning.png";
 import influencerCreator from "@/assets/influencer-creator.png";
 import influencerCollab from "@/assets/influencer-collab.png";
+import strategyPlanning from "@/assets/strategy-planning.png";
+import strategyBoard from "@/assets/strategy-board.png";
 
 const services = [
   {
@@ -49,7 +50,7 @@ const services = [
     description: "We provide audits, reporting, and growth roadmaps to show what's working, what to scale, and how to improve marketing performance month by month.",
     highlights: ["Weekly Reports", "KPI Tracking", "Growth Roadmaps"],
     outcome: "Typical outcome: clearer reporting + faster scaling decisions",
-    images: [serviceStrategy, performanceAnalytics],
+    images: [strategyPlanning, strategyBoard],
   },
 ];
 
