@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { TrendingUp, Target, Wallet, Zap, Users, BarChart3, Award, CheckCircle2 } from "lucide-react";
+import portfolio1 from "@/assets/portfolio-1.png";
+import portfolio2 from "@/assets/portfolio-2.png";
+import portfolio3 from "@/assets/portfolio-3.png";
 
 const metrics = [
   {
@@ -33,6 +36,24 @@ const trustBadges = [
   { icon: BarChart3, label: "Weekly Reporting & Optimization" },
   { icon: Award, label: "Meta + Google Specialists" },
   { icon: CheckCircle2, label: "Transparent Metrics" },
+];
+
+const portfolioTiles = [
+  {
+    image: portfolio1,
+    label: "CREATIVE",
+    alt: "Creative portfolio work sample",
+  },
+  {
+    image: portfolio2,
+    label: "FAST",
+    alt: "Fast delivery portfolio work sample",
+  },
+  {
+    image: portfolio3,
+    label: "DATA-DRIVEN",
+    alt: "Data-driven portfolio work sample",
+  },
 ];
 
 const WhyBuzzCraft = () => {
@@ -195,6 +216,46 @@ const WhyBuzzCraft = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Portfolio Tiles Section */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+            transitionDelay: '400ms',
+            transition: 'all 0.7s ease-out',
+          }}
+        >
+          {portfolioTiles.map((tile, index) => (
+            <div
+              key={tile.label}
+              className="group flex flex-col items-center"
+              style={{
+                transitionDelay: `${500 + index * 100}ms`,
+              }}
+            >
+              {/* Image Container */}
+              <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-card/40 border border-border/30 transition-all duration-500 group-hover:border-honey/40 group-hover:shadow-[0_0_40px_-10px_hsl(var(--honey)/0.25)]">
+                <img
+                  src={tile.image}
+                  alt={tile.alt}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Subtle overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+              
+              {/* Label with underline */}
+              <div className="relative">
+                <span className="font-serif text-lg md:text-xl font-bold text-foreground tracking-wider">
+                  {tile.label}
+                </span>
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-honey rounded-full" />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
