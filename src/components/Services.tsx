@@ -1,13 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { 
-  Palette, 
-  BarChart3, 
-  Users, 
-  LineChart,
-  ArrowRight,
-  Sparkles,
-  TrendingUp
-} from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 // Import service images
 import serviceContent from "@/assets/service-content.jpg";
@@ -19,135 +11,50 @@ const services = [
   {
     id: "content-creation",
     title: "Content Creation & Social Growth",
-    subtitle: "Scroll-Stopping Content",
-    description: "Strategic Instagram posts, Reels, and branded content designed to build trust and grow your audience consistently.",
-    icon: Palette,
-    image: serviceContent,
-    highlights: ["Branded Reels & Stories", "Engagement-Driven Posts"],
-    tag: "Most Popular",
+    tagline: "Scroll-stopping content built for brand + attention.",
+    headline: "Content that builds attention and trust",
+    description: "We create Instagram posts, Reels, and brand content designed to improve engagement, strengthen identity, and grow your audience consistently.",
+    highlights: ["Reels + Editing", "Brand Shoots", "Content Calendars"],
+    outcome: "Typical outcome: better engagement + more inbound inquiries",
+    images: [serviceContent, serviceInfluencer],
   },
   {
     id: "performance-marketing",
-    title: "Performance Marketing",
-    subtitle: "Meta + Google Ads",
-    description: "High-performing paid campaigns across Instagram, Facebook, YouTube, and Google to generate qualified leads and sales.",
-    icon: BarChart3,
-    image: servicePerformance,
-    highlights: ["ROI-Focused Campaigns", "Conversion Tracking"],
+    title: "Performance Marketing (Meta + Google Ads)",
+    tagline: "ROI-first campaigns engineered for leads and sales.",
+    headline: "Performance ads built for ROI",
+    description: "We manage Meta Ads and Google Ads campaigns focused on qualified leads, conversion tracking, and continuous optimization to reduce cost per lead.",
+    highlights: ["Meta Ads", "Google Search", "Conversion Tracking"],
+    outcome: "Typical outcome: lower CPL + more qualified leads",
+    images: [servicePerformance, serviceStrategy],
   },
   {
     id: "influencer-promotions",
-    title: "Influencer & Promotions",
-    subtitle: "Authentic Collaborations",
-    description: "Influencer partnerships and page promotions through niche, high-engagement communities to boost reach and credibility.",
-    icon: Users,
-    image: serviceInfluencer,
-    highlights: ["Niche Creator Network", "Page Promotions"],
+    title: "Influencer & Promotion Campaigns",
+    tagline: "Authentic collaborations that build trust and buzz.",
+    headline: "Collaborations that create real buzz",
+    description: "We run influencer partnerships and page promotions through niche communities to boost reach, credibility, and high-quality audience growth.",
+    highlights: ["Creator Network", "Page Promotions", "Brand Collabs"],
+    outcome: "Typical outcome: reach growth + stronger credibility",
+    images: [serviceInfluencer, serviceContent],
   },
   {
     id: "strategy-analytics",
-    title: "Strategy & Analytics",
-    subtitle: "Data-Driven Insights",
-    description: "Clear strategy, performance audits, and reporting that highlights what's working and what to scale next.",
-    icon: LineChart,
-    image: serviceStrategy,
-    highlights: ["Weekly Reporting", "Growth Roadmaps"],
+    title: "Strategy, Analytics & Reporting",
+    tagline: "Clear insights, tracking, and next-step growth plans.",
+    headline: "Decisions backed by real data",
+    description: "We provide audits, reporting, and growth roadmaps to show what's working, what to scale, and how to improve marketing performance month by month.",
+    highlights: ["Weekly Reports", "KPI Tracking", "Growth Roadmaps"],
+    outcome: "Typical outcome: clearer reporting + faster scaling decisions",
+    images: [serviceStrategy, servicePerformance],
   },
 ];
-
-const ServiceCard = ({ service, index, isVisible }: { service: typeof services[0]; index: number; isVisible: boolean }) => {
-  const Icon = service.icon;
-  
-  return (
-    <div
-      className="group relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-card via-card to-card/80 
-        border border-border/40 hover:border-honey/40 shadow-soft hover:shadow-glow 
-        transition-all duration-500 hover:-translate-y-1 overflow-hidden"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transitionDelay: `${index * 100}ms`,
-      }}
-    >
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-honey/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      {/* Top Row: Image + Tag */}
-      <div className="relative flex items-start gap-4 mb-5">
-        {/* Image thumbnail */}
-        <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden flex-shrink-0 ring-1 ring-border/30 group-hover:ring-honey/30 transition-all duration-300">
-          <img 
-            src={service.image} 
-            alt={service.title}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          {/* Dark overlay for consistency */}
-          <div className="absolute inset-0 bg-background/20" />
-        </div>
-        
-        {/* Icon badge */}
-        <div className="w-10 h-10 rounded-lg bg-honey/10 flex items-center justify-center flex-shrink-0 group-hover:bg-honey/20 transition-colors duration-300">
-          <Icon className="w-5 h-5 text-honey" />
-        </div>
-        
-        {/* Popular tag */}
-        {service.tag && (
-          <div className="absolute top-0 right-0 flex items-center gap-1 px-2.5 py-1 rounded-full bg-honey/10 border border-honey/20">
-            <Sparkles className="w-3 h-3 text-honey" />
-            <span className="text-xs font-medium text-honey">{service.tag}</span>
-          </div>
-        )}
-      </div>
-      
-      {/* Text Content */}
-      <div className="relative space-y-3">
-        {/* Title */}
-        <h3 className="font-serif text-xl md:text-2xl font-bold text-foreground leading-tight">
-          {service.title}
-        </h3>
-        
-        {/* Subtitle */}
-        <p className="text-sm font-semibold text-honey uppercase tracking-wide">
-          {service.subtitle}
-        </p>
-        
-        {/* Description */}
-        <p className="text-muted-foreground text-base leading-relaxed line-clamp-3">
-          {service.description}
-        </p>
-      </div>
-      
-      {/* Highlights */}
-      <div className="relative mt-5 flex flex-wrap gap-2">
-        {service.highlights.map((highlight, i) => (
-          <span 
-            key={i}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/50 border border-border/30 text-sm text-muted-foreground"
-          >
-            <TrendingUp className="w-3 h-3 text-honey/70" />
-            {highlight}
-          </span>
-        ))}
-      </div>
-      
-      {/* Explore Link */}
-      <div className="relative mt-6 pt-5 border-t border-border/30">
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-2 text-honey font-medium text-sm hover:gap-3 transition-all duration-300"
-        >
-          <span>Explore Service</span>
-          <ArrowRight className="w-4 h-4" />
-        </a>
-      </div>
-    </div>
-  );
-};
 
 const Services = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -167,90 +74,239 @@ const Services = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleServiceChange = (index: number) => {
+    if (index === activeIndex) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveIndex(index);
+      setIsTransitioning(false);
+    }, 150);
+  };
+
+  const activeService = services[activeIndex];
+
   return (
     <section 
       id="services" 
       ref={sectionRef}
-      className="pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28 bg-background relative"
+      className="py-20 md:py-28 lg:py-32 bg-background relative overflow-hidden"
     >
-      {/* Background subtle pattern */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-honey/[0.02] rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-honey/[0.02] rounded-full blur-3xl" />
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Buzz trail - curved stroke at low opacity */}
+        <svg className="absolute top-1/4 left-0 w-full h-96 opacity-[0.03]" viewBox="0 0 1200 400" fill="none">
+          <path 
+            d="M-100 200 Q 300 50 600 200 T 1300 200" 
+            stroke="currentColor" 
+            strokeWidth="2"
+            className="text-honey"
+          />
+        </svg>
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-gradient-radial from-honey/[0.02] to-transparent rounded-full blur-3xl" />
       </div>
-      
-      {/* Top divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-3">
-        <span className="w-12 h-px bg-gradient-to-r from-transparent to-honey/30" />
-        <span className="w-2 h-2 rounded-full bg-honey/60" />
-        <span className="w-12 h-px bg-gradient-to-l from-transparent to-honey/30" />
-      </div>
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 relative">
-        {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-5 md:px-8 relative">
+        {/* Section Header - Clean & Premium */}
         <div 
-          className="text-center mb-12 md:mb-16 transition-all duration-700"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-          }}
-        >
-          <p className="text-sm font-semibold text-honey uppercase tracking-widest mb-3">
-            What We Do
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Our Services
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Full-stack marketing solutions designed to grow your brand and drive measurable results.
-          </p>
-        </div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {services.map((service, index) => (
-            <ServiceCard 
-              key={service.id} 
-              service={service} 
-              index={index}
-              isVisible={isVisible}
-            />
-          ))}
-        </div>
-
-        {/* Mini CTA Strip */}
-        <div 
-          className="mt-16 md:mt-20 transition-all duration-700"
+          className="mb-12 md:mb-16 lg:mb-20 transition-all duration-700"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '500ms',
           }}
         >
-          <div className="relative p-8 md:p-10 rounded-2xl bg-gradient-to-r from-honey/10 via-honey/5 to-honey/10 border border-honey/20 overflow-hidden">
-            {/* Background glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-honey/5 via-transparent to-honey/5" />
-            
-            <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left">
-                <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-2">
-                  Ready to grow with <span className="text-honey">BuzzCraftCreatives</span>?
-                </h3>
-                <p className="text-muted-foreground">
-                  Let's discuss how we can help scale your brand.
-                </p>
-              </div>
-              
-              <a
-                href="https://www.instagram.com/buzzcraftcreatives/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark glow-honey transition-all duration-300 whitespace-nowrap"
+          <p className="text-xs font-medium text-honey/80 uppercase tracking-[0.2em] mb-3">
+            What We Do
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
+            Our Services
+          </h2>
+          <p className="text-muted-foreground text-base md:text-lg">
+            Built to look premium. Built to convert faster.
+          </p>
+        </div>
+
+        {/* Mobile: Horizontal Tabs */}
+        <div className="lg:hidden mb-8">
+          <div className="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide">
+            {services.map((service, index) => (
+              <button
+                key={service.id}
+                onClick={() => handleServiceChange(index)}
+                className={`flex-shrink-0 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap
+                  ${activeIndex === index 
+                    ? 'bg-honey text-background' 
+                    : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
+                  }`}
               >
-                <span>Get a Free Quote</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+                {service.title.split(' ').slice(0, 2).join(' ')}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Main Content: Split Layout */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+          
+          {/* LEFT: Sticky Service Spotlight Panel */}
+          <div className="lg:sticky lg:top-24 lg:self-start order-2 lg:order-1">
+            <div 
+              className="relative p-6 md:p-8 lg:p-10 rounded-2xl overflow-hidden transition-all duration-700"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                transitionDelay: '200ms',
+              }}
+            >
+              {/* Panel Background with subtle gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-card via-card to-muted/20 rounded-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-honey/[0.02] via-transparent to-honey/[0.01] rounded-2xl" />
+              
+              {/* Thin gold accent line - animated */}
+              <div 
+                className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-honey/60 to-transparent transition-all duration-500"
+                style={{
+                  opacity: isTransitioning ? 0.3 : 1,
+                  transform: `scaleX(${isTransitioning ? 0.5 : 1})`,
+                }}
+              />
+              
+              {/* Content */}
+              <div 
+                className={`relative transition-all duration-300 ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}
+              >
+                {/* Mini Image Collage */}
+                <div className="flex gap-3 mb-6">
+                  {activeService.images.map((img, i) => (
+                    <div 
+                      key={i}
+                      className="relative w-1/2 aspect-[4/3] rounded-xl overflow-hidden"
+                    >
+                      <img 
+                        src={img} 
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Headline */}
+                <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
+                  {activeService.headline}
+                </h3>
+
+                {/* Description */}
+                <p className="text-muted-foreground text-base leading-relaxed mb-4">
+                  {activeService.description}
+                </p>
+
+                {/* Outcome micro-line */}
+                <p className="text-xs text-honey/70 italic mb-6">
+                  {activeService.outcome}
+                </p>
+
+                {/* Highlight Chips */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {activeService.highlights.map((highlight, i) => (
+                    <span 
+                      key={i}
+                      className="px-3 py-1.5 rounded-full bg-honey/10 text-honey text-xs font-medium border border-honey/20"
+                    >
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <a
+                  href="#contact"
+                  className="group inline-flex items-center gap-2 px-6 py-3 bg-honey text-background rounded-full font-semibold text-sm hover:bg-honey-dark transition-all duration-300"
+                >
+                  <span>Explore this service</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
             </div>
+          </div>
+
+          {/* RIGHT: Service Menu List */}
+          <div className="hidden lg:block order-1 lg:order-2">
+            <div className="space-y-1">
+              {services.map((service, index) => (
+                <button
+                  key={service.id}
+                  onMouseEnter={() => handleServiceChange(index)}
+                  onClick={() => handleServiceChange(index)}
+                  className={`group w-full text-left p-5 md:p-6 rounded-xl transition-all duration-300 relative overflow-hidden
+                    ${activeIndex === index 
+                      ? 'bg-muted/30' 
+                      : 'hover:bg-muted/20'
+                    }`}
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? 'translateX(0)' : 'translateX(20px)',
+                    transitionDelay: `${300 + index * 80}ms`,
+                  }}
+                >
+                  {/* Active indicator line */}
+                  <div 
+                    className={`absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-8 bg-honey rounded-full transition-all duration-300
+                      ${activeIndex === index ? 'opacity-100' : 'opacity-0'}`}
+                  />
+                  
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      {/* Service Name - Big */}
+                      <h4 className={`font-serif text-xl md:text-2xl font-bold mb-1.5 transition-colors duration-300 leading-tight
+                        ${activeIndex === index ? 'text-foreground' : 'text-foreground/80 group-hover:text-foreground'}`}>
+                        {service.title}
+                      </h4>
+                      
+                      {/* Tagline - Small */}
+                      <p className={`text-sm transition-colors duration-300
+                        ${activeIndex === index ? 'text-muted-foreground' : 'text-muted-foreground/60 group-hover:text-muted-foreground'}`}>
+                        {service.tagline}
+                      </p>
+                    </div>
+                    
+                    {/* Arrow */}
+                    <ChevronRight className={`w-5 h-5 flex-shrink-0 transition-all duration-300
+                      ${activeIndex === index 
+                        ? 'text-honey translate-x-0' 
+                        : 'text-muted-foreground/40 -translate-x-1 group-hover:translate-x-0 group-hover:text-muted-foreground'}`} 
+                    />
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile: Spotlight Panel is already shown above via order classes */}
+        </div>
+
+        {/* CTA Strip */}
+        <div 
+          className="mt-16 md:mt-20 lg:mt-24 transition-all duration-700"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '600ms',
+          }}
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 py-6 md:py-8 px-6 md:px-10 rounded-xl border border-border/30 bg-muted/10">
+            <p className="text-foreground text-lg md:text-xl font-medium text-center sm:text-left">
+              Want a custom growth plan for your brand?
+            </p>
+            <a
+              href="https://www.instagram.com/buzzcraftcreatives/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-honey text-background rounded-full font-semibold text-sm hover:bg-honey-dark transition-all duration-300 whitespace-nowrap"
+            >
+              <span>Get a Free Quote</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
         </div>
       </div>
