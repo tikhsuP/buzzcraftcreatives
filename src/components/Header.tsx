@@ -17,7 +17,7 @@ const Header = () => {
           {/* Logo - Text Only */}
           <a href="#" className="flex items-center group">
             <span className="font-serif text-xl md:text-2xl lg:text-3xl font-bold text-foreground tracking-tight">
-              Buzzcraftcreatives
+              BuzzCraftCreatives
             </span>
           </a>
 

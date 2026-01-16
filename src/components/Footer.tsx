@@ -16,7 +16,7 @@ const Footer = () => {
             {/* Logo - Text Only */}
             <div className="flex items-center gap-3 mb-6">
               <span className="font-serif text-2xl font-bold text-foreground">
-                Buzz Craft
+                BuzzCraftCreatives
               </span>
             </div>
 
@@ -24,7 +24,7 @@ const Footer = () => {
               Creative performance marketing that transforms scrollers into loyal customers.
             </p>
             <p className="text-honey text-sm font-medium mb-8">
-              Buzzcraftcreatives.com
+              BuzzCraftCreatives.com
             </p>
 
             {/* Services */}
@@ -73,7 +73,7 @@ const Footer = () => {
       <div className="border-t border-border/30 py-6">
         <div className="container-narrow mx-auto px-5 md:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Buzz Craft. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} BuzzCraftCreatives. All rights reserved.</p>
             <p>Crafting creativity, one buzz at a time.</p>
           </div>
         </div>
