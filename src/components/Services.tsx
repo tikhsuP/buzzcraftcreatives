@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 // Import service images
-import serviceContent from "@/assets/service-content.jpg";
 import servicePerformance from "@/assets/service-performance.jpg";
 import serviceInfluencer from "@/assets/service-influencer-new.jpg";
 import serviceStrategy from "@/assets/service-strategy.jpg";
+import contentShoot from "@/assets/content-shoot.png";
+import contentEditing from "@/assets/content-editing.png";
 
 const services = [
   {
@@ -16,7 +17,7 @@ const services = [
     description: "We create Instagram posts, Reels, and brand content designed to improve engagement, strengthen identity, and grow your audience consistently.",
     highlights: ["Reels + Editing", "Brand Shoots", "Content Calendars"],
     outcome: "Typical outcome: better engagement + more inbound inquiries",
-    images: [serviceContent, serviceInfluencer],
+    images: [contentShoot, contentEditing],
   },
   {
     id: "performance-marketing",
@@ -36,7 +37,7 @@ const services = [
     description: "We run influencer partnerships and page promotions through niche communities to boost reach, credibility, and high-quality audience growth.",
     highlights: ["Creator Network", "Page Promotions", "Brand Collabs"],
     outcome: "Typical outcome: reach growth + stronger credibility",
-    images: [serviceInfluencer, serviceContent],
+    images: [serviceInfluencer, contentShoot],
   },
   {
     id: "strategy-analytics",
@@ -218,14 +219,6 @@ const Services = () => {
                   ))}
                 </div>
 
-                {/* CTA Button */}
-                <a
-                  href="#contact"
-                  className="group inline-flex items-center gap-2 px-6 py-3 bg-honey text-background rounded-full font-semibold text-sm hover:bg-honey-dark transition-all duration-300"
-                >
-                  <span>Explore this service</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
               </div>
             </div>
           </div>
