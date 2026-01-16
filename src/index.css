@@ -4,51 +4,51 @@
 
 @layer base {
   :root {
-    /* Buzz Craft Dark Premium Theme - Coral/Terracotta */
+    /* Buzz Craft Dark Premium Theme */
     --background: 220 15% 8%;
-    --foreground: 30 20% 95%;
+    --foreground: 45 20% 95%;
 
     --card: 220 12% 12%;
-    --card-foreground: 30 20% 95%;
+    --card-foreground: 45 20% 95%;
 
     --popover: 220 12% 12%;
-    --popover-foreground: 30 20% 95%;
+    --popover-foreground: 45 20% 95%;
 
-    --primary: 10 72% 55%;
-    --primary-foreground: 30 20% 98%;
+    --primary: 45 90% 50%;
+    --primary-foreground: 220 15% 8%;
 
     --secondary: 220 10% 18%;
-    --secondary-foreground: 30 20% 90%;
+    --secondary-foreground: 45 20% 90%;
 
     --muted: 220 10% 20%;
-    --muted-foreground: 30 15% 65%;
+    --muted-foreground: 45 15% 65%;
 
-    --accent: 10 72% 55%;
-    --accent-foreground: 30 20% 98%;
+    --accent: 45 90% 50%;
+    --accent-foreground: 220 15% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 220 10% 20%;
     --input: 220 10% 18%;
-    --ring: 10 72% 55%;
+    --ring: 45 90% 50%;
 
     --radius: 0.5rem;
 
-    /* Custom Buzz Craft tokens - Coral Theme */
-    --cream: 30 20% 95%;
-    --cream-dark: 30 15% 85%;
+    /* Custom Buzz Craft tokens - Dark Theme */
+    --cream: 45 20% 95%;
+    --cream-dark: 45 15% 85%;
     --charcoal: 220 15% 8%;
     --charcoal-light: 220 10% 18%;
-    --honey: 10 72% 55%;
-    --honey-dark: 8 68% 45%;
-    --honey-glow: 12 80% 62%;
+    --honey: 45 90% 50%;
+    --honey-dark: 42 85% 42%;
+    --honey-glow: 45 100% 60%;
     
     /* Shadows for dark theme */
     --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.4);
     --shadow-card: 0 8px 30px -4px hsl(0 0% 0% / 0.5);
     --shadow-elevated: 0 20px 50px -10px hsl(0 0% 0% / 0.6);
-    --shadow-glow: 0 0 30px -5px hsl(10 72% 55% / 0.3);
+    --shadow-glow: 0 0 30px -5px hsl(45 90% 50% / 0.3);
 
     /* Typography */
     --font-serif: 'Playfair Display', Georgia, serif;

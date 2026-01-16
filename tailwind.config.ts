@@ -98,8 +98,8 @@ export default {
           "100%": { backgroundPosition: "200% 0" },
         },
         glow: {
-          "0%, 100%": { boxShadow: "0 0 20px -5px hsl(10 72% 55% / 0.4)" },
-          "50%": { boxShadow: "0 0 30px -5px hsl(10 72% 55% / 0.6)" },
+          "0%, 100%": { boxShadow: "0 0 20px -5px hsl(45 90% 50% / 0.4)" },
+          "50%": { boxShadow: "0 0 30px -5px hsl(45 90% 50% / 0.6)" },
         },
       },
       animation: {
@@ -120,7 +120,7 @@ export default {
         soft: "0 4px 20px -2px hsl(0 0% 0% / 0.4)",
         card: "0 8px 30px -4px hsl(0 0% 0% / 0.5)",
         elevated: "0 20px 50px -10px hsl(0 0% 0% / 0.6)",
-        glow: "0 0 30px -5px hsl(10 72% 55% / 0.3)",
+        glow: "0 0 30px -5px hsl(45 90% 50% / 0.3)",
       },
     },
   },
