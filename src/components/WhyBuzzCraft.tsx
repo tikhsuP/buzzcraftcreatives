@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { TrendingUp, Target, Wallet, Zap, Users, BarChart3, Award, CheckCircle2 } from "lucide-react";
+import { Users, BarChart3, Award, CheckCircle2 } from "lucide-react";
 import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio2 from "@/assets/portfolio-2.png";
 import portfolio3 from "@/assets/portfolio-3.png";
@@ -7,25 +7,21 @@ import portfolio3 from "@/assets/portfolio-3.png";
 // Stats data with clear hierarchy
 const metrics = [
   {
-    icon: TrendingUp,
     value: "3×",
     label: "Growth",
     sublabel: "Social reach & engagement uplift",
   },
   {
-    icon: Target,
     value: "100K+",
     label: "Leads",
     sublabel: "Generated across campaigns",
   },
   {
-    icon: Wallet,
     value: "₹25L+",
     label: "Revenue",
     sublabel: "Attributed to paid performance",
   },
   {
-    icon: Zap,
     value: "14–21",
     label: "Days",
     sublabel: "Typical optimization window",
@@ -189,13 +185,8 @@ const WhyBuzzCraft = () => {
                   transitionDelay: `${280 + index * 70}ms`,
                 }}
               >
-                {/* Icon in muted square */}
-                <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center mb-3 group-hover:bg-honey/10 transition-colors duration-300">
-                  <metric.icon className="w-4 h-4 text-honey/80" strokeWidth={1.5} />
-                </div>
-                
                 {/* Big Number - accent color */}
-                <div className="font-serif text-3xl md:text-4xl font-bold text-honey mb-0.5 tracking-tight leading-none">
+                <div className="font-serif text-3xl md:text-4xl font-bold text-honey mb-1 tracking-tight leading-none">
                   {metric.value}
                 </div>
                 
