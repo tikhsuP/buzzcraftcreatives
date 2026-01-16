@@ -235,8 +235,8 @@ const WhyBuzzCraft = () => {
                   transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
                 }}
               >
-                {/* Image Container */}
-                <div className="relative w-full aspect-[4/3] max-h-[240px] rounded-xl overflow-hidden shadow-lg group">
+                {/* Image Container - Portrait aspect ratio for social media content */}
+                <div className="relative w-full aspect-[3/4] max-h-[380px] rounded-xl overflow-hidden shadow-lg group">
                   <img
                     src={item.image}
                     alt={item.alt}
