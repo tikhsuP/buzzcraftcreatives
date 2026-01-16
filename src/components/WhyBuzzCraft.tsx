@@ -149,7 +149,7 @@ const WhyBuzzCraft = () => {
           className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
-            Why Buzz Craft
+            Why BuzzCraftCreatives
           </h2>
         </div>
 
@@ -167,7 +167,7 @@ const WhyBuzzCraft = () => {
           >
             {/* Editorial headline with selective bold keywords */}
             <h3 className="font-serif text-xl md:text-2xl lg:text-[1.7rem] text-foreground leading-[1.35] mb-4">
-              Buzz Craft combines{' '}
+              BuzzCraftCreatives combines{' '}
               <span className="text-honey font-semibold">creative storytelling</span>{' '}
               with{' '}
               <span className="text-honey font-semibold">performance marketing</span>{' '}

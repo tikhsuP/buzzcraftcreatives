@@ -3,42 +3,43 @@ import harshImage from "@/assets/team-harsh.jpg";
 import yahviImage from "@/assets/team-yahvi.jpg";
 import nitinImage from "@/assets/team-nitin.jpg";
 import shreyaImage from "@/assets/team-shreya.png";
+import roopaliImage from "@/assets/team-roopali.jpg";
 
 const teamMembers = [
   {
     name: "Yahvi Patel",
     title: "Co-Founder & Creative Director",
-    description: "Yahvi leads the creative direction at Buzz Craft, focusing on content storytelling, brand visuals, and social media strategies built for modern audiences. She ensures every post, reel, and campaign feels premium, consistent, and made to perform.",
+    description: "Yahvi leads the creative direction at BuzzCraftCreatives, focusing on content storytelling, brand visuals, and social media strategies built for modern audiences. She ensures every post, reel, and campaign feels premium, consistent, and made to perform.",
     image: yahviImage,
-    alt: "Yahvi Patel – Co-Founder & Creative Director at Buzz Craft",
+    alt: "Yahvi Patel – Co-Founder & Creative Director at BuzzCraftCreatives",
   },
   {
     name: "Harsh Bhalla",
     title: "Co-Founder & Performance Marketing Lead",
     description: "Harsh specializes in performance marketing across Meta and Google Ads, building campaigns designed for qualified leads, conversions, and measurable ROI. He manages targeting, tracking, optimization, and scaling—ensuring growth stays profitable and consistent.",
     image: harshImage,
-    alt: "Harsh Bhalla – Co-Founder & Performance Marketing Lead at Buzz Craft",
+    alt: "Harsh Bhalla – Co-Founder & Performance Marketing Lead at BuzzCraftCreatives",
   },
   {
     name: "Nitin Kumar",
     title: "Operations & Client Success Head",
     description: "Nitin manages execution, timelines, and smooth delivery across client projects, ensuring high-quality work and reliable coordination. He focuses on keeping operations efficient while maintaining strong client communication and support.",
     image: nitinImage,
-    alt: "Nitin Kumar – Operations & Client Success Head at Buzz Craft",
+    alt: "Nitin Kumar – Operations & Client Success Head at BuzzCraftCreatives",
   },
   {
     name: "Shreya Saxena",
-    title: "Marketing & Growth Lead",
-    description: "Shreya works on social growth strategy, engagement planning, and content optimization to improve reach and audience loyalty. She helps shape brand presence with a balance of creativity, consistency, and measurable content performance.",
+    title: "Client Onboarding & Relationship Management",
+    description: "Shreya handles client onboarding and relationship management, ensuring smooth transitions and ongoing communication. She builds strong client partnerships with a focus on understanding needs and delivering consistent value.",
     image: shreyaImage,
-    alt: "Shreya Saxena – Marketing & Growth Lead at Buzz Craft",
+    alt: "Shreya Saxena – Client Onboarding & Relationship Management at BuzzCraftCreatives",
   },
   {
     name: "Roopali Khale",
     title: "Events & Brand Partnerships Director",
     description: "Roopali leads event marketing and partnerships, supporting brand launches, collaborations, and promotional campaigns. She bridges offline and online visibility through structured planning and execution-driven marketing support.",
-    image: null,
-    alt: "Roopali Khale – Events & Brand Partnerships Director at Buzz Craft",
+    image: roopaliImage,
+    alt: "Roopali Khale – Events & Brand Partnerships Director at BuzzCraftCreatives",
   },
 ];
 

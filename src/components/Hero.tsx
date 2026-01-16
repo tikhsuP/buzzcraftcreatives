@@ -49,7 +49,7 @@ const Hero = () => {
             className="text-base md:text-lg lg:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up leading-relaxed"
             style={{ animationDelay: "0.4s" }}
           >
-            Buzz Craft helps businesses grow with content, strategy, and performance marketing that drives real results — not vanity metrics.
+            BuzzCraftCreatives helps businesses grow with content, strategy, and performance marketing that drives real results — not vanity metrics.
           </p>
 
           {/* CTAs */}
