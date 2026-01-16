@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 // Import service images
-import serviceInfluencer from "@/assets/service-influencer-new.jpg";
 import serviceStrategy from "@/assets/service-strategy.jpg";
 import contentShoot from "@/assets/content-shoot.png";
 import contentEditing from "@/assets/content-editing.png";
 import performanceAnalytics from "@/assets/performance-analytics.png";
 import performancePlanning from "@/assets/performance-planning.png";
+import influencerCreator from "@/assets/influencer-creator.png";
+import influencerCollab from "@/assets/influencer-collab.png";
 
 const services = [
   {
@@ -38,7 +39,7 @@ const services = [
     description: "We run influencer partnerships and page promotions through niche communities to boost reach, credibility, and high-quality audience growth.",
     highlights: ["Creator Network", "Page Promotions", "Brand Collabs"],
     outcome: "Typical outcome: reach growth + stronger credibility",
-    images: [serviceInfluencer, contentShoot],
+    images: [influencerCreator, influencerCollab],
   },
   {
     id: "strategy-analytics",
