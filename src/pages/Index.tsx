@@ -5,12 +5,10 @@ import WhyBuzzCraft from "@/components/WhyBuzzCraft";
 import Team from "@/components/Team";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import CursorBee from "@/components/CursorBee";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <CursorBee />
       <Header />
       <main>
         <Hero />
