@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, useCallback } from "react";
-import { TrendingUp, Target, Wallet, Zap, Users, BarChart3, Award, CheckCircle2, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { TrendingUp, Target, Wallet, Zap, Users, BarChart3, Award, CheckCircle2 } from "lucide-react";
 import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio2 from "@/assets/portfolio-2.png";
 import portfolio3 from "@/assets/portfolio-3.png";
@@ -40,34 +40,28 @@ const trustBadges = [
   { icon: CheckCircle2, label: "Transparent Metrics" },
 ];
 
-// Case study carousel data
-const caseStudies = [
+// Portfolio images with tags
+const portfolioImages = [
   {
     image: portfolio1,
-    title: "Fashion Brand Social Growth",
-    caption: "3× engagement increase in 60 days",
-    alt: "Fashion brand social media campaign results",
+    tag: "CREATIVE",
+    alt: "Creative content showcase",
   },
   {
     image: portfolio2,
-    title: "E-Commerce Performance Ads",
-    caption: "₹15L revenue from paid campaigns",
-    alt: "E-commerce paid advertising case study",
+    tag: "FAST",
+    alt: "Fast turnaround results",
   },
   {
     image: portfolio3,
-    title: "B2B Lead Generation",
-    caption: "50K+ qualified leads delivered",
-    alt: "B2B lead generation campaign results",
+    tag: "DATA-DRIVEN",
+    alt: "Data-driven marketing approach",
   },
 ];
 
 const WhyBuzzCraft = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   // Intersection observer for fade-in
   useEffect(() => {
@@ -88,25 +82,6 @@ const WhyBuzzCraft = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Carousel autoplay
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % caseStudies.length);
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
-  }, []);
-
-  useEffect(() => {
-    if (!isPaused) {
-      autoplayRef.current = setInterval(nextSlide, 5000);
-    }
-    return () => {
-      if (autoplayRef.current) {
-        clearInterval(autoplayRef.current);
-      }
-    };
-  }, [isPaused, nextSlide]);
 
   return (
     <section 
@@ -238,92 +213,50 @@ const WhyBuzzCraft = () => {
           </div>
         </div>
 
-        {/* Case Study Carousel */}
+        {/* 3-Image Row with Tags */}
         <div 
-          className="mt-8 transition-all duration-700"
+          className="mt-10 transition-all duration-700"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
             transitionDelay: '400ms',
           }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Carousel Container */}
-          <div className="relative">
-            {/* Slides Wrapper */}
-            <div className="overflow-hidden rounded-2xl">
+          {/* Desktop: 3 columns, Mobile: horizontal scroll or stack */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            {portfolioImages.map((item, index) => (
               <div 
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                key={item.tag}
+                className="flex flex-col items-center"
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                  transitionDelay: `${450 + index * 100}ms`,
+                  transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+                }}
               >
-                {caseStudies.map((study, index) => (
-                  <div 
-                    key={index}
-                    className="w-full flex-shrink-0"
-                  >
-                    <div className="relative aspect-[16/9] bg-card/40 rounded-2xl overflow-hidden group">
-                      {/* Image with lazy loading */}
-                      <img
-                        src={study.image}
-                        alt={study.alt}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                      />
-                      
-                      {/* Gradient overlay for text readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/20 to-transparent" />
-                      
-                      {/* Caption + CTA */}
-                      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                        <h4 className="font-serif text-lg md:text-xl font-semibold text-foreground mb-1">
-                          {study.title}
-                        </h4>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          {study.caption}
-                        </p>
-                        <button className="inline-flex items-center gap-1.5 text-xs md:text-sm text-honey font-medium hover:underline underline-offset-4 transition-all group/btn">
-                          View case
-                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                {/* Image Container */}
+                <div className="relative w-full aspect-[4/3] max-h-[240px] rounded-xl overflow-hidden shadow-lg group">
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  {/* Subtle dark overlay */}
+                  <div className="absolute inset-0 bg-secondary/20 group-hover:bg-secondary/10 transition-colors duration-300" />
+                </div>
+                
+                {/* Tag Label */}
+                <div className="mt-4 text-center">
+                  <span className="font-serif text-base md:text-lg font-semibold text-foreground tracking-wide relative">
+                    {item.tag}
+                    {/* Gold underline accent */}
+                    <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-honey rounded-full" />
+                  </span>
+                </div>
               </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground hover:bg-background hover:border-honey/40 transition-all duration-300 z-10"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground hover:bg-background hover:border-honey/40 transition-all duration-300 z-10"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-
-            {/* Slide Indicators */}
-            <div className="flex justify-center gap-2 mt-4">
-              {caseStudies.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-honey w-6' 
-                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </div>
