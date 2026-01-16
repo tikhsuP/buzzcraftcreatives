@@ -1,32 +1,32 @@
 import { useState } from "react";
 import { Instagram, Mail, ArrowRight, Send } from "lucide-react";
-
 const Footer = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    message: ""
   });
-
-  const services = [
-    { name: "Content Creation", href: "#services" },
-    { name: "Performance Marketing", href: "#services" },
-    { name: "Influencer Campaigns", href: "#services" },
-    { name: "Strategy & Analytics", href: "#services" },
-  ];
-
+  const services = [{
+    name: "Content Creation",
+    href: "#services"
+  }, {
+    name: "Performance Marketing",
+    href: "#services"
+  }, {
+    name: "Influencer Campaigns",
+    href: "#services"
+  }, {
+    name: "Strategy & Analytics",
+    href: "#services"
+  }];
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Encode and redirect to Instagram DM or mailto
     const subject = encodeURIComponent("Quote Request from Website");
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`
-    );
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
     window.location.href = `mailto:Buzzcraftcreatives@gmail.com?subject=${subject}&body=${body}`;
   };
-
-  return (
-    <footer id="footer" className="bg-background text-foreground">
+  return <footer id="footer" className="bg-background text-foreground">
       {/* Pre-Footer CTA Band */}
       <div className="relative py-16 md:py-20 overflow-hidden">
         {/* Background with subtle gradient */}
@@ -50,21 +50,11 @@ const Footer = () => {
               
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-                <a
-                  href="https://www.instagram.com/buzzcraftcreatives/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark transition-all duration-300"
-                >
+                <a href="https://www.instagram.com/buzzcraftcreatives/" target="_blank" rel="noopener noreferrer" className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark transition-all duration-300">
                   <span>Get a Free Quote</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
-                <a
-                  href="https://www.instagram.com/buzzcraft.official/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-honey/40 text-honey rounded-full font-bold hover:bg-honey/10 transition-all duration-300"
-                >
+                <a href="https://www.instagram.com/buzzcraft.official/" target="_blank" rel="noopener noreferrer" className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-honey/40 text-honey rounded-full font-bold hover:bg-honey/10 transition-all duration-300">
                   <Instagram className="w-5 h-5" />
                   <span>DM Us on Instagram</span>
                 </a>
@@ -95,10 +85,7 @@ const Footer = () => {
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                 Creative performance marketing for brands that want real growth.
               </p>
-              <a 
-                href="https://buzzcraftcreatives.com" 
-                className="text-honey text-sm font-medium hover:text-honey-glow transition-colors"
-              >
+              <a href="https://buzzcraftcreatives.com" className="text-honey text-sm font-medium hover:text-honey-glow transition-colors">
                 Buzzcraftcreatives.com
               </a>
             </div>
@@ -109,16 +96,11 @@ const Footer = () => {
                 Services
               </h4>
               <ul className="space-y-3">
-                {services.map((service) => (
-                  <li key={service.name}>
-                    <a
-                      href={service.href}
-                      className="text-foreground/80 hover:text-honey transition-colors text-sm"
-                    >
+                {services.map(service => <li key={service.name}>
+                    <a href={service.href} className="text-foreground/80 hover:text-honey transition-colors text-sm">
                       {service.name}
                     </a>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </div>
 
@@ -128,19 +110,11 @@ const Footer = () => {
                 Contact
               </h4>
               <div className="space-y-4">
-                <a
-                  href="https://www.instagram.com/buzzcraft.official/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-foreground/80 hover:text-honey transition-colors text-sm"
-                >
+                <a href="https://www.instagram.com/buzzcraft.official/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-foreground/80 hover:text-honey transition-colors text-sm">
                   <Instagram className="w-4 h-4 text-honey" />
                   <span>@buzzcraft.official</span>
                 </a>
-                <a
-                  href="mailto:Buzzcraftcreatives@gmail.com"
-                  className="flex items-center gap-2 text-foreground/80 hover:text-honey transition-colors text-sm"
-                >
+                <a href="mailto:Buzzcraftcreatives@gmail.com" className="flex items-center gap-2 text-foreground/80 hover:text-honey transition-colors text-sm">
                   <Mail className="w-4 h-4 text-honey" />
                   <span>Buzzcraftcreatives@gmail.com</span>
                 </a>
@@ -151,46 +125,7 @@ const Footer = () => {
             </div>
 
             {/* Column 4 - Mini Form */}
-            <div>
-              <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-5">
-                Quick Inquiry
-              </h4>
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  maxLength={100}
-                  className="w-full px-4 py-2.5 bg-background/50 border border-border/50 rounded-lg text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-honey/50 transition-colors"
-                />
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  maxLength={255}
-                  className="w-full px-4 py-2.5 bg-background/50 border border-border/50 rounded-lg text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-honey/50 transition-colors"
-                />
-                <textarea
-                  placeholder="Message (optional)"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  maxLength={500}
-                  rows={2}
-                  className="w-full px-4 py-2.5 bg-background/50 border border-border/50 rounded-lg text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-honey/50 transition-colors resize-none"
-                />
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-honey text-background rounded-lg font-semibold text-sm hover:bg-honey-dark transition-colors"
-                >
-                  <span>Request a Quote</span>
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -208,8 +143,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
