@@ -140,7 +140,7 @@ const Services = () => {
                     : 'bg-muted/30 text-muted-foreground hover:bg-muted/50'
                   }`}
               >
-                {service.title.split(' ').slice(0, 2).join(' ')}
+                {service.title}
               </button>
             ))}
           </div>
