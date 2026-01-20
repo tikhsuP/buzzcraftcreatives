@@ -13,7 +13,7 @@ const metrics = [
   },
   {
     value: "100K+",
-    label: "Leads",
+    label: "Impressions",
     sublabel: "Generated across campaigns",
   },
   {
