@@ -14,8 +14,8 @@ const Index = () => {
         <Hero />
         <Services />
         <WhyBuzzCraft />
-        <Team />
         <Clients />
+        <Team />
       </main>
       <Footer />
     </div>

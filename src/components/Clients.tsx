@@ -80,36 +80,27 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
   return (
     <div
       ref={cardRef}
-      className={`group flex flex-col items-center p-6 rounded-2xl bg-card/50 border border-border/30 backdrop-blur-sm transition-all duration-500 hover:bg-card/80 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 ${
+      className={`group flex flex-col items-center p-4 transition-all duration-500 hover:-translate-y-1 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      {/* Circular Image */}
-      <div className="relative mb-4">
-        <div className="w-[72px] h-[72px] md:w-[88px] md:h-[88px] rounded-full overflow-hidden ring-2 ring-primary/40 ring-offset-2 ring-offset-background shadow-lg shadow-primary/10 group-hover:ring-primary/60 transition-all duration-300">
-          <img
-            src={client.image}
-            alt={`${client.name} – ${client.business}`}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
-      </div>
-
       {/* Client Info */}
       <h3 className="text-lg font-semibold text-foreground text-center mb-1">
         {client.name}
       </h3>
-      <p className="text-sm text-muted-foreground text-center mb-2">
+      <p className="text-sm text-muted-foreground text-center mb-4">
         {client.business}
       </p>
 
-      {/* Work Type Tag */}
-      {client.workType && (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-          {client.workType}
-        </span>
-      )}
+      {/* Logo */}
+      <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-full overflow-hidden">
+        <img
+          src={client.image}
+          alt={`${client.name} – ${client.business}`}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 };
@@ -127,13 +118,13 @@ const Clients = () => {
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4">
+          <span className="inline-block text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">
             Clients
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
             Brands We've Worked With
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
             From lifestyle to decor to e-commerce — we help brands grow with content + performance marketing.
           </p>
         </div>
