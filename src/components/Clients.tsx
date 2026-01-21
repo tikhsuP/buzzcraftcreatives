@@ -84,16 +84,8 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      {/* Client Info */}
-      <h3 className="text-lg font-semibold text-foreground text-center mb-1">
-        {client.name}
-      </h3>
-      <p className="text-sm text-muted-foreground text-center mb-4">
-        {client.business}
-      </p>
-
       {/* Logo */}
-      <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-full overflow-hidden">
+      <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4">
         <img
           src={client.image}
           alt={`${client.name} – ${client.business}`}
@@ -101,6 +93,14 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
           loading="lazy"
         />
       </div>
+
+      {/* Client Info */}
+      <h3 className="text-lg md:text-xl font-semibold text-foreground text-center mb-1">
+        {client.name}
+      </h3>
+      <p className="text-sm md:text-base text-muted-foreground text-center">
+        {client.business}
+      </p>
     </div>
   );
 };
@@ -118,10 +118,10 @@ const Clients = () => {
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4">
+          <span className="inline-block text-base md:text-lg font-semibold tracking-[0.2em] uppercase text-primary mb-4">
             Clients
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground mb-6">
             Brands We've Worked With
           </h2>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
