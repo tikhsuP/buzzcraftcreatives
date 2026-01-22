@@ -85,7 +85,7 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
       }`}
     >
       {/* Logo */}
-      <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4">
+      <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)]">
         <img
           src={client.image}
           alt={`${client.name} – ${client.business}`}
