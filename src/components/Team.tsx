@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import harshImage from "@/assets/team-harsh.jpg";
 import yahviImage from "@/assets/team-yahvi.jpg";
 import nitinImage from "@/assets/team-nitin.jpg";
@@ -9,48 +10,88 @@ const teamMembers = [
   {
     name: "Yahvi Patel",
     title: "Co-Founder & Creative Director",
-    description: "Yahvi leads the creative direction at BuzzCraftCreatives, focusing on content storytelling, brand visuals, and social media strategies built for modern audiences. She ensures every post, reel, and campaign feels premium, consistent, and made to perform.",
+    description: "Yahvi leads the creative direction at BuzzCraftCreatives, focusing on content storytelling, brand visuals, and social media strategies built for modern audiences.",
     image: yahviImage,
     alt: "Yahvi Patel – Co-Founder & Creative Director at BuzzCraftCreatives",
   },
   {
     name: "Harsh Bhalla",
     title: "Co-Founder & Performance Marketing Lead",
-    description: "Harsh specializes in performance marketing across Meta and Google Ads, building campaigns designed for qualified leads, conversions, and measurable ROI. He manages targeting, tracking, optimization, and scaling—ensuring growth stays profitable and consistent.",
+    description: "Harsh specializes in performance marketing across Meta and Google Ads, building campaigns designed for qualified leads, conversions, and measurable ROI.",
     image: harshImage,
     alt: "Harsh Bhalla – Co-Founder & Performance Marketing Lead at BuzzCraftCreatives",
   },
   {
     name: "Nitin Kumar",
     title: "Operations & Client Success Head",
-    description: "Nitin manages execution, timelines, and smooth delivery across client projects, ensuring high-quality work and reliable coordination. He focuses on keeping operations efficient while maintaining strong client communication and support.",
+    description: "Nitin manages execution, timelines, and smooth delivery across client projects, ensuring high-quality work and reliable coordination.",
     image: nitinImage,
     alt: "Nitin Kumar – Operations & Client Success Head at BuzzCraftCreatives",
   },
   {
     name: "Shreya Saxena",
     title: "Client Onboarding & Relationship Management",
-    description: "Shreya handles client onboarding and relationship management, ensuring smooth transitions and ongoing communication. She builds strong client partnerships with a focus on understanding needs and delivering consistent value.",
+    description: "Shreya handles client onboarding and relationship management, ensuring smooth transitions and ongoing communication.",
     image: shreyaImage,
     alt: "Shreya Saxena – Client Onboarding & Relationship Management at BuzzCraftCreatives",
   },
   {
     name: "Roopali Khale",
     title: "Events & Brand Partnerships Director",
-    description: "Roopali leads event marketing and partnerships, supporting brand launches, collaborations, and promotional campaigns. She bridges offline and online visibility through structured planning and execution-driven marketing support.",
+    description: "Roopali leads event marketing and partnerships, supporting brand launches, collaborations, and promotional campaigns.",
     image: roopaliImage,
     alt: "Roopali Khale – Events & Brand Partnerships Director at BuzzCraftCreatives",
   },
 ];
 
-// Duplicate for seamless loop
+// Duplicate for seamless loop (desktop only)
 const duplicatedMembers = [...teamMembers, ...teamMembers];
+
+const TeamMemberCard = ({ member }: { member: typeof teamMembers[0] }) => (
+  <article className="flex flex-col items-center text-center group">
+    {/* Circular Avatar */}
+    <div className="relative mb-3">
+      <div className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 border-honey/40 shadow-lg shadow-honey/10">
+        {member.image ? (
+          <img
+            src={member.image}
+            alt={member.alt}
+            className="w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full bg-secondary flex items-center justify-center">
+            <span className="font-serif text-xl font-bold text-honey">
+              {member.name.split(" ").map((n) => n[0]).join("")}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+
+    {/* Name */}
+    <h3 className="font-serif text-sm md:text-xl font-bold text-foreground mb-1">
+      {member.name}
+    </h3>
+
+    {/* Title */}
+    <p className="text-[10px] md:text-sm text-honey font-medium mb-1 md:mb-2 leading-tight px-1">
+      {member.title}
+    </p>
+
+    {/* Description - hidden on mobile for cleaner 2x2 grid */}
+    <p className="hidden md:block text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] line-clamp-3">
+      {member.description}
+    </p>
+  </article>
+);
 
 const Team = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,77 +137,96 @@ const Team = () => {
           </h2>
         </div>
 
-        {/* Marquee Container */}
-        <div
-          className="relative w-full overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Gradient Fade Left */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          
-          {/* Gradient Fade Right */}
-          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-
-          {/* Marquee Track */}
+        {/* Mobile: Static 2x2 Grid */}
+        {isMobile ? (
           <div
-            ref={marqueeRef}
-            className={`flex gap-8 md:gap-10 lg:gap-12 py-4 ${
-              isVisible ? "animate-marquee" : ""
+            className={`grid grid-cols-2 gap-6 ${
+              isVisible ? "opacity-100" : "opacity-0"
             }`}
-            style={{
-              animationPlayState: isPaused ? "paused" : "running",
-            }}
           >
-            {duplicatedMembers.map((member, index) => (
-              <article
-                key={`${member.name}-${index}`}
-                className="flex-shrink-0 flex flex-col items-center text-center group"
-                style={{ width: "220px" }}
-              >
-                {/* Circular Avatar */}
-                <div className="relative mb-4">
-                  <div className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 border-honey/40 shadow-lg shadow-honey/10 group-hover:border-honey/70 group-hover:shadow-honey/20 transition-all duration-300">
-                    {member.image ? (
-                      <img
-                        src={member.image}
-                        alt={member.alt}
-                        className="w-full h-full object-cover object-top"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-secondary flex items-center justify-center">
-                        <span className="font-serif text-2xl md:text-3xl font-bold text-honey">
-                          {member.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  {/* Subtle glow ring on hover */}
-                  <div className="absolute inset-0 rounded-full bg-honey/0 group-hover:bg-honey/5 transition-all duration-300" />
-                </div>
-
-                {/* Name */}
-                <h3 className="font-serif text-lg md:text-xl font-bold text-foreground mb-1 whitespace-nowrap">
-                  {member.name}
-                </h3>
-
-                {/* Title */}
-                <p className="text-xs md:text-sm text-honey font-medium mb-2">
-                  {member.title}
-                </p>
-
-                {/* Description */}
-                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] line-clamp-3">
-                  {member.description}
-                </p>
-              </article>
+            {teamMembers.slice(0, 4).map((member) => (
+              <TeamMemberCard key={member.name} member={member} />
             ))}
+            {/* 5th member centered below */}
+            <div className="col-span-2 flex justify-center">
+              <div className="w-1/2">
+                <TeamMemberCard member={teamMembers[4]} />
+              </div>
+            </div>
           </div>
-        </div>
+        ) : (
+          /* Desktop: Marquee Animation */
+          <div
+            className="relative w-full overflow-hidden"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Gradient Fade Left */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            
+            {/* Gradient Fade Right */}
+            <div className="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+
+            {/* Marquee Track */}
+            <div
+              ref={marqueeRef}
+              className={`flex gap-8 md:gap-10 lg:gap-12 py-4 ${
+                isVisible ? "animate-marquee" : ""
+              }`}
+              style={{
+                animationPlayState: isPaused ? "paused" : "running",
+              }}
+            >
+              {duplicatedMembers.map((member, index) => (
+                <article
+                  key={`${member.name}-${index}`}
+                  className="flex-shrink-0 flex flex-col items-center text-center group"
+                  style={{ width: "220px" }}
+                >
+                  {/* Circular Avatar */}
+                  <div className="relative mb-4">
+                    <div className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 border-honey/40 shadow-lg shadow-honey/10 group-hover:border-honey/70 group-hover:shadow-honey/20 transition-all duration-300">
+                      {member.image ? (
+                        <img
+                          src={member.image}
+                          alt={member.alt}
+                          className="w-full h-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-secondary flex items-center justify-center">
+                          <span className="font-serif text-2xl md:text-3xl font-bold text-honey">
+                            {member.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    {/* Subtle glow ring on hover */}
+                    <div className="absolute inset-0 rounded-full bg-honey/0 group-hover:bg-honey/5 transition-all duration-300" />
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="font-serif text-lg md:text-xl font-bold text-foreground mb-1 whitespace-nowrap">
+                    {member.name}
+                  </h3>
+
+                  {/* Title */}
+                  <p className="text-xs md:text-sm text-honey font-medium mb-2">
+                    {member.title}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] line-clamp-3">
+                    {member.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
