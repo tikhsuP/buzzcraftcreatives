@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, Play, Pause } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // Import service images
 import contentShoot from "@/assets/content-shoot.png";
@@ -11,9 +12,24 @@ import influencerCollab from "@/assets/influencer-collab.png";
 import strategyPlanning from "@/assets/strategy-planning.png";
 import strategyBoard from "@/assets/strategy-board.png";
 
-const services = [
+interface Service {
+  id: string;
+  number: string;
+  title: string;
+  subtitle?: string;
+  tagline: string;
+  headline: string;
+  description: string;
+  highlights: string[];
+  outcome: string;
+  images: string[];
+  accentColor: string;
+}
+
+const services: Service[] = [
   {
     id: "content-creation",
+    number: "01",
     title: "Content Creation & Social Growth",
     tagline: "Scroll-stopping content built for brand + attention.",
     headline: "Content that builds attention and trust",
@@ -22,10 +38,13 @@ const services = [
     highlights: ["Reels + Editing", "Brand Shoots", "Content Calendars"],
     outcome: "Typical outcome: better engagement + more inbound inquiries",
     images: [contentShoot, contentEditing],
+    accentColor: "from-amber-500/20 to-orange-500/10",
   },
   {
     id: "performance-marketing",
-    title: "Performance Marketing (Meta + Google Ads)",
+    number: "02",
+    title: "Performance Marketing",
+    subtitle: "(Meta + Google Ads)",
     tagline: "ROI-first campaigns engineered for leads and sales.",
     headline: "Performance ads built for ROI",
     description:
@@ -33,9 +52,11 @@ const services = [
     highlights: ["Meta Ads", "Google Search", "Conversion Tracking"],
     outcome: "Typical outcome: lower CPL + more qualified leads",
     images: [performanceAnalytics, performancePlanning],
+    accentColor: "from-blue-500/20 to-cyan-500/10",
   },
   {
     id: "influencer-promotions",
+    number: "03",
     title: "Influencer & Promotion Campaigns",
     tagline: "Authentic collaborations that build trust and buzz.",
     headline: "Collaborations that create real buzz",
@@ -44,9 +65,11 @@ const services = [
     highlights: ["Creator Network", "Page Promotions", "Brand Collabs"],
     outcome: "Typical outcome: reach growth + stronger credibility",
     images: [influencerCreator, influencerCollab],
+    accentColor: "from-purple-500/20 to-pink-500/10",
   },
   {
     id: "strategy-analytics",
+    number: "04",
     title: "Strategy, Analytics & Reporting",
     tagline: "Clear insights, tracking, and next-step growth plans.",
     headline: "Decisions backed by real data",
@@ -55,239 +78,394 @@ const services = [
     highlights: ["Weekly Reports", "KPI Tracking", "Growth Roadmaps"],
     outcome: "Typical outcome: clearer reporting + faster scaling decisions",
     images: [strategyPlanning, strategyBoard],
+    accentColor: "from-emerald-500/20 to-teal-500/10",
   },
 ];
 
-const Services = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+interface ServiceSlideProps {
+  service: typeof services[0];
+  isActive: boolean;
+  index: number;
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const handleServiceChange = (index: number) => {
-    if (index === activeIndex) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setActiveIndex(index);
-      setIsTransitioning(false);
-    }, 150);
-  };
-
-  const activeService = services[activeIndex];
-
+const ServiceSlide = ({ service, isActive, index }: ServiceSlideProps) => {
+  const isEven = index % 2 === 0;
+  
   return (
-    <section id="services" ref={sectionRef} className="py-20 md:py-28 lg:py-32 bg-background relative overflow-hidden">
-      {/* Subtle background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Buzz trail - curved stroke at low opacity */}
-        <svg className="absolute top-1/4 left-0 w-full h-96 opacity-[0.03]" viewBox="0 0 1200 400" fill="none">
-          <path
-            d="M-100 200 Q 300 50 600 200 T 1300 200"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="text-honey"
-          />
-        </svg>
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-gradient-radial from-honey/[0.02] to-transparent rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-5 md:px-8 relative">
-        {/* Section Header - Clean & Premium */}
-        <div
-          className="mb-12 md:mb-16 lg:mb-20 transition-all duration-700"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(20px)",
-          }}
-        >
-          <p className="text-xs font-medium text-honey/80 uppercase tracking-[0.2em] mb-3">What We Do</p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">Our Services</h2>
-          <p className="text-muted-foreground text-base md:text-lg">Built to look premium. Built to convert faster.</p>
-        </div>
-
-        {/* Mobile: Horizontal Tabs */}
-        <div className="lg:hidden mb-8">
-          <div className="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 scrollbar-hide">
-            {services.map((service, index) => (
-              <button
-                key={service.id}
-                onClick={() => handleServiceChange(index)}
-                className={`flex-shrink-0 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap
-                  ${
-                    activeIndex === index
-                      ? "bg-honey text-background"
-                      : "bg-muted/30 text-muted-foreground hover:bg-muted/50"
-                  }`}
-              >
-                {service.title}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Main Content: Split Layout */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* LEFT: Sticky Service Spotlight Panel */}
-          <div className="lg:sticky lg:top-24 lg:self-start order-2 lg:order-1">
-            <div
-              className="relative p-6 md:p-8 lg:p-10 rounded-2xl overflow-hidden transition-all duration-700"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0)" : "translateY(30px)",
-                transitionDelay: "200ms",
-              }}
+    <div
+      className={cn(
+        "min-h-screen flex items-center justify-center py-20 md:py-24 lg:py-0 relative",
+        "transition-opacity duration-700",
+        isActive ? "opacity-100" : "opacity-40"
+      )}
+    >
+      {/* Background accent gradient */}
+      <div 
+        className={cn(
+          "absolute inset-0 bg-gradient-to-br opacity-30 pointer-events-none transition-opacity duration-1000",
+          service.accentColor,
+          isActive ? "opacity-30" : "opacity-0"
+        )}
+      />
+      
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <div className={cn(
+          "grid lg:grid-cols-2 gap-8 lg:gap-16 items-center",
+          isEven ? "" : "lg:direction-rtl"
+        )}>
+          {/* Content Side */}
+          <div className={cn(
+            "space-y-6 md:space-y-8",
+            isEven ? "lg:pr-8" : "lg:pl-8 lg:order-2"
+          )}>
+            {/* Service Number */}
+            <div 
+              className={cn(
+                "transition-all duration-700 delay-100",
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}
             >
-              {/* Panel Background with subtle gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-card via-card to-muted/20 rounded-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-honey/[0.02] via-transparent to-honey/[0.01] rounded-2xl" />
-
-              {/* Thin gold accent line - animated */}
-              <div
-                className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-honey/60 to-transparent transition-all duration-500"
-                style={{
-                  opacity: isTransitioning ? 0.3 : 1,
-                  transform: `scaleX(${isTransitioning ? 0.5 : 1})`,
-                }}
-              />
-
-              {/* Content */}
-              <div
-                className={`relative transition-all duration-300 ${isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"}`}
-              >
-                {/* Mini Image Collage */}
-                <div className="flex gap-3 mb-6">
-                  {activeService.images.map((img, i) => (
-                    <div key={i} className="relative w-1/2 aspect-[4/3] rounded-xl overflow-hidden">
-                      <img src={img} alt="" className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-                    </div>
-                  ))}
-                </div>
-
-                {/* Headline */}
-                <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
-                  {activeService.headline}
-                </h3>
-
-                {/* Description */}
-                <p className="text-muted-foreground text-base leading-relaxed mb-4">{activeService.description}</p>
-
-                {/* Outcome micro-line */}
-                <p className="text-xs text-honey/70 italic mb-6">{activeService.outcome}</p>
-
-                {/* Highlight Chips */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {activeService.highlights.map((highlight, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1.5 rounded-full bg-honey/10 text-honey text-xs font-medium border border-honey/20"
-                    >
-                      {highlight}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <span className="text-7xl md:text-8xl lg:text-9xl font-serif font-bold text-primary/10">
+                {service.number}
+              </span>
             </div>
-          </div>
 
-          {/* RIGHT: Service Menu List */}
-          <div className="hidden lg:block order-1 lg:order-2">
-            <div className="space-y-1">
-              {services.map((service, index) => (
-                <button
-                  key={service.id}
-                  onMouseEnter={() => handleServiceChange(index)}
-                  onClick={() => handleServiceChange(index)}
-                  className={`group w-full text-left p-5 md:p-6 rounded-xl transition-all duration-300 relative overflow-hidden
-                    ${activeIndex === index ? "bg-muted/30" : "hover:bg-muted/20"}`}
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateX(0)" : "translateX(20px)",
-                    transitionDelay: `${300 + index * 80}ms`,
-                  }}
+            {/* Title */}
+            <div 
+              className={cn(
+                "transition-all duration-700 delay-200 -mt-12 md:-mt-16",
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}
+            >
+              <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+                {service.title}
+              </h3>
+              {service.subtitle && (
+                <span className="text-xl md:text-2xl text-muted-foreground font-light">
+                  {service.subtitle}
+                </span>
+              )}
+            </div>
+
+            {/* Tagline */}
+            <p 
+              className={cn(
+                "text-lg md:text-xl text-primary font-medium transition-all duration-700 delay-300",
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}
+            >
+              {service.tagline}
+            </p>
+
+            {/* Description */}
+            <p 
+              className={cn(
+                "text-muted-foreground text-base md:text-lg leading-relaxed max-w-xl transition-all duration-700 delay-400",
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}
+            >
+              {service.description}
+            </p>
+
+            {/* Highlights */}
+            <div 
+              className={cn(
+                "flex flex-wrap gap-3 transition-all duration-700 delay-500",
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}
+            >
+              {service.highlights.map((highlight, i) => (
+                <span
+                  key={i}
+                  className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20 backdrop-blur-sm"
                 >
-                  {/* Active indicator line */}
-                  <div
-                    className={`absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-8 bg-honey rounded-full transition-all duration-300
-                      ${activeIndex === index ? "opacity-100" : "opacity-0"}`}
-                  />
-
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="flex-1 min-w-0">
-                      {/* Service Name - Big */}
-                      <h4
-                        className={`font-serif text-xl md:text-2xl font-bold mb-1.5 transition-colors duration-300 leading-tight
-                        ${activeIndex === index ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"}`}
-                      >
-                        {service.title}
-                      </h4>
-
-                      {/* Tagline - Small */}
-                      <p
-                        className={`text-sm transition-colors duration-300
-                        ${activeIndex === index ? "text-muted-foreground" : "text-muted-foreground/60 group-hover:text-muted-foreground"}`}
-                      >
-                        {service.tagline}
-                      </p>
-                    </div>
-
-                    {/* Arrow */}
-                    <ChevronRight
-                      className={`w-5 h-5 flex-shrink-0 transition-all duration-300
-                      ${
-                        activeIndex === index
-                          ? "text-honey translate-x-0"
-                          : "text-muted-foreground/40 -translate-x-1 group-hover:translate-x-0 group-hover:text-muted-foreground"
-                      }`}
-                    />
-                  </div>
-                </button>
+                  {highlight}
+                </span>
               ))}
             </div>
+
+            {/* Outcome */}
+            <p 
+              className={cn(
+                "text-sm text-muted-foreground/80 italic border-l-2 border-primary/30 pl-4 transition-all duration-700 delay-600",
+                isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}
+            >
+              {service.outcome}
+            </p>
           </div>
 
-          {/* Mobile: Spotlight Panel is already shown above via order classes */}
-        </div>
+          {/* Image Side */}
+          <div className={cn(
+            "relative",
+            isEven ? "lg:order-2" : "lg:order-1"
+          )}>
+            <div 
+              className={cn(
+                "relative transition-all duration-1000",
+                isActive ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              )}
+            >
+              {/* Main Image */}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
+                <img
+                  src={service.images[0]}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+              </div>
 
-        {/* CTA Strip */}
-        <div
-          className="mt-16 md:mt-20 lg:mt-24 transition-all duration-700"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(20px)",
-            transitionDelay: "600ms",
-          }}
+              {/* Secondary Image - Floating */}
+              <div 
+                className={cn(
+                  "absolute -bottom-6 md:-bottom-8 transition-all duration-1000 delay-300 z-10",
+                  isEven ? "-right-4 md:-right-8" : "-left-4 md:-left-8",
+                  isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                )}
+              >
+                <div className="w-32 h-32 md:w-44 md:h-44 rounded-xl overflow-hidden shadow-xl shadow-black/30 border-4 border-background">
+                  <img
+                    src={service.images[1]}
+                    alt=""
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              {/* Decorative Elements */}
+              <div 
+                className={cn(
+                  "absolute -z-10 w-full h-full rounded-2xl bg-primary/5 transition-all duration-700",
+                  isEven ? "top-4 left-4" : "top-4 -left-4"
+                )}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ServiceNav = ({ 
+  services, 
+  activeIndex, 
+  onSelect 
+}: { 
+  services: Service[]; 
+  activeIndex: number; 
+  onSelect: (index: number) => void;
+}) => {
+  return (
+    <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3">
+      {services.map((service, index) => (
+        <button
+          key={service.id}
+          onClick={() => onSelect(index)}
+          className="group relative flex items-center gap-3"
+          aria-label={`Go to ${service.title}`}
         >
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 py-6 md:py-8 px-6 md:px-10 rounded-xl border border-border/30 bg-muted/10">
-            <p className="text-foreground text-lg md:text-xl font-medium text-center sm:text-left">
-              Want a custom growth plan for your brand?
+          {/* Label on hover */}
+          <span className="absolute right-full mr-4 px-3 py-1.5 rounded-lg bg-card/90 backdrop-blur-sm text-sm font-medium text-foreground whitespace-nowrap opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 border border-border/50 shadow-lg">
+            {service.title}
+          </span>
+          
+          {/* Dot indicator */}
+          <div 
+            className={cn(
+              "w-3 h-3 rounded-full transition-all duration-300 border-2",
+              activeIndex === index 
+                ? "bg-primary border-primary scale-125" 
+                : "bg-transparent border-muted-foreground/40 group-hover:border-primary/60"
+            )}
+          />
+        </button>
+      ))}
+    </div>
+  );
+};
+
+const MobileServiceNav = ({ 
+  services, 
+  activeIndex, 
+  onSelect 
+}: { 
+  services: Service[]; 
+  activeIndex: number; 
+  onSelect: (index: number) => void;
+}) => {
+  return (
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 lg:hidden">
+      <div className="flex items-center gap-2 px-4 py-3 rounded-full bg-card/90 backdrop-blur-md border border-border/50 shadow-xl">
+        {services.map((service, index) => (
+          <button
+            key={service.id}
+            onClick={() => onSelect(index)}
+            className={cn(
+              "w-2.5 h-2.5 rounded-full transition-all duration-300",
+              activeIndex === index 
+                ? "bg-primary w-8" 
+                : "bg-muted-foreground/40"
+            )}
+            aria-label={`Go to ${service.title}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Services = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Intersection Observer for scroll-based active detection
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    
+    slideRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            setActiveIndex(index);
+          }
+        },
+        { threshold: 0.5 }
+      );
+      
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach(obs => obs.disconnect());
+  }, []);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+      return;
+    }
+
+    autoPlayRef.current = setInterval(() => {
+      const nextIndex = (activeIndex + 1) % services.length;
+      scrollToSlide(nextIndex);
+    }, 6000);
+
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [isAutoPlaying, activeIndex]);
+
+  const scrollToSlide = (index: number) => {
+    slideRefs.current[index]?.scrollIntoView({ 
+      behavior: "smooth",
+      block: "start"
+    });
+  };
+
+  const handleNavSelect = (index: number) => {
+    setIsAutoPlaying(false);
+    scrollToSlide(index);
+  };
+
+  return (
+    <section id="services" ref={sectionRef} className="bg-background relative">
+      {/* Section Header - Sticky on scroll */}
+      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border/20 py-4 md:py-6">
+        <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
+          <div>
+            <span className="text-xs md:text-sm font-medium text-primary uppercase tracking-[0.2em]">
+              What We Do
+            </span>
+            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+              Our Services
+            </h2>
+          </div>
+          
+          {/* Service Counter */}
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <span className="text-3xl md:text-4xl font-serif font-bold text-primary">
+                {String(activeIndex + 1).padStart(2, '0')}
+              </span>
+              <span className="text-muted-foreground text-lg">/</span>
+              <span className="text-muted-foreground text-lg">
+                {String(services.length).padStart(2, '0')}
+              </span>
+            </div>
+            
+            {/* Auto-play toggle */}
+            <button
+              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+              className="p-2 rounded-full bg-muted/30 hover:bg-muted/50 transition-colors"
+              aria-label={isAutoPlaying ? "Pause auto-play" : "Resume auto-play"}
+            >
+              {isAutoPlaying ? (
+                <Pause className="w-4 h-4 text-muted-foreground" />
+              ) : (
+                <Play className="w-4 h-4 text-muted-foreground" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Service Slides */}
+      <div className="relative">
+        {services.map((service, index) => (
+          <div
+            key={service.id}
+            ref={(el) => (slideRefs.current[index] = el)}
+            id={service.id}
+          >
+            <ServiceSlide
+              service={service}
+              isActive={activeIndex === index}
+              index={index}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation */}
+      <ServiceNav 
+        services={services} 
+        activeIndex={activeIndex} 
+        onSelect={handleNavSelect} 
+      />
+      <MobileServiceNav 
+        services={services} 
+        activeIndex={activeIndex} 
+        onSelect={handleNavSelect} 
+      />
+
+      {/* CTA Section */}
+      <div className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+              Ready to grow your brand?
+            </h3>
+            <p className="text-muted-foreground text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+              Let's create a custom growth strategy tailored to your business goals.
             </p>
             <a
               href="https://www.instagram.com/buzzcraft.official/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-honey text-background rounded-full font-semibold text-sm hover:bg-honey-dark transition-all duration-300 whitespace-nowrap"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-base md:text-lg hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
             >
               <span>Get a Free Quote</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
         </div>
