@@ -344,7 +344,7 @@ const Services = () => {
     <section id="services" ref={sectionRef} className="bg-background relative">
       {/* Section Header - Sticky on scroll */}
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border/20 py-3 md:py-4">
-        <div className="container mx-auto px-4 md:px-8">
+        <div className="container mx-auto px-4 md:px-8 text-center">
           <span className="text-sm md:text-base font-medium text-primary uppercase tracking-[0.2em]">
             What We Do
           </span>
