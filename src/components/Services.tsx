@@ -322,7 +322,7 @@ const Services = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   // Intersection Observer for scroll-based active detection
