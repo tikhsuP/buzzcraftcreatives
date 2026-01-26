@@ -240,7 +240,7 @@ const Clients = () => {
           <span className="inline-block text-base md:text-lg font-semibold tracking-[0.2em] uppercase text-primary mb-4">
             Clients
           </span>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
             Brands We've Worked With
           </h2>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">

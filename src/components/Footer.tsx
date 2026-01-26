@@ -41,7 +41,7 @@ const Footer = () => {
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-honey/5 via-transparent to-honey/5 pointer-events-none" />
             
             <div className="relative text-center">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
                 Ready to grow with <span className="text-honey">BuzzCraftCreatives</span>?
               </h2>
               <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-2xl mx-auto">
