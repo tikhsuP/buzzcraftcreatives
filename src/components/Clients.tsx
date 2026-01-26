@@ -129,8 +129,23 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
     return () => observer.disconnect();
   }, [index]);
 
-  const handleInteraction = () => {
+  // Close on click outside
+  useEffect(() => {
+    if (!isExpanded || !isMobile) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isExpanded, isMobile]);
+
+  const handleInteraction = (e: React.MouseEvent) => {
     if (isMobile) {
+      e.stopPropagation();
       setIsExpanded(!isExpanded);
     }
   };
@@ -149,6 +164,25 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
+      {/* Mobile Popup - Above Image */}
+      {isMobile && client.caseStudy && (
+        <div
+          className={`w-full mb-3 transition-all duration-300 ease-out origin-bottom ${
+            isExpanded 
+              ? "opacity-100 scale-100 max-h-[400px]" 
+              : "opacity-0 scale-95 max-h-0 pointer-events-none"
+          }`}
+        >
+          <div className="bg-card border border-primary/20 rounded-xl shadow-lg shadow-primary/10 mx-1 overflow-hidden">
+            <CaseStudyPopup caseStudy={client.caseStudy} />
+          </div>
+          {/* Arrow pointing down */}
+          <div className="flex justify-center -mt-1">
+            <div className="w-4 h-4 rotate-45 bg-card border-r border-b border-primary/20" />
+          </div>
+        </div>
+      )}
+
       {/* Main Card */}
       <div
         className="group flex flex-col items-center p-4 cursor-pointer"
@@ -164,7 +198,9 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
         aria-label={`View case study for ${client.name}`}
       >
         {/* Logo */}
-        <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)]">
+        <div className={`w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)] ${
+          isExpanded ? "ring-2 ring-primary/50 shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)]" : ""
+        }`}>
           <img
             src={client.image}
             alt={`${client.name} – ${client.business}`}
@@ -184,7 +220,7 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
         {/* Mobile expand indicator */}
         {isMobile && client.caseStudy && (
           <ChevronDown 
-            className={`w-4 h-4 text-muted-foreground mt-2 transition-transform duration-300 ${
+            className={`w-4 h-4 text-primary mt-2 transition-transform duration-300 ${
               isExpanded ? "rotate-180" : ""
             }`}
           />
@@ -205,19 +241,6 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
           </div>
           {/* Arrow */}
           <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-4 h-4 rotate-45 bg-card/95 border-r border-b border-primary/20" />
-        </div>
-      )}
-
-      {/* Mobile Expanded Drawer */}
-      {isMobile && client.caseStudy && (
-        <div
-          className={`w-full overflow-hidden transition-all duration-300 ease-out ${
-            isExpanded ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="mt-3 bg-card/50 border border-primary/10 rounded-xl mx-2">
-            <CaseStudyPopup caseStudy={client.caseStudy} />
-          </div>
         </div>
       )}
     </div>
