@@ -89,15 +89,15 @@ const clients: Client[] = [
 ];
 
 const CaseStudyPopup = ({ caseStudy }: { caseStudy: CaseStudy }) => (
-  <div className="p-4">
-    <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+  <div className="p-4 md:p-4">
+    <p className="text-[13px] md:text-sm text-muted-foreground leading-relaxed mb-3">
       {caseStudy.intro}
     </p>
-    <div className="flex items-start gap-2">
-      <Badge className="bg-primary/20 text-primary border-primary/30 text-xs font-semibold shrink-0">
+    <div className="flex flex-col gap-2">
+      <Badge className="bg-primary/20 text-primary border-primary/30 text-xs font-semibold w-fit">
         Results
       </Badge>
-      <p className="text-sm font-bold text-foreground leading-snug">
+      <p className="text-[13px] md:text-sm font-bold text-foreground leading-relaxed">
         {caseStudy.results}
       </p>
     </div>
@@ -192,23 +192,23 @@ const ClientCard = ({
       ref={cardRef}
       className={`relative flex flex-col items-center transition-all duration-500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`}
+      } ${isActive && isMobile ? "z-50" : ""}`}
     >
       {/* Mobile Popup - Above Image with bounce animation */}
       {isMobile && client.caseStudy && (
         <div
           className={`w-full mb-3 origin-bottom ${
             isActive 
-              ? "opacity-100 max-h-[400px] animate-bounce-in" 
+              ? "opacity-100 animate-bounce-in" 
               : "opacity-0 scale-95 max-h-0 pointer-events-none transition-all duration-200"
           }`}
         >
-          <div className="bg-card border border-primary/20 rounded-xl shadow-lg shadow-primary/10 mx-1 overflow-hidden">
+          <div className="bg-card/95 backdrop-blur-md border border-primary/20 rounded-xl shadow-lg shadow-primary/10 mx-1">
             <CaseStudyPopup caseStudy={client.caseStudy} />
           </div>
           {/* Arrow pointing down */}
           <div className="flex justify-center -mt-1">
-            <div className="w-4 h-4 rotate-45 bg-card border-r border-b border-primary/20" />
+            <div className="w-4 h-4 rotate-45 bg-card/95 border-r border-b border-primary/20" />
           </div>
         </div>
       )}
@@ -279,6 +279,7 @@ const ClientCard = ({
 
 const Clients = () => {
   const [activeClientIndex, setActiveClientIndex] = useState<number | null>(null);
+  const isMobile = useIsMobile();
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -288,7 +289,14 @@ const Clients = () => {
   };
 
   return (
-    <section id="clients" className="py-24 md:py-32 bg-background">
+    <section id="clients" className="py-24 md:py-32 bg-background relative">
+      {/* Mobile backdrop blur overlay */}
+      {isMobile && activeClientIndex !== null && (
+        <div 
+          className="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 animate-fade-in"
+          onClick={() => setActiveClientIndex(null)}
+        />
+      )}
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
