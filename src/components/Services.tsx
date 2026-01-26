@@ -348,7 +348,7 @@ const Services = () => {
           <span className="text-sm md:text-base font-medium text-primary uppercase tracking-[0.2em]">
             What We Do
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Our Services
           </h2>
         </div>
