@@ -94,7 +94,7 @@ const ServiceSlide = ({ service, isActive, index }: ServiceSlideProps) => {
   return (
     <div
       className={cn(
-        "min-h-screen flex items-center justify-center py-20 md:py-24 lg:py-0 relative",
+        "min-h-[85vh] flex items-center justify-center py-12 md:py-16 lg:py-8 relative",
         "transition-opacity duration-700",
         isActive ? "opacity-100" : "opacity-40"
       )}
@@ -343,12 +343,12 @@ const Services = () => {
   return (
     <section id="services" ref={sectionRef} className="bg-background relative">
       {/* Section Header - Sticky on scroll */}
-      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border/20 py-4 md:py-6">
+      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border/20 py-3 md:py-4">
         <div className="container mx-auto px-4 md:px-8">
-          <span className="text-xs md:text-sm font-medium text-primary uppercase tracking-[0.2em]">
+          <span className="text-sm md:text-base font-medium text-primary uppercase tracking-[0.2em]">
             What We Do
           </span>
-          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
             Our Services
           </h2>
         </div>
