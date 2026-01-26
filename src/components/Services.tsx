@@ -344,41 +344,13 @@ const Services = () => {
     <section id="services" ref={sectionRef} className="bg-background relative">
       {/* Section Header - Sticky on scroll */}
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border/20 py-4 md:py-6">
-        <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-          <div>
-            <span className="text-xs md:text-sm font-medium text-primary uppercase tracking-[0.2em]">
-              What We Do
-            </span>
-            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
-              Our Services
-            </h2>
-          </div>
-          
-          {/* Service Counter */}
-          <div className="flex items-center gap-4">
-            <div className="text-right">
-              <span className="text-3xl md:text-4xl font-serif font-bold text-primary">
-                {String(activeIndex + 1).padStart(2, '0')}
-              </span>
-              <span className="text-muted-foreground text-lg">/</span>
-              <span className="text-muted-foreground text-lg">
-                {String(services.length).padStart(2, '0')}
-              </span>
-            </div>
-            
-            {/* Auto-play toggle */}
-            <button
-              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-              className="p-2 rounded-full bg-muted/30 hover:bg-muted/50 transition-colors"
-              aria-label={isAutoPlaying ? "Pause auto-play" : "Resume auto-play"}
-            >
-              {isAutoPlaying ? (
-                <Pause className="w-4 h-4 text-muted-foreground" />
-              ) : (
-                <Play className="w-4 h-4 text-muted-foreground" />
-              )}
-            </button>
-          </div>
+        <div className="container mx-auto px-4 md:px-8">
+          <span className="text-xs md:text-sm font-medium text-primary uppercase tracking-[0.2em]">
+            What We Do
+          </span>
+          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+            Our Services
+          </h2>
         </div>
       </div>
 
