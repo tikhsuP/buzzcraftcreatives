@@ -119,7 +119,7 @@ const WhyBuzzCraft = () => {
         <div 
           className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
             Why BuzzCraftCreatives
           </h2>
         </div>
