@@ -104,10 +104,20 @@ const CaseStudyPopup = ({ caseStudy }: { caseStudy: CaseStudy }) => (
   </div>
 );
 
-const ClientCard = ({ client, index }: { client: Client; index: number }) => {
+const ClientCard = ({ 
+  client, 
+  index, 
+  isActive,
+  onActivate,
+  onDeactivate 
+}: { 
+  client: Client; 
+  index: number;
+  isActive: boolean;
+  onActivate: () => void;
+  onDeactivate: () => void;
+}) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
@@ -129,31 +139,51 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
     return () => observer.disconnect();
   }, [index]);
 
-  // Close on click outside
+  // Close on click outside (mobile)
   useEffect(() => {
-    if (!isExpanded || !isMobile) return;
+    if (!isActive || !isMobile) return;
 
     const handleClickOutside = (e: MouseEvent) => {
       if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
-        setIsExpanded(false);
+        onDeactivate();
       }
     };
 
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
-  }, [isExpanded, isMobile]);
+  }, [isActive, isMobile, onDeactivate]);
 
   const handleInteraction = (e: React.MouseEvent) => {
     if (isMobile) {
       e.stopPropagation();
-      setIsExpanded(!isExpanded);
+      if (isActive) {
+        onDeactivate();
+      } else {
+        onActivate();
+      }
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setIsExpanded(!isExpanded);
+      if (isActive) {
+        onDeactivate();
+      } else {
+        onActivate();
+      }
+    }
+  };
+
+  const handleMouseEnter = () => {
+    if (!isMobile) {
+      onActivate();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      onDeactivate();
     }
   };
 
@@ -164,13 +194,13 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      {/* Mobile Popup - Above Image */}
+      {/* Mobile Popup - Above Image with bounce animation */}
       {isMobile && client.caseStudy && (
         <div
-          className={`w-full mb-3 transition-all duration-300 ease-out origin-bottom ${
-            isExpanded 
-              ? "opacity-100 scale-100 max-h-[400px]" 
-              : "opacity-0 scale-95 max-h-0 pointer-events-none"
+          className={`w-full mb-3 origin-bottom ${
+            isActive 
+              ? "opacity-100 max-h-[400px] animate-bounce-in" 
+              : "opacity-0 scale-95 max-h-0 pointer-events-none transition-all duration-200"
           }`}
         >
           <div className="bg-card border border-primary/20 rounded-xl shadow-lg shadow-primary/10 mx-1 overflow-hidden">
@@ -186,20 +216,20 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
       {/* Main Card */}
       <div
         className="group flex flex-col items-center p-4 cursor-pointer"
-        onMouseEnter={() => !isMobile && setIsHovered(true)}
-        onMouseLeave={() => !isMobile && setIsHovered(false)}
-        onFocus={() => setIsHovered(true)}
-        onBlur={() => setIsHovered(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleMouseEnter}
+        onBlur={handleMouseLeave}
         onClick={handleInteraction}
         onKeyDown={handleKeyDown}
         tabIndex={0}
         role="button"
-        aria-expanded={isMobile ? isExpanded : isHovered}
+        aria-expanded={isActive}
         aria-label={`View case study for ${client.name}`}
       >
         {/* Logo */}
         <div className={`w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)] ${
-          isExpanded ? "ring-2 ring-primary/50 shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)]" : ""
+          isActive ? "ring-2 ring-primary/50 shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)]" : ""
         }`}>
           <img
             src={client.image}
@@ -221,19 +251,19 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
         {isMobile && client.caseStudy && (
           <ChevronDown 
             className={`w-4 h-4 text-primary mt-2 transition-transform duration-300 ${
-              isExpanded ? "rotate-180" : ""
+              isActive ? "rotate-180" : ""
             }`}
           />
         )}
       </div>
 
-      {/* Desktop Hover Popup */}
+      {/* Desktop Hover Popup with bounce animation */}
       {!isMobile && client.caseStudy && (
         <div
-          className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] md:w-[320px] z-50 pointer-events-none transition-all duration-300 ${
-            isHovered
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-2"
+          className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] md:w-[320px] z-50 pointer-events-none origin-bottom ${
+            isActive
+              ? "opacity-100 animate-bounce-in"
+              : "opacity-0 translate-y-2 scale-95 transition-all duration-200"
           }`}
         >
           <div className="bg-card/95 backdrop-blur-sm border border-primary/20 rounded-xl shadow-xl shadow-black/20">
@@ -248,6 +278,8 @@ const ClientCard = ({ client, index }: { client: Client; index: number }) => {
 };
 
 const Clients = () => {
+  const [activeClientIndex, setActiveClientIndex] = useState<number | null>(null);
+
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -274,7 +306,14 @@ const Clients = () => {
         {/* Client Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto mb-16">
           {clients.map((client, index) => (
-            <ClientCard key={client.name} client={client} index={index} />
+            <ClientCard 
+              key={client.name} 
+              client={client} 
+              index={index}
+              isActive={activeClientIndex === index}
+              onActivate={() => setActiveClientIndex(index)}
+              onDeactivate={() => setActiveClientIndex(null)}
+            />
           ))}
         </div>
 
