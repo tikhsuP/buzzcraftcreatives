@@ -250,43 +250,6 @@ const ServiceSlide = ({ service, isActive, index }: ServiceSlideProps) => {
   );
 };
 
-const ServiceNav = ({ 
-  services, 
-  activeIndex, 
-  onSelect 
-}: { 
-  services: Service[]; 
-  activeIndex: number; 
-  onSelect: (index: number) => void;
-}) => {
-  return (
-    <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3">
-      {services.map((service, index) => (
-        <button
-          key={service.id}
-          onClick={() => onSelect(index)}
-          className="group relative flex items-center gap-3"
-          aria-label={`Go to ${service.title}`}
-        >
-          {/* Label on hover */}
-          <span className="absolute right-full mr-4 px-3 py-1.5 rounded-lg bg-card/90 backdrop-blur-sm text-sm font-medium text-foreground whitespace-nowrap opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 border border-border/50 shadow-lg">
-            {service.title}
-          </span>
-          
-          {/* Dot indicator */}
-          <div 
-            className={cn(
-              "w-3 h-3 rounded-full transition-all duration-300 border-2",
-              activeIndex === index 
-                ? "bg-primary border-primary scale-125" 
-                : "bg-transparent border-muted-foreground/40 group-hover:border-primary/60"
-            )}
-          />
-        </button>
-      ))}
-    </div>
-  );
-};
 
 const MobileServiceNav = ({ 
   services, 
@@ -436,12 +399,7 @@ const Services = () => {
         ))}
       </div>
 
-      {/* Navigation */}
-      <ServiceNav 
-        services={services} 
-        activeIndex={activeIndex} 
-        onSelect={handleNavSelect} 
-      />
+      {/* Mobile Navigation */}
       <MobileServiceNav 
         services={services} 
         activeIndex={activeIndex} 
