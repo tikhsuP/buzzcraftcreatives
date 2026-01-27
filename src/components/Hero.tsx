@@ -40,8 +40,7 @@ const Hero = () => {
             className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-6 animate-fade-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             style={{ animationDelay: "0.2s" }}
           >
-            We Build Brands That Look{" "}
-            <span className="italic text-honey">Premium</span> and Sell Better Online.
+            We Build Brands That Look <span className="italic text-honey">Premium</span> and Sell Better Online.
           </h1>
 
           {/* Subhead */}
@@ -49,7 +48,8 @@ const Hero = () => {
             className="text-base md:text-lg lg:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up leading-relaxed"
             style={{ animationDelay: "0.4s" }}
           >
-            BuzzCraftCreatives helps businesses grow with content, strategy, and performance marketing that drives real results — not vanity metrics.
+            BuzzCraftCreatives helps businesses grow with content, strategy, and performance marketing that drives real
+            results — not vanity metrics.
           </p>
 
           {/* CTAs */}
@@ -67,7 +67,7 @@ const Hero = () => {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#services"
+              href="#results"
               className="group flex items-center gap-2 px-6 py-3.5 border-2 border-honey/50 text-foreground rounded-full font-semibold hover:border-honey hover:bg-honey/10 transition-all duration-300"
             >
               <Eye className="w-5 h-5" />
@@ -76,10 +76,7 @@ const Hero = () => {
           </div>
 
           {/* Email CTA */}
-          <div
-            className="mt-6 animate-fade-up"
-            style={{ animationDelay: "0.7s" }}
-          >
+          <div className="mt-6 animate-fade-up" style={{ animationDelay: "0.7s" }}>
             <a
               href="mailto:Buzzcraftcreatives@gmail.com"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-honey transition-colors"
@@ -90,17 +87,17 @@ const Hero = () => {
           </div>
 
           {/* Trust indicator */}
-          <p
-            className="mt-10 text-sm text-muted-foreground animate-fade-in"
-            style={{ animationDelay: "0.8s" }}
-          >
+          <p className="mt-10 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.8s" }}>
             No long calls required • DMs welcome for quick replies
           </p>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in" style={{ animationDelay: "1.2s" }}>
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in"
+        style={{ animationDelay: "1.2s" }}
+      >
         <div className="w-6 h-10 border-2 border-honey/50 rounded-full flex justify-center animate-bounce">
           <div className="w-1.5 h-3 bg-honey/50 rounded-full mt-2" />
         </div>
