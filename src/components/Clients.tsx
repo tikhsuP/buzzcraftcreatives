@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown, ArrowRight, Instagram } from "lucide-react";
 
 // Client logos
 import fairytaleDecors from "@/assets/client-fairytale-decors.png";
@@ -21,6 +21,7 @@ interface Client {
   name: string;
   business: string;
   image: string;
+  instagram: string;
   workType?: string;
   caseStudy?: CaseStudy;
 }
@@ -30,6 +31,7 @@ const clients: Client[] = [
     name: "Fairytale Decors",
     business: "Premium Balloon Decor & Event Installations",
     image: fairytaleDecors,
+    instagram: "https://www.instagram.com/fairytale.balloons_/",
     workType: "Content + Ads",
     caseStudy: {
       intro: "A premium event décor brand specializing in balloon installations for birthdays, proposals, and celebrations. We created a consistent content + promotion plan to increase reach and drive booking intent.",
@@ -40,6 +42,7 @@ const clients: Client[] = [
     name: "Fashion Route",
     business: "Fashion & Lifestyle Exhibitions",
     image: fashionRoute,
+    instagram: "https://www.instagram.com/fashionroute_jsr/",
     workType: "Reels Growth",
     caseStudy: {
       intro: "A fashion and lifestyle exhibition brand curating showcases for clothing and jewellery labels. We built a stronger Instagram presence to boost visibility, attract more footfall, and bring in more participating brands.",
@@ -50,6 +53,7 @@ const clients: Client[] = [
     name: "Aamaira",
     business: "Fashion Studio",
     image: aamaira,
+    instagram: "https://www.instagram.com/aamairastudio/",
     workType: "Content + Ads",
     caseStudy: {
       intro: "A fashion studio brand where we developed their visual identity and content strategy. We focused on showcasing their unique designs to attract the right audience.",
@@ -60,6 +64,7 @@ const clients: Client[] = [
     name: "New Age Customs",
     business: "Custom Sneakers & Footwear Personalization",
     image: newAgeCustoms,
+    instagram: "https://www.instagram.com/_newagecustoms_/",
     workType: "Google Lead Gen",
     caseStudy: {
       intro: "A sneaker customization brand where we built their social media presence from scratch — positioning, content direction, and growth strategy. We focused on visibility + traffic that converts into website interest.",
@@ -70,6 +75,7 @@ const clients: Client[] = [
     name: "Hood Cartel",
     business: "Corporate Events, Gifting & Brand Experiences",
     image: hoodCartel,
+    instagram: "https://www.instagram.com/thehoodcartel.in/",
     workType: "Content + Ads",
     caseStudy: {
       intro: "We've supported multiple corporate clients with event planning, coordination, and experience-driven execution—from conferences and team activities to corporate gifting. Our approach improves participation and creates better event impact.",
@@ -80,6 +86,7 @@ const clients: Client[] = [
     name: "Fairytale Proposals",
     business: "Proposal Decor",
     image: fairytaleProposals,
+    instagram: "https://www.instagram.com/fairytale.proposals/",
     workType: "Reels Growth",
     caseStudy: {
       intro: "A romantic proposal planning brand creating magical moments. We built their content strategy to capture heartwarming stories and drive enquiries from couples.",
@@ -240,9 +247,21 @@ const ClientCard = ({
         </div>
 
         {/* Client Info */}
-        <h3 className="text-lg md:text-xl font-semibold text-foreground text-center mb-1">
-          {client.name}
-        </h3>
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <h3 className="text-lg md:text-xl font-semibold text-foreground text-center">
+            {client.name}
+          </h3>
+          <a
+            href={client.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-primary hover:text-primary/80 transition-colors"
+            aria-label={`Visit ${client.name} on Instagram`}
+          >
+            <Instagram className="w-4 h-4 md:w-5 md:h-5" />
+          </a>
+        </div>
         <p className="text-sm md:text-base text-muted-foreground text-center">
           {client.business}
         </p>
