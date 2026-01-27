@@ -256,7 +256,7 @@ const ClientCard = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="hover:scale-110 transition-transform"
+            className="hover:scale-125 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(225,48,108,0.7)]"
             aria-label={`Visit ${client.name} on Instagram`}
           >
             <svg 
