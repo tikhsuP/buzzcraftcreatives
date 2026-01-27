@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 
 // Client logos
 import fairytaleDecors from "@/assets/client-fairytale-decors.png";
@@ -330,13 +330,15 @@ const Clients = () => {
           <p className="text-muted-foreground text-lg mb-6">
             Want results like these for your brand?
           </p>
-          <Button
-            size="lg"
-            onClick={scrollToContact}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-base rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
+          <a
+            href="https://www.instagram.com/buzzcraft.official/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-7 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark glow-honey transition-all duration-300"
           >
-            Get a Free Quote
-          </Button>
+            <span>Get a Free Quote</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
       </div>
     </section>
