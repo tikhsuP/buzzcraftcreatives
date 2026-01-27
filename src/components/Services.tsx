@@ -392,7 +392,7 @@ const Services = () => {
               href="https://www.instagram.com/buzzcraft.official/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-base md:text-lg hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
+              className="group inline-flex items-center gap-2 px-7 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark glow-honey transition-all duration-300"
             >
               <span>Get a Free Quote</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

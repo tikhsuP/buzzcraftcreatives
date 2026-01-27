@@ -58,12 +58,13 @@ const Hero = () => {
             style={{ animationDelay: "0.6s" }}
           >
             <a
-              href="#contact"
+              href="https://www.instagram.com/buzzcraft.official/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center gap-2 px-7 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark glow-honey transition-all duration-300"
             >
-              <FileText className="w-5 h-5" />
               <span>Get a Free Quote</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#services"

@@ -60,7 +60,7 @@ const Footer = () => {
                   href="https://www.instagram.com/buzzcraft.official/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark transition-all duration-300"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 bg-honey text-background rounded-full font-bold hover:bg-honey-dark glow-honey transition-all duration-300"
                 >
                   <span>Get a Free Quote</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
