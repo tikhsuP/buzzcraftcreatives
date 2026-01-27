@@ -80,7 +80,7 @@ const TeamMemberCard = ({ member }: { member: typeof teamMembers[0] }) => (
     </p>
 
     {/* Description - hidden on mobile for cleaner 2x2 grid */}
-    <p className="hidden md:block text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] line-clamp-3">
+    <p className="hidden md:block text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[240px]">
       {member.description}
     </p>
   </article>
@@ -219,7 +219,7 @@ const Team = () => {
                   </p>
 
                   {/* Description */}
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] line-clamp-3">
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[240px]">
                     {member.description}
                   </p>
                 </article>
