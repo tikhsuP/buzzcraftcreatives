@@ -18,9 +18,18 @@ import nac4 from "@/assets/case-nac-4.png";
 import nac5 from "@/assets/case-nac-5.png";
 import nac6 from "@/assets/case-nac-6.png";
 
+// Fairytale Balloons Images
+import fairytale1 from "@/assets/case-fairytale-1.png";
+import fairytale2 from "@/assets/case-fairytale-2.png";
+import fairytale3 from "@/assets/case-fairytale-3.png";
+import fairytale4 from "@/assets/case-fairytale-4.png";
+import fairytale5 from "@/assets/case-fairytale-5.png";
+import fairytale6 from "@/assets/case-fairytale-6.png";
+
 // Client logos
 import fashionRouteLogo from "@/assets/client-fashion-route.png";
 import nacLogo from "@/assets/client-new-age-customs.png";
+import fairytaleLogo from "@/assets/client-fairytale-decors.png";
 
 const caseStudies: CaseStudy[] = [
   {
@@ -64,6 +73,27 @@ const caseStudies: CaseStudy[] = [
       nac4   // White sneaker crate
     ],
     detailPosition: 'right'
+  },
+  {
+    id: "fairytale-balloons",
+    tag: "Content & Growth",
+    clientName: "Fairytale Balloons",
+    clientLogo: fairytaleLogo,
+    headline: "Building a Vibrant Social Presence for a Premium Balloon Decor Brand",
+    description: "A custom balloon decor and event styling brand creating magical celebrations. We crafted engaging content strategies and grew their Instagram presence to attract more bookings and brand visibility.",
+    metrics: [
+      { value: "3×", label: "Increase in monthly inquiries" },
+      { value: "40%", label: "Growth in Instagram engagement" }
+    ],
+    images: [
+      fairytale3,  // Colorful office balloons
+      fairytale1,  // Pink cherry theme
+      fairytale4,  // Christmas white/red
+      fairytale2,  // Fairy birthday floral
+      fairytale6,  // Outdoor gold/white setup
+      fairytale5   // Collage grid
+    ],
+    detailPosition: 'left'
   }
 ];
 
