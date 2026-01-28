@@ -44,7 +44,7 @@ function ImageMotionTrack({ images, direction }: ImageMotionTrackProps) {
   return (
     <div className="relative w-full h-full overflow-hidden">
       <motion.div
-        className="flex items-center gap-4 h-full absolute"
+        className="flex items-center gap-6 md:gap-8 h-full absolute"
         animate={{ x: animateX }}
         transition={{
           x: {
@@ -96,7 +96,7 @@ function LargeImage({ src, index }: { src: string; index: number }) {
 
 function StackedImages({ images, index }: { images: string[]; index: number }) {
   return (
-    <div className="flex flex-col gap-3 h-full">
+    <div className="flex flex-col gap-5 md:gap-6 h-full">
       {images.map((src, imgIndex) => (
         <motion.div
           key={imgIndex}
