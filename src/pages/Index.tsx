@@ -4,8 +4,6 @@ import Services from "@/components/Services";
 import WhyBuzzCraft from "@/components/WhyBuzzCraft";
 import Team from "@/components/Team";
 import Clients from "@/components/Clients";
-import CaseStudies from "@/components/CaseStudies";
-import FloatingContact from "@/components/FloatingContact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -16,12 +14,10 @@ const Index = () => {
         <Hero />
         <Services />
         <WhyBuzzCraft />
-        <CaseStudies />
         <Clients />
         <Team />
       </main>
       <Footer />
-      <FloatingContact />
     </div>
   );
 };
