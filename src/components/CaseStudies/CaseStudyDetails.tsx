@@ -1,3 +1,4 @@
+import React from "react";
 import { motion, useTransform, MotionValue } from "framer-motion";
 import type { CaseStudy } from "./types";
 
@@ -6,7 +7,7 @@ interface CaseStudyDetailsProps {
   progress: MotionValue<number>;
 }
 
-const CaseStudyDetails = ({ study, progress }: CaseStudyDetailsProps) => {
+function CaseStudyDetails({ study, progress }: CaseStudyDetailsProps) {
   const opacity = useTransform(progress, [0, 0.2], [0, 1]);
   const y = useTransform(progress, [0, 0.2], [30, 0]);
 
@@ -54,6 +55,6 @@ const CaseStudyDetails = ({ study, progress }: CaseStudyDetailsProps) => {
       </div>
     </motion.div>
   );
-};
+}
 
 export default CaseStudyDetails;

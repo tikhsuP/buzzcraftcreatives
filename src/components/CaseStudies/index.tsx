@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef } from "react";
 import type { CaseStudy } from "./types";
 import CaseStudySection from "./CaseStudySection";
 
@@ -38,7 +37,7 @@ const caseStudies: CaseStudy[] = [
   }
 ];
 
-const CaseStudies = () => {
+function CaseStudies() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -67,6 +66,6 @@ const CaseStudies = () => {
       <div className="h-32" />
     </section>
   );
-};
+}
 
 export default CaseStudies;

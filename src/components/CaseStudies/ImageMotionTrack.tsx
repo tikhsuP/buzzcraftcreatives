@@ -1,3 +1,4 @@
+import React from "react";
 import { motion, useTransform, MotionValue } from "framer-motion";
 
 interface ImageMotionTrackProps {
@@ -6,7 +7,7 @@ interface ImageMotionTrackProps {
   direction: 'left' | 'right';
 }
 
-const ImageMotionTrack = ({ images, progress, direction }: ImageMotionTrackProps) => {
+function ImageMotionTrack({ images, progress, direction }: ImageMotionTrackProps) {
   // Different sizes for visual variety
   const imageSizes = [
     { width: 280, height: 380, zIndex: 3 },
@@ -28,7 +29,6 @@ const ImageMotionTrack = ({ images, progress, direction }: ImageMotionTrackProps
           const vOffset = verticalOffsets[index % verticalOffsets.length];
           
           // Calculate position based on scroll progress
-          // Each image enters at different progress points
           const imageStartProgress = index * 0.12;
           const imageEndProgress = imageStartProgress + 0.5;
           
@@ -36,50 +36,91 @@ const ImageMotionTrack = ({ images, progress, direction }: ImageMotionTrackProps
           const startX = direction === 'left' ? 140 : -140;
           const endX = direction === 'left' ? -100 : 100;
           
-          const x = useTransform(
-            progress,
-            [imageStartProgress, imageEndProgress],
-            [startX, endX]
-          );
-          
-          const opacity = useTransform(
-            progress,
-            [imageStartProgress, imageStartProgress + 0.1, imageEndProgress - 0.1, imageEndProgress],
-            [0, 1, 1, 0]
-          );
-
-          // Horizontal spread for overlapping ribbon effect
-          const baseLeft = direction === 'left' 
-            ? `${20 + index * 12}%`
-            : `${60 - index * 12}%`;
-
           return (
-            <motion.div
+            <ImageItem
               key={index}
-              className="absolute rounded-2xl overflow-hidden shadow-2xl"
-              style={{
-                width: size.width,
-                height: size.height,
-                zIndex: size.zIndex,
-                top: `calc(50% + ${vOffset}px)`,
-                left: baseLeft,
-                transform: 'translateY(-50%)',
-                x,
-                opacity,
-              }}
-            >
-              <img
-                src={image}
-                alt={`Case study visual ${index + 1}`}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </motion.div>
+              image={image}
+              index={index}
+              size={size}
+              vOffset={vOffset}
+              progress={progress}
+              imageStartProgress={imageStartProgress}
+              imageEndProgress={imageEndProgress}
+              startX={startX}
+              endX={endX}
+              direction={direction}
+            />
           );
         })}
       </div>
     </div>
   );
-};
+}
+
+interface ImageItemProps {
+  image: string;
+  index: number;
+  size: { width: number; height: number; zIndex: number };
+  vOffset: number;
+  progress: MotionValue<number>;
+  imageStartProgress: number;
+  imageEndProgress: number;
+  startX: number;
+  endX: number;
+  direction: 'left' | 'right';
+}
+
+function ImageItem({ 
+  image, 
+  index, 
+  size, 
+  vOffset, 
+  progress, 
+  imageStartProgress, 
+  imageEndProgress, 
+  startX, 
+  endX, 
+  direction 
+}: ImageItemProps) {
+  const x = useTransform(
+    progress,
+    [imageStartProgress, imageEndProgress],
+    [startX, endX]
+  );
+  
+  const opacity = useTransform(
+    progress,
+    [imageStartProgress, imageStartProgress + 0.1, imageEndProgress - 0.1, imageEndProgress],
+    [0, 1, 1, 0]
+  );
+
+  // Horizontal spread for overlapping ribbon effect
+  const baseLeft = direction === 'left' 
+    ? `${20 + index * 12}%`
+    : `${60 - index * 12}%`;
+
+  return (
+    <motion.div
+      className="absolute rounded-2xl overflow-hidden shadow-2xl"
+      style={{
+        width: size.width,
+        height: size.height,
+        zIndex: size.zIndex,
+        top: `calc(50% + ${vOffset}px)`,
+        left: baseLeft,
+        translateY: '-50%',
+        x,
+        opacity,
+      }}
+    >
+      <img
+        src={image}
+        alt={`Case study visual ${index + 1}`}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </motion.div>
+  );
+}
 
 export default ImageMotionTrack;
