@@ -14,13 +14,18 @@ function CaseStudyDetails({ study }: CaseStudyDetailsProps) {
         {study.tag}
       </span>
 
-      {/* Client Logo */}
-      <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden mb-6 border border-primary/20 bg-card">
-        <img
-          src={study.clientLogo}
-          alt={study.clientName}
-          className="w-full h-full object-cover"
-        />
+      {/* Client Logo + Name */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden border border-primary/20 bg-card flex-shrink-0">
+          <img
+            src={study.clientLogo}
+            alt={study.clientName}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <span className="text-lg md:text-xl font-semibold text-foreground">
+          {study.clientName}
+        </span>
       </div>
 
       {/* Headline */}
