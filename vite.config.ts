@@ -15,6 +15,9 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
     // Prevent "Invalid hook call" / dispatcher null errors caused by duplicate React copies
-    dedupe: ["react", "react-dom"],
+    dedupe: ["react", "react-dom", "framer-motion"],
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "framer-motion"],
   },
 }));

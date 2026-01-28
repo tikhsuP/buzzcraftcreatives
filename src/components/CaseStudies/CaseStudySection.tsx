@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import type { CaseStudy } from "./types";
 import CaseStudyDetails from "./CaseStudyDetails";
@@ -9,7 +9,7 @@ interface CaseStudySectionProps {
   index: number;
 }
 
-const CaseStudySection = ({ study, index }: CaseStudySectionProps) => {
+function CaseStudySection({ study, index }: CaseStudySectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -54,6 +54,6 @@ const CaseStudySection = ({ study, index }: CaseStudySectionProps) => {
       </div>
     </section>
   );
-};
+}
 
 export default CaseStudySection;
