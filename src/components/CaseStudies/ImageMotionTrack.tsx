@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 interface ImageMotionTrackProps {
   images: string[];
@@ -7,88 +7,109 @@ interface ImageMotionTrackProps {
 }
 
 function ImageMotionTrack({ images, direction }: ImageMotionTrackProps) {
-  // Distribute images into 3 columns
-  const columns = [
-    [images[0], images[3]],
-    [images[1], images[4]],
-    [images[2], images[5]],
-  ];
+  // Duplicate images for seamless loop
+  const duplicatedImages = [...images, ...images];
+  
+  // Group images into layout pattern: 1 large, 2 stacked, 1 large, 2 stacked...
+  const createImageGroups = (imgs: string[]) => {
+    const groups: { type: 'large' | 'stacked'; images: string[] }[] = [];
+    let i = 0;
+    while (i < imgs.length) {
+      // Large image
+      if (i < imgs.length) {
+        groups.push({ type: 'large', images: [imgs[i]] });
+        i++;
+      }
+      // 2 stacked images
+      if (i < imgs.length) {
+        const stacked = [imgs[i]];
+        i++;
+        if (i < imgs.length) {
+          stacked.push(imgs[i]);
+          i++;
+        }
+        groups.push({ type: 'stacked', images: stacked });
+      }
+    }
+    return groups;
+  };
 
-  // Column heights for masonry effect
-  const columnConfigs = [
-    { marginTop: '8%', animationDirection: 'up' as const },
-    { marginTop: '-5%', animationDirection: 'down' as const },
-    { marginTop: '12%', animationDirection: 'up' as const },
-  ];
+  const imageGroups = createImageGroups(duplicatedImages);
+  
+  // Animation direction
+  const animateX = direction === 'left' 
+    ? ['0%', '-50%'] 
+    : ['-50%', '0%'];
 
   return (
-    <div className="relative w-full h-full overflow-hidden flex items-center justify-center gap-4 px-4">
-      {columns.map((columnImages, colIndex) => (
-        <ImageColumn
-          key={colIndex}
-          images={columnImages}
-          config={columnConfigs[colIndex]}
-          columnIndex={colIndex}
-        />
-      ))}
+    <div className="relative w-full h-full overflow-hidden">
+      <motion.div
+        className="flex items-center gap-4 h-full absolute"
+        animate={{ x: animateX }}
+        transition={{
+          x: {
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          },
+        }}
+        style={{ 
+          willChange: 'transform',
+        }}
+      >
+        {imageGroups.map((group, groupIndex) => (
+          <div
+            key={groupIndex}
+            className={`flex-shrink-0 h-[85%] ${
+              group.type === 'large' ? 'w-[280px] md:w-[320px]' : 'w-[200px] md:w-[240px]'
+            }`}
+          >
+            {group.type === 'large' ? (
+              <LargeImage src={group.images[0]} index={groupIndex} />
+            ) : (
+              <StackedImages images={group.images} index={groupIndex} />
+            )}
+          </div>
+        ))}
+      </motion.div>
     </div>
   );
 }
 
-interface ImageColumnProps {
-  images: string[];
-  config: { marginTop: string; animationDirection: 'up' | 'down' };
-  columnIndex: number;
+function LargeImage({ src, index }: { src: string; index: number }) {
+  return (
+    <motion.div
+      className="w-full h-full rounded-2xl overflow-hidden shadow-2xl"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+    >
+      <img
+        src={src}
+        alt={`Case study visual`}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+    </motion.div>
+  );
 }
 
-function ImageColumn({ images, config, columnIndex }: ImageColumnProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 4000 + columnIndex * 500); // Stagger timing per column
-
-    return () => clearInterval(interval);
-  }, [images.length, columnIndex]);
-
-  const yDirection = config.animationDirection === 'up' ? -20 : 20;
-
+function StackedImages({ images, index }: { images: string[]; index: number }) {
   return (
-    <div 
-      className="flex flex-col gap-4 w-[30%]"
-      style={{ marginTop: config.marginTop }}
-    >
-      {images.map((image, index) => (
+    <div className="flex flex-col gap-3 h-full">
+      {images.map((src, imgIndex) => (
         <motion.div
-          key={`${image}-${index}`}
-          className="relative rounded-2xl overflow-hidden shadow-2xl"
-          style={{
-            aspectRatio: index === 0 ? '3/4' : '4/5',
-          }}
-          initial={{ opacity: 0.6, y: yDirection }}
-          animate={{ 
-            opacity: 1, 
-            y: 0,
-            scale: currentIndex === index ? 1.02 : 1,
-          }}
-          transition={{ 
-            duration: 0.9, 
-            ease: [0.22, 1, 0.36, 1],
-            delay: index * 0.15
-          }}
+          key={imgIndex}
+          className="flex-1 rounded-2xl overflow-hidden shadow-xl"
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3 }}
         >
-          <motion.img
-            src={image}
+          <img
+            src={src}
             alt={`Case study visual`}
             className="w-full h-full object-cover"
             loading="lazy"
-            animate={{
-              scale: currentIndex === index ? 1.05 : 1,
-            }}
-            transition={{ duration: 3, ease: "easeInOut" }}
           />
-          {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
         </motion.div>
       ))}
