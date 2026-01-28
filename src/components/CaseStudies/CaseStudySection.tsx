@@ -19,7 +19,6 @@ const CaseStudySection = ({ study, index }: CaseStudySectionProps) => {
 
   // Transform scroll progress for animations
   const progress = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
-  const progressValue = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
   const isDetailsLeft = study.detailPosition === 'left';
   const imageDirection = isDetailsLeft ? 'left' : 'right';
@@ -37,7 +36,7 @@ const CaseStudySection = ({ study, index }: CaseStudySectionProps) => {
             isDetailsLeft ? 'order-1' : 'order-2'
           }`}
         >
-          <CaseStudyDetails study={study} progress={progressValue.get()} />
+          <CaseStudyDetails study={study} progress={progress} />
         </motion.div>
 
         {/* Image Motion Track - 55% */}
