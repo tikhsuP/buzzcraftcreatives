@@ -56,12 +56,12 @@ const caseStudies: CaseStudy[] = [
       { value: "2K+", label: "Website visits driving product discovery" }
     ],
     images: [
-      nac1,
-      nac2,
-      nac3,
-      nac4,
-      nac5,
-      nac6
+      nac6,  // Dark colorful Christmas sale
+      nac1,  // Blue background sneaker
+      nac3,  // Dark car interior
+      nac2,  // Pink box
+      nac5,  // Person with phone
+      nac4   // White sneaker crate
     ],
     detailPosition: 'right'
   }
