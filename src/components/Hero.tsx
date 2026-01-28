@@ -67,7 +67,7 @@ const Hero = () => {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#results"
+              href="#case-studies"
               className="group flex items-center gap-2 px-6 py-3.5 border-2 border-honey/50 text-foreground rounded-full font-semibold hover:border-honey hover:bg-honey/10 transition-all duration-300"
             >
               <Eye className="w-5 h-5" />

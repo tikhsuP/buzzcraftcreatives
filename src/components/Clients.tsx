@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 // Client logos
 import fairytaleDecors from "@/assets/client-fairytale-decors.png";
@@ -12,18 +9,11 @@ import newAgeCustoms from "@/assets/client-new-age-customs.png";
 import hoodCartel from "@/assets/client-hood-cartel.png";
 import fairytaleProposals from "@/assets/client-fairytale-proposals.png";
 
-interface CaseStudy {
-  intro: string;
-  results: string;
-}
-
 interface Client {
   name: string;
   business: string;
   image: string;
   instagram: string;
-  workType?: string;
-  caseStudy?: CaseStudy;
 }
 
 const clients: Client[] = [
@@ -32,101 +22,48 @@ const clients: Client[] = [
     business: "Premium Balloon Decor & Event Installations",
     image: fairytaleDecors,
     instagram: "https://www.instagram.com/fairytale.balloons_/",
-    workType: "Content + Ads",
-    caseStudy: {
-      intro: "A premium event décor brand specializing in balloon installations for birthdays, proposals, and celebrations. We created a consistent content + promotion plan to increase reach and drive booking intent.",
-      results: "70,000+ Instagram impressions, 250 followers, and installs increased from 5–7 to ~20/month.",
-    },
   },
   {
     name: "Fashion Route",
     business: "Fashion & Lifestyle Exhibitions",
     image: fashionRoute,
     instagram: "https://www.instagram.com/fashionroute_jsr/",
-    workType: "Reels Growth",
-    caseStudy: {
-      intro: "A fashion and lifestyle exhibition brand curating showcases for clothing and jewellery labels. We built a stronger Instagram presence to boost visibility, attract more footfall, and bring in more participating brands.",
-      results: "200 → 750+ followers in 6 months + higher event discovery and enquiries.",
-    },
   },
   {
     name: "Aamaira",
     business: "Fashion Studio",
     image: aamaira,
     instagram: "https://www.instagram.com/aamairastudio/",
-    workType: "Content + Ads",
-    caseStudy: {
-      intro: "A fashion studio brand where we developed their visual identity and content strategy. We focused on showcasing their unique designs to attract the right audience.",
-      results: "Increased brand visibility and consistent engagement growth.",
-    },
   },
   {
     name: "New Age Customs",
     business: "Custom Sneakers & Footwear Personalization",
     image: newAgeCustoms,
     instagram: "https://www.instagram.com/_newagecustoms_/",
-    workType: "Google Lead Gen",
-    caseStudy: {
-      intro: "A sneaker customization brand where we built their social media presence from scratch — positioning, content direction, and growth strategy. We focused on visibility + traffic that converts into website interest.",
-      results: "50,000+ Instagram impressions + 2,000+ website impressions in 30 days.",
-    },
   },
   {
     name: "Hood Cartel",
     business: "Corporate Events, Gifting & Brand Experiences",
     image: hoodCartel,
     instagram: "https://www.instagram.com/thehoodcartel.in/",
-    workType: "Content + Ads",
-    caseStudy: {
-      intro: "We've supported multiple corporate clients with event planning, coordination, and experience-driven execution—from conferences and team activities to corporate gifting. Our approach improves participation and creates better event impact.",
-      results: "Higher engagement, smoother execution, and stronger attendee participation.",
-    },
   },
   {
     name: "Fairytale Proposals",
     business: "Proposal Decor",
     image: fairytaleProposals,
     instagram: "https://www.instagram.com/fairytale.proposals/",
-    workType: "Reels Growth",
-    caseStudy: {
-      intro: "A romantic proposal planning brand creating magical moments. We built their content strategy to capture heartwarming stories and drive enquiries from couples.",
-      results: "Increased proposal bookings and stronger emotional brand connection.",
-    },
   },
 ];
 
-const CaseStudyPopup = ({ caseStudy }: { caseStudy: CaseStudy }) => (
-  <div className="p-4 md:p-4">
-    <p className="text-[13px] md:text-sm text-muted-foreground leading-relaxed mb-3">
-      {caseStudy.intro}
-    </p>
-    <div className="flex flex-col gap-2">
-      <Badge className="bg-primary/20 text-primary border-primary/30 text-xs font-semibold w-fit">
-        Results
-      </Badge>
-      <p className="text-[13px] md:text-sm font-bold text-foreground leading-relaxed">
-        {caseStudy.results}
-      </p>
-    </div>
-  </div>
-);
-
 const ClientCard = ({ 
   client, 
-  index, 
-  isActive,
-  onActivate,
-  onDeactivate 
+  index,
 }: { 
   client: Client; 
   index: number;
-  isActive: boolean;
-  onActivate: () => void;
-  onDeactivate: () => void;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -146,98 +83,17 @@ const ClientCard = ({
     return () => observer.disconnect();
   }, [index]);
 
-  // Close on click outside (mobile)
-  useEffect(() => {
-    if (!isActive || !isMobile) return;
-
-    const handleClickOutside = (e: MouseEvent) => {
-      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
-        onDeactivate();
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [isActive, isMobile, onDeactivate]);
-
-  const handleInteraction = (e: React.MouseEvent) => {
-    if (isMobile) {
-      e.stopPropagation();
-      if (isActive) {
-        onDeactivate();
-      } else {
-        onActivate();
-      }
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      if (isActive) {
-        onDeactivate();
-      } else {
-        onActivate();
-      }
-    }
-  };
-
-  const handleMouseEnter = () => {
-    if (!isMobile) {
-      onActivate();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!isMobile) {
-      onDeactivate();
-    }
-  };
-
   return (
     <div
       ref={cardRef}
       className={`relative flex flex-col items-center transition-all duration-500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      } ${isActive && isMobile ? "z-50" : ""}`}
+      }`}
     >
-      {/* Mobile Popup - Above Image with bounce animation */}
-      {isMobile && client.caseStudy && (
-        <div
-          className={`w-full mb-3 origin-bottom ${
-            isActive 
-              ? "opacity-100 animate-bounce-in" 
-              : "opacity-0 scale-95 max-h-0 pointer-events-none transition-all duration-200"
-          }`}
-        >
-          <div className="bg-card/95 backdrop-blur-md border border-primary/20 rounded-xl shadow-lg shadow-primary/10 mx-1">
-            <CaseStudyPopup caseStudy={client.caseStudy} />
-          </div>
-          {/* Arrow pointing down */}
-          <div className="flex justify-center -mt-1">
-            <div className="w-4 h-4 rotate-45 bg-card/95 border-r border-b border-primary/20" />
-          </div>
-        </div>
-      )}
-
       {/* Main Card */}
-      <div
-        className="group flex flex-col items-center p-4 cursor-pointer"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onFocus={handleMouseEnter}
-        onBlur={handleMouseLeave}
-        onClick={handleInteraction}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        role="button"
-        aria-expanded={isActive}
-        aria-label={`View case study for ${client.name}`}
-      >
+      <div className="group flex flex-col items-center p-4">
         {/* Logo */}
-        <div className={`w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)] ${
-          isActive ? "ring-2 ring-primary/50 shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)]" : ""
-        }`}>
+        <div className="w-[100px] h-[100px] md:w-[130px] md:h-[130px] rounded-full overflow-hidden mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(var(--primary-rgb),0.4)]">
           <img
             src={client.image}
             alt={`${client.name} – ${client.business}`}
@@ -283,57 +139,14 @@ const ClientCard = ({
         <p className="text-sm md:text-base text-muted-foreground text-center">
           {client.business}
         </p>
-
-        {/* Mobile expand indicator */}
-        {isMobile && client.caseStudy && (
-          <ChevronDown 
-            className={`w-4 h-4 text-primary mt-2 transition-transform duration-300 ${
-              isActive ? "rotate-180" : ""
-            }`}
-          />
-        )}
       </div>
-
-      {/* Desktop Hover Popup with bounce animation */}
-      {!isMobile && client.caseStudy && (
-        <div
-          className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-[280px] md:w-[320px] z-50 pointer-events-none origin-bottom ${
-            isActive
-              ? "opacity-100 animate-bounce-in"
-              : "opacity-0 translate-y-2 scale-95 transition-all duration-200"
-          }`}
-        >
-          <div className="bg-card/95 backdrop-blur-sm border border-primary/20 rounded-xl shadow-xl shadow-black/20">
-            <CaseStudyPopup caseStudy={client.caseStudy} />
-          </div>
-          {/* Arrow */}
-          <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-4 h-4 rotate-45 bg-card/95 border-r border-b border-primary/20" />
-        </div>
-      )}
     </div>
   );
 };
 
 const Clients = () => {
-  const [activeClientIndex, setActiveClientIndex] = useState<number | null>(null);
-  const isMobile = useIsMobile();
-
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section id="clients" className="py-24 md:py-32 bg-background relative">
-      {/* Mobile backdrop blur overlay */}
-      {isMobile && activeClientIndex !== null && (
-        <div 
-          className="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 animate-fade-in"
-          onClick={() => setActiveClientIndex(null)}
-        />
-      )}
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -355,9 +168,6 @@ const Clients = () => {
               key={client.name} 
               client={client} 
               index={index}
-              isActive={activeClientIndex === index}
-              onActivate={() => setActiveClientIndex(index)}
-              onDeactivate={() => setActiveClientIndex(null)}
             />
           ))}
         </div>
