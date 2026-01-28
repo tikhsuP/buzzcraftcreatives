@@ -10,8 +10,17 @@ import fashionRoute4 from "@/assets/case-fashion-route-4.png";
 import fashionRoute5 from "@/assets/case-fashion-route-5.png";
 import fashionRoute6 from "@/assets/case-fashion-route-6.png";
 
-// Client logo
+// New Age Customs Images
+import nac1 from "@/assets/case-nac-1.png";
+import nac2 from "@/assets/case-nac-2.png";
+import nac3 from "@/assets/case-nac-3.png";
+import nac4 from "@/assets/case-nac-4.png";
+import nac5 from "@/assets/case-nac-5.png";
+import nac6 from "@/assets/case-nac-6.png";
+
+// Client logos
 import fashionRouteLogo from "@/assets/client-fashion-route.png";
+import nacLogo from "@/assets/client-new-age-customs.png";
 
 const caseStudies: CaseStudy[] = [
   {
@@ -34,6 +43,27 @@ const caseStudies: CaseStudy[] = [
       fashionRoute6
     ],
     detailPosition: 'left'
+  },
+  {
+    id: "new-age-customs",
+    tag: "Performance Marketing",
+    clientName: "New Age Customs",
+    clientLogo: nacLogo,
+    headline: "Scaling Brand Reach for India's Premier Sneaker Customization Brand",
+    description: "A custom sneaker and streetwear brand redefining footwear personalization. We drove aggressive performance campaigns to boost impressions and website traffic, converting sneakerheads into loyal customers.",
+    metrics: [
+      { value: "50K+", label: "Impressions achieved through targeted campaigns" },
+      { value: "2K+", label: "Website visits driving product discovery" }
+    ],
+    images: [
+      nac1,
+      nac2,
+      nac3,
+      nac4,
+      nac5,
+      nac6
+    ],
+    detailPosition: 'right'
   }
 ];
 
