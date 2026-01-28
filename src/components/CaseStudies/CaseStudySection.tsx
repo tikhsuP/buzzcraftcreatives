@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import type { CaseStudy } from "./types";
 import CaseStudyDetails from "./CaseStudyDetails";
 import ImageMotionTrack from "./ImageMotionTrack";
@@ -10,46 +10,41 @@ interface CaseStudySectionProps {
 }
 
 function CaseStudySection({ study, index }: CaseStudySectionProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Transform scroll progress for animations
-  const progress = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
-
   const isDetailsLeft = study.detailPosition === 'left';
   const imageDirection = isDetailsLeft ? 'left' : 'right';
 
   return (
     <section
-      ref={sectionRef}
-      className="relative min-h-[130vh] w-full"
-      style={{ scrollSnapAlign: 'start' }}
+      className="relative min-h-screen w-full py-16 md:py-24"
     >
-      <div className="sticky top-0 h-screen w-full flex">
-        {/* Details Pane - 45% */}
-        <motion.div
-          className={`w-[45%] h-full bg-background ${
-            isDetailsLeft ? 'order-1' : 'order-2'
-          }`}
-        >
-          <CaseStudyDetails study={study} progress={progress} />
-        </motion.div>
+      <div className="container mx-auto px-4 md:px-8 h-full">
+        <div className={`flex flex-col lg:flex-row gap-8 lg:gap-12 items-center min-h-[80vh] ${
+          isDetailsLeft ? '' : 'lg:flex-row-reverse'
+        }`}>
+          {/* Details Pane - 45% */}
+          <motion.div
+            className="w-full lg:w-[45%]"
+            initial={{ opacity: 0, x: isDetailsLeft ? -50 : 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <CaseStudyDetails study={study} />
+          </motion.div>
 
-        {/* Image Motion Track - 55% */}
-        <div
-          className={`w-[55%] h-full relative bg-muted/20 ${
-            isDetailsLeft ? 'order-2' : 'order-1'
-          }`}
-        >
-          <ImageMotionTrack
-            images={study.images}
-            progress={progress}
-            direction={imageDirection}
-          />
+          {/* Image Motion Track - 55% */}
+          <motion.div
+            className="w-full lg:w-[55%] h-[500px] md:h-[600px] lg:h-[700px] relative"
+            initial={{ opacity: 0, x: isDetailsLeft ? 50 : -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <ImageMotionTrack
+              images={study.images}
+              direction={imageDirection}
+            />
+          </motion.div>
         </div>
       </div>
     </section>

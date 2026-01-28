@@ -1,125 +1,98 @@
-import React from "react";
-import { motion, useTransform, MotionValue } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ImageMotionTrackProps {
   images: string[];
-  progress: MotionValue<number>;
   direction: 'left' | 'right';
 }
 
-function ImageMotionTrack({ images, progress, direction }: ImageMotionTrackProps) {
-  // Different sizes for visual variety
-  const imageSizes = [
-    { width: 280, height: 380, zIndex: 3 },
-    { width: 220, height: 300, zIndex: 2 },
-    { width: 260, height: 350, zIndex: 4 },
-    { width: 200, height: 280, zIndex: 1 },
-    { width: 240, height: 320, zIndex: 3 },
-    { width: 220, height: 290, zIndex: 2 },
+function ImageMotionTrack({ images, direction }: ImageMotionTrackProps) {
+  // Distribute images into 3 columns
+  const columns = [
+    [images[0], images[3]],
+    [images[1], images[4]],
+    [images[2], images[5]],
   ];
 
-  // Vertical offsets for ribbon-like stacking
-  const verticalOffsets = [-40, 20, -20, 40, 0, -30];
+  // Column heights for masonry effect
+  const columnConfigs = [
+    { marginTop: '8%', animationDirection: 'up' as const },
+    { marginTop: '-5%', animationDirection: 'down' as const },
+    { marginTop: '12%', animationDirection: 'up' as const },
+  ];
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
-      <div className="absolute inset-0 flex items-center">
-        {images.map((image, index) => {
-          const size = imageSizes[index % imageSizes.length];
-          const vOffset = verticalOffsets[index % verticalOffsets.length];
-          
-          // Calculate position based on scroll progress
-          const imageStartProgress = index * 0.12;
-          const imageEndProgress = imageStartProgress + 0.5;
-          
-          // Transform for horizontal movement
-          const startX = direction === 'left' ? 140 : -140;
-          const endX = direction === 'left' ? -100 : 100;
-          
-          return (
-            <ImageItem
-              key={index}
-              image={image}
-              index={index}
-              size={size}
-              vOffset={vOffset}
-              progress={progress}
-              imageStartProgress={imageStartProgress}
-              imageEndProgress={imageEndProgress}
-              startX={startX}
-              endX={endX}
-              direction={direction}
-            />
-          );
-        })}
-      </div>
+    <div className="relative w-full h-full overflow-hidden flex items-center justify-center gap-4 px-4">
+      {columns.map((columnImages, colIndex) => (
+        <ImageColumn
+          key={colIndex}
+          images={columnImages}
+          config={columnConfigs[colIndex]}
+          columnIndex={colIndex}
+        />
+      ))}
     </div>
   );
 }
 
-interface ImageItemProps {
-  image: string;
-  index: number;
-  size: { width: number; height: number; zIndex: number };
-  vOffset: number;
-  progress: MotionValue<number>;
-  imageStartProgress: number;
-  imageEndProgress: number;
-  startX: number;
-  endX: number;
-  direction: 'left' | 'right';
+interface ImageColumnProps {
+  images: string[];
+  config: { marginTop: string; animationDirection: 'up' | 'down' };
+  columnIndex: number;
 }
 
-function ImageItem({ 
-  image, 
-  index, 
-  size, 
-  vOffset, 
-  progress, 
-  imageStartProgress, 
-  imageEndProgress, 
-  startX, 
-  endX, 
-  direction 
-}: ImageItemProps) {
-  const x = useTransform(
-    progress,
-    [imageStartProgress, imageEndProgress],
-    [startX, endX]
-  );
-  
-  const opacity = useTransform(
-    progress,
-    [imageStartProgress, imageStartProgress + 0.1, imageEndProgress - 0.1, imageEndProgress],
-    [0, 1, 1, 0]
-  );
+function ImageColumn({ images, config, columnIndex }: ImageColumnProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Horizontal spread for overlapping ribbon effect
-  const baseLeft = direction === 'left' 
-    ? `${20 + index * 12}%`
-    : `${60 - index * 12}%`;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4000 + columnIndex * 500); // Stagger timing per column
+
+    return () => clearInterval(interval);
+  }, [images.length, columnIndex]);
+
+  const yDirection = config.animationDirection === 'up' ? -20 : 20;
 
   return (
-    <motion.div
-      className="absolute rounded-2xl overflow-hidden shadow-2xl"
-      style={{
-        width: size.width,
-        height: size.height,
-        zIndex: size.zIndex,
-        top: `calc(50% + ${vOffset}px)`,
-        left: baseLeft,
-        translateY: '-50%',
-        x,
-        opacity,
-      }}
+    <div 
+      className="flex flex-col gap-4 w-[30%]"
+      style={{ marginTop: config.marginTop }}
     >
-      <img
-        src={image}
-        alt={`Case study visual ${index + 1}`}
-        className="w-full h-full object-cover"
-        loading="lazy"
-      />
-    </motion.div>
+      {images.map((image, index) => (
+        <motion.div
+          key={`${image}-${index}`}
+          className="relative rounded-2xl overflow-hidden shadow-2xl"
+          style={{
+            aspectRatio: index === 0 ? '3/4' : '4/5',
+          }}
+          initial={{ opacity: 0.6, y: yDirection }}
+          animate={{ 
+            opacity: 1, 
+            y: 0,
+            scale: currentIndex === index ? 1.02 : 1,
+          }}
+          transition={{ 
+            duration: 0.9, 
+            ease: [0.22, 1, 0.36, 1],
+            delay: index * 0.15
+          }}
+        >
+          <motion.img
+            src={image}
+            alt={`Case study visual`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            animate={{
+              scale: currentIndex === index ? 1.05 : 1,
+            }}
+            transition={{ duration: 3, ease: "easeInOut" }}
+          />
+          {/* Subtle gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+        </motion.div>
+      ))}
+    </div>
   );
 }
 
