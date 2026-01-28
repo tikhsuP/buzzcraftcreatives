@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import WhyBuzzCraft from "@/components/WhyBuzzCraft";
 import Team from "@/components/Team";
 import Clients from "@/components/Clients";
+import CaseStudies from "@/components/CaseStudies";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
         <Services />
         <WhyBuzzCraft />
         <Clients />
+        <CaseStudies />
         <Team />
       </main>
       <Footer />
