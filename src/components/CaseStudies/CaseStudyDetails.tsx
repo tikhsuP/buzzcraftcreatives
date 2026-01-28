@@ -1,28 +1,21 @@
 import React from "react";
-import { motion, useTransform, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import type { CaseStudy } from "./types";
 
 interface CaseStudyDetailsProps {
   study: CaseStudy;
-  progress: MotionValue<number>;
 }
 
-function CaseStudyDetails({ study, progress }: CaseStudyDetailsProps) {
-  const opacity = useTransform(progress, [0, 0.2], [0, 1]);
-  const y = useTransform(progress, [0, 0.2], [30, 0]);
-
+function CaseStudyDetails({ study }: CaseStudyDetailsProps) {
   return (
-    <motion.div
-      className="flex flex-col justify-center h-full px-8 md:px-12 lg:px-16"
-      style={{ opacity, y }}
-    >
+    <div className="flex flex-col justify-center h-full">
       {/* Tag */}
-      <span className="text-xs md:text-sm uppercase tracking-[0.2em] text-primary font-semibold mb-4">
+      <span className="inline-block w-fit px-4 py-1.5 rounded-full bg-primary/20 text-primary text-xs md:text-sm uppercase tracking-wider font-semibold mb-6">
         {study.tag}
       </span>
 
       {/* Client Logo */}
-      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-6 border-2 border-primary/20">
+      <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden mb-6 border border-primary/20 bg-card">
         <img
           src={study.clientLogo}
           alt={study.clientName}
@@ -36,24 +29,43 @@ function CaseStudyDetails({ study, progress }: CaseStudyDetailsProps) {
       </h3>
 
       {/* Description */}
-      <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-md">
+      <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-lg">
         {study.description}
       </p>
 
       {/* Metrics */}
-      <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+      <div className="flex flex-wrap gap-8 md:gap-12">
         {study.metrics.map((metric, index) => (
-          <div key={index} className="flex flex-col">
-            <span className="text-3xl md:text-4xl font-bold text-primary mb-1">
-              {metric.value}
-            </span>
-            <span className="text-sm md:text-base text-muted-foreground">
+          <motion.div
+            key={index}
+            className="flex flex-col"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+          >
+            <div className="flex items-center gap-2 mb-1">
+              {/* Metric icon based on value */}
+              {metric.value.includes('×') || metric.value.includes('+') ? (
+                <svg className="w-5 h-5 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M7 17l9.2-9.2M17 17V7H7" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              )}
+              <span className="text-2xl md:text-3xl font-bold text-foreground">
+                {metric.value}
+              </span>
+            </div>
+            <span className="text-sm md:text-base text-muted-foreground max-w-[180px]">
               {metric.label}
             </span>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

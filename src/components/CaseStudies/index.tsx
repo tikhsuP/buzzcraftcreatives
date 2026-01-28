@@ -41,15 +41,17 @@ function CaseStudies() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="case-studies" className="relative bg-background">
+    <section id="case-studies" className="relative bg-card/30">
       {/* Section Header */}
-      <div className="container mx-auto px-4 md:px-8 py-24 md:py-32 text-center">
-        <span className="inline-block text-base md:text-lg font-semibold tracking-[0.2em] uppercase text-primary mb-4">
-          Case Studies
-        </span>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
-          Stories That Drive Results
-        </h2>
+      <div className="container mx-auto px-4 md:px-8 pt-24 md:pt-32 pb-8 text-center">
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-primary/50" />
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold">
+            <span className="text-primary">CASE</span>
+            <span className="text-foreground">STUDIES</span>
+          </h2>
+          <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-primary/50" />
+        </div>
         <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
           Deep dives into how we helped brands grow with content, strategy, and performance marketing.
         </p>
@@ -61,9 +63,6 @@ function CaseStudies() {
           <CaseStudySection key={study.id} study={study} index={index} />
         ))}
       </div>
-
-      {/* Spacer for scroll completion */}
-      <div className="h-32" />
     </section>
   );
 }
